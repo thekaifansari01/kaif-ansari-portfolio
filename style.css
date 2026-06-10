@@ -497,14 +497,11 @@ h1, h2, h3, h4, .logo-text, .nav-link {
 
 /* Marquee */
 .marquee-premium {
-    position: absolute;    /* Hero ke bottom me fix karne ke liye */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 50;           /* Background ke upar rakhne ke liye */
     background: var(--bg-secondary);
-    padding: 15px 0;
+    margin-top: 1rem; 
+    padding: 20px 0;
     border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
     overflow: hidden;
 }
 
@@ -1043,7 +1040,7 @@ h1, h2, h3, h4, .logo-text, .nav-link {
 
 .hero-scroll-indicator {
     position: absolute;
-    bottom: 90px;          
+    bottom: 80px;          
     left: 50%;
     transform: translateX(-50%);
     display: flex;
