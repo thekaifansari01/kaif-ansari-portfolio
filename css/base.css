@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .logo-text, .nav-link {
+    font-family: 'Space Grotesk', monospace;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-secondary);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}

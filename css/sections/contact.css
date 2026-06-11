@@ -1,0 +1,134 @@
+.contact-premium {
+    padding: 100px 5%;
+    background: var(--bg-secondary);
+}
+
+.contact-wrapper-premium {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.contact-left h2 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+.contact-left p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.contact-info-premium {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-item span:first-child {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.contact-item a, .contact-item span {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.social-premium {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+.contact-form-premium {
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 24px;
+    padding: 2rem;
+}
+
+.form-group-premium {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form-group-premium input,
+.form-group-premium textarea {
+    width: 100%;
+    padding: 16px 48px 8px 16px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group-premium input:focus,
+.form-group-premium textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+}
+
+.form-group-premium label {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    color: var(--text-muted);
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+.form-group-premium input:focus ~ label,
+.form-group-premium input:valid ~ label,
+.form-group-premium textarea:focus ~ label,
+.form-group-premium textarea:valid ~ label {
+    top: -8px;
+    font-size: 0.75rem;
+    color: var(--accent);
+}
+
+.form-group-premium span {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    color: var(--text-muted);
+    font-size: 20px;
+}
+
+.full-width {
+    width: 100%;
+    justify-content: center;
+}

@@ -1,0 +1,108 @@
+@media (max-width: 968px) {
+    .hero-container,
+    .about-grid,
+    .contact-wrapper-premium,
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .skills-showcase {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .nav-links-premium {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+    
+    .mobile-menu-btn span {
+        width: 24px;
+        height: 2px;
+        background: var(--text-primary);
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+    
+    .floating-badge {
+        display: none;
+    }
+    
+    .cursor-follower, .cursor-dot-premium {
+        display: none;
+    }
+
+    /* ADD THESE FOR BETTER MOBILE EXPERIENCE */
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .stat-premium {
+        padding: 0.5rem 0;
+    }
+
+    .work-card {
+        margin: 0 1rem;
+    }
+
+    .contact-wrapper-premium {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-stats-premium {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* ADD SMOOTH TOUCH SCROLLING */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .navbar-premium {
+        width: calc(100% - 20px);
+        padding: 10px 18px;
+    }
+
+    .btn-primary-premium, .btn-outline-premium {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ADD EXTRA SMALL DEVICES */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .hero-badge-premium {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+}
