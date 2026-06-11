@@ -146,10 +146,110 @@
     animation: pulse 3s infinite;
 }
 
+/* ============================================ */
+/* UPDATED AVATAR STYLES - Image aur Icon dono support */
+/* ============================================ */
+
 .hero-avatar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Default Material Icon Style */
+.hero-avatar .avatar-icon {
     font-size: 120px;
     color: var(--text-secondary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    opacity: 1;
+    transform: scale(1);
 }
+
+/* Profile Image Style */
+.hero-avatar .avatar-image {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.8);
+    filter: grayscale(15%);
+    display: block !important;
+}
+
+/* Jab image successfully load ho jaye */
+.hero-avatar .avatar-image.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Image load hone ke baad icon hide ho jaye */
+.hero-avatar .avatar-image.loaded ~ .avatar-icon,
+.hero-avatar .avatar-image:not([style*="display: none"]) + .avatar-icon {
+    opacity: 0;
+    transform: scale(0.8);
+    visibility: visible;
+}
+
+/* Image Border with Gradient Effect */
+.hero-avatar .avatar-image.loaded {
+    border: 3px solid transparent;
+    background: linear-gradient(135deg, var(--accent), var(--text-secondary));
+    padding: 3px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+
+/* Hover Effects - Jab image ho */
+.hero-image-premium:hover .avatar-image.loaded {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.hero-image-premium:hover .avatar-image.loaded {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+/* Loading Animation */
+@keyframes avatarLoad {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.hero-avatar .avatar-image.loaded {
+    animation: avatarLoad 0.5s ease-out;
+}
+
+/* Agar image nahi hai to icon show hoga */
+.hero-avatar .avatar-image[src=""],
+.hero-avatar .avatar-image[src="#"],
+.hero-avatar .avatar-image:not([src]) {
+    display: none !important;
+}
+
+.hero-avatar .avatar-image[src=""] + .avatar-icon,
+.hero-avatar .avatar-image[src="#"] + .avatar-icon,
+.hero-avatar .avatar-image:not([src]) + .avatar-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ============================================ */
+/* FLOATING BADGES */
+/* ============================================ */
 
 .floating-badge {
     position: absolute;
@@ -169,6 +269,10 @@
 .badge-2 { bottom: 40px; right: -20px; animation: float 5s infinite reverse; }
 .badge-3 { bottom: -20px; left: 20%; animation: float 4.5s infinite; }
 
+/* ============================================ */
+/* SCROLL INDICATOR */
+/* ============================================ */
+
 .hero-scroll-indicator {
     position: absolute;
     bottom: 170px;
@@ -183,4 +287,168 @@
     z-index: 40;
     pointer-events: none;
     white-space: nowrap;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN */
+/* ============================================ */
+
+@media (max-width: 968px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .hero-description-premium {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .stat-premium {
+        justify-content: center;
+    }
+    
+    .hero-image-premium {
+        width: 350px;
+        height: 350px;
+    }
+    
+    .hero-avatar .avatar-image {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .hero-avatar .avatar-icon {
+        font-size: 100px;
+    }
+    
+    .badge-1, .badge-2, .badge-3 {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-premium {
+        padding: 100px 5% 80px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-image-premium {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .hero-avatar .avatar-image {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .hero-avatar .avatar-icon {
+        font-size: 90px;
+    }
+    
+    .badge-1 { top: -10px; left: -20px; }
+    .badge-2 { bottom: 20px; right: -20px; }
+    .badge-3 { bottom: -10px; left: 10%; }
+}
+
+@media (max-width: 480px) {
+    .hero-premium {
+        padding: 80px 5% 60px;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-badge-premium {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+    
+    .hero-description-premium {
+        font-size: 0.95rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .hero-actions .btn-primary-premium,
+    .hero-actions .btn-ghost-premium {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .stat-premium {
+        flex: 1;
+        min-width: 80px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-plus {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .hero-image-premium {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .hero-avatar .avatar-image {
+        width: 170px;
+        height: 170px;
+    }
+    
+    .hero-avatar .avatar-icon {
+        font-size: 75px;
+    }
+    
+    .floating-badge {
+        padding: 4px 10px;
+        font-size: 0.65rem;
+    }
+    
+    .badge-1 { top: -15px; left: -15px; }
+    .badge-2 { bottom: 10px; right: -15px; }
+    .badge-3 { bottom: -15px; left: 5%; }
+    
+    .hero-scroll-indicator {
+        bottom: 100px;
+        font-size: 10px;
+    }
+}
+
+/* ============================================ */
+/* DARK MODE ADJUSTMENTS */
+/* ============================================ */
+
+[data-theme="dark"] .hero-avatar .avatar-image.loaded {
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .hero-avatar .avatar-icon {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .hero-image-premium {
+    background: linear-gradient(135deg, var(--bg-tertiary), rgba(255,255,255,0.05));
 }
