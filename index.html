@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="css/layout/footer.css">
     <link rel="stylesheet" href="css/utils/responsive.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.0.3/tsparticles.bundle.min.js"></script>
+
 </head>
 <body>
     <div class="preloader">
@@ -131,6 +133,7 @@
 
     <section id="home" class="hero-premium">
         <div class="hero-bg-premium">
+            <div id="tsparticles"></div>
             <div class="gradient-orb-1"></div>
             <div class="gradient-orb-2"></div>
             <div class="grid-lines"></div>
@@ -551,6 +554,7 @@
     <script>
         AOS.init({ duration: 800, once: true, offset: 100 });
     </script>
+    <script src="modules/particles.js"></script>
     
 </body>
 </html>

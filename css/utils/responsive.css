@@ -127,6 +127,7 @@
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: none;
     }
+    #tsparticles { display: none !important; opacity: 0 !important; animation: none !important; }
 
     /* ----- Hero adjustments ----- */
     .hero-premium {
@@ -469,6 +470,7 @@
     .bottom-nav {
         display: none !important;
     }
+    #tsparticles { display: block !important; opacity: 1 !important; animation: particlesFadeIn 1.5s ease 0.5s forwards !important; }
     /* Top navbar visible */
     .navbar-premium {
         display: block !important;
