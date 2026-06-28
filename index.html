@@ -55,6 +55,7 @@
         </div>
     </div>
 
+    <!-- ===== TOP NAVBAR (Desktop) ===== -->
     <nav class="navbar-premium">
         <div class="nav-container-premium">
             <div class="logo-premium">
@@ -99,6 +100,35 @@
         </div>
     </nav>
 
+    <!-- ===== BOTTOM NAV BAR (Mobile only – will be hidden on desktop) ===== -->
+    <nav class="bottom-nav" id="bottomNav" role="tablist">
+        <a href="#home" class="nav-item active-nav" data-tab="home" role="tab">
+            <span class="material-icons-round">home</span>
+            <span class="nav-label">Home</span>
+            <span class="nav-dot"></span>
+        </a>
+        <a href="#work" class="nav-item" data-tab="work" role="tab">
+            <span class="material-icons-round">work</span>
+            <span class="nav-label">Work</span>
+            <span class="nav-dot"></span>
+        </a>
+        <a href="#about" class="nav-item" data-tab="about" role="tab">
+            <span class="material-icons-round">person</span>
+            <span class="nav-label">About</span>
+            <span class="nav-dot"></span>
+        </a>
+        <a href="#skills" class="nav-item" data-tab="skills" role="tab">
+            <span class="material-icons-round">code</span>
+            <span class="nav-label">Skills</span>
+            <span class="nav-dot"></span>
+        </a>
+        <a href="#contact" class="nav-item" data-tab="contact" role="tab">
+            <span class="material-icons-round">chat</span>
+            <span class="nav-label">Contact</span>
+            <span class="nav-dot"></span>
+        </a>
+    </nav>
+
     <section id="home" class="hero-premium">
         <div class="hero-bg-premium">
             <div class="gradient-orb-1"></div>
@@ -121,16 +151,16 @@
                     I build production-ready LLM agents, intelligent voice assistants, and full-stack AI systems that merge cutting-edge tech with scalable code.
                 </p>
                 <div class="hero-actions">
-                    <a href="#work" class="btn-primary-premium">
+                    <a href="#work" class="btn-primary-premium touch-ripple">
                         <span>Explore projects</span>
                         <span class="material-icons-round">arrow_forward</span>
                     </a>
-                    <a href="#contact" class="btn-ghost-premium">
+                    <a href="#contact" class="btn-ghost-premium touch-ripple">
                         <span class="material-icons-round">record_voice_over</span>
                         Let's talk
                     </a>
                 </div>
-                <div class="hero-actions">
+                <div class="hero-stats">
                     <div class="stat-premium">
                         <span class="stat-number" data-target="3">0</span>
                         <span class="stat-plus">+</span>
@@ -218,7 +248,7 @@
             </div>
             
             <div class="work-grid">
-                <div class="work-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="100">
                     <div class="work-card-inner">
                         <div class="work-image">
                             <div class="work-overlay">
@@ -251,7 +281,7 @@
                     </div>
                 </div>
                 
-                <div class="work-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="200">
                     <div class="work-card-inner">
                         <div class="work-image">
                             <div class="work-overlay">
@@ -283,7 +313,7 @@
                     </div>
                 </div>
 
-                <div class="work-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="300">
                     <div class="work-card-inner">
                         <div class="work-image">
                             <div class="work-overlay">
@@ -474,7 +504,7 @@
                             <label>Message</label>
                             <span class="material-icons-round">edit_note</span>
                         </div>
-                        <button type="submit" class="btn-primary-premium full-width">
+                        <button type="submit" class="btn-primary-premium full-width touch-ripple">
                             <span>Send Message</span>
                             <span class="material-icons-round">send</span>
                         </button>
