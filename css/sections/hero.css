@@ -538,3 +538,120 @@
 [data-theme="dark"] .hero-image-premium {
     background: linear-gradient(135deg, var(--bg-tertiary), rgba(255,255,255,0.05));
 }
+
+.hero-cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 8px 20px;
+    
+    /* Dark mode ke hisaab se soft AWS Orange tint */
+    background: linear-gradient(145deg, rgba(255, 153, 0, 0.08), rgba(255, 153, 0, 0.02));
+    border: 1px solid rgba(255, 153, 0, 0.3);
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    
+    /* Smooth transitions for hover */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* Subtle Float + Glow Animation */
+    animation: premiumFloat 4s ease-in-out infinite;
+}
+
+.hero-cert-badge .cert-icon {
+    color: #FF9900; /* AWS Signature Orange */
+    font-size: 20px;
+    filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.5));
+}
+
+.hero-cert-badge .cert-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.hero-cert-badge .external-icon {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hero-cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 8px 20px;
+    
+    /* Soft AWS Orange tint background */
+    background: linear-gradient(145deg, rgba(255, 153, 0, 0.08), rgba(255, 153, 0, 0.02));
+    border: 1px solid rgba(255, 153, 0, 0.3);
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    
+    /* Smooth transitions for hover states */
+    transition: all 0.3s ease;
+    
+    /* Sirf background glow ki animation (Text hilega nahi) */
+    animation: premiumGlowPulse 3s ease-in-out infinite alternate;
+}
+
+.hero-cert-badge .cert-icon {
+    color: #FF9900; /* AWS Signature Orange */
+    font-size: 20px;
+    filter: drop-shadow(0 0 4px rgba(255, 153, 0, 0.4));
+}
+
+.hero-cert-badge .cert-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+.hero-cert-badge .external-icon {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.4);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect: Glow slightly intensifies and icon color shifts */
+.hero-cert-badge:hover {
+    background: linear-gradient(145deg, rgba(255, 153, 0, 0.15), rgba(255, 153, 0, 0.05));
+    border-color: rgba(255, 153, 0, 0.6);
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.25);
+    transform: translateY(-2px); /* Slight elevate on hover for feedback */
+}
+
+.hero-cert-badge:hover .external-icon {
+    transform: translate(3px, -3px);
+    color: #FF9900;
+}
+
+/* Keyframes: Sirf box-shadow pulse karega, coordinate transitions (top/bottom) nahi hain */
+@keyframes premiumGlowPulse {
+    0% {
+        box-shadow: 0 0 8px rgba(255, 153, 0, 0.04);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 153, 0, 0.18);
+    }
+}
+
+/* Mobile Alignment Setup */
+@media (max-width: 480px) {
+    .hero-cert-badge {
+        padding: 6px 16px;
+        margin: 0 auto 1.5rem auto;
+    }
+    .hero-cert-badge .cert-text {
+        font-size: 0.75rem;
+    }
+    .hero-cert-badge .cert-icon {
+        font-size: 18px;
+    }
+}
