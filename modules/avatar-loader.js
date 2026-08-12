@@ -1,29 +1,27 @@
-// Avatar Image Loader - Fixed
-document.addEventListener('DOMContentLoaded', function() {
+// modules/avatar-loader.js
+(function(){
     const avatarImage = document.querySelector('.hero-avatar .avatar-image');
     const avatarIcon = document.querySelector('.hero-avatar .avatar-icon');
-    
     if (!avatarImage) return;
-    
-    // Pehle icon ko visible rakho (default state)
+
+    if (window.innerWidth <= 968) {
+        avatarImage.style.display = 'none';
+        if (avatarIcon) avatarIcon.style.display = 'flex';
+        return;
+    }
+
     avatarIcon.style.display = 'flex';
     avatarImage.style.display = 'none';
-    
+
     const img = new Image();
     img.onload = function() {
-        // Image load ho gayi – icon hide, image show
         avatarIcon.style.display = 'none';
         avatarImage.style.display = 'block';
         avatarImage.classList.add('loaded');
-        console.log('✅ Avatar image loaded');
     };
-    
     img.onerror = function() {
-        // Image nahi mili – icon show, image hide
         avatarIcon.style.display = 'flex';
         avatarImage.style.display = 'none';
-        console.log('⚠️ Avatar image not found');
     };
-    
     img.src = avatarImage.src;
-});
+})();

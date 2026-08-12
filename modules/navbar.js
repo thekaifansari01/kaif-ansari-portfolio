@@ -1,123 +1,110 @@
-// ============================================================
-// TOP NAVBAR – Scroll effect & Mobile menu
-// ============================================================
-
-const navbar = document.querySelector('.navbar-premium');
-const mobileBtn = document.querySelector('.mobile-menu-btn');
-const mobilePanel = document.querySelector('.mobile-nav-panel');
-
-// Create mobile panel if not exists (for top navbar hamburger menu)
-if (!document.querySelector('.mobile-nav-panel')) {
-    const panel = document.createElement('div');
-    panel.className = 'mobile-nav-panel';
+// modules/navbar.js
+(function(){
+    const navbar = document.querySelector('.navbar-premium');
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    let mobilePanel = document.querySelector('.mobile-nav-panel');
     const navLinks = document.querySelector('.nav-links-premium');
-    if (navLinks) {
+
+    if (!mobilePanel && navLinks) {
+        const panel = document.createElement('div');
+        panel.className = 'mobile-nav-panel';
         panel.innerHTML = navLinks.innerHTML;
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'mobile-panel-close';
+        closeBtn.innerHTML = '✕';
+        panel.prepend(closeBtn);
         document.body.appendChild(panel);
+        mobilePanel = panel;
     }
-}
 
-const mobilePanelElem = document.querySelector('.mobile-nav-panel');
+    const panelClose = mobilePanel ? mobilePanel.querySelector('.mobile-panel-close') : null;
 
-// Top navbar scroll effect (adds shadow on scroll)
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar?.classList.add('scrolled');
-    } else {
-        navbar?.classList.remove('scrolled');
+    function closeMobileMenu() {
+        if (mobileBtn) mobileBtn.classList.remove('active');
+        if (mobilePanel) mobilePanel.classList.remove('active');
     }
-});
 
-// ============================================================
-// ACTIVE NAV LINK – Top navbar + Bottom navbar both
-// ============================================================
+    function openMobileMenu() {
+        if (mobileBtn) mobileBtn.classList.add('active');
+        if (mobilePanel) mobilePanel.classList.add('active');
+    }
 
-const sections = document.querySelectorAll('section[id]');
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (mobilePanel && mobilePanel.classList.contains('active')) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+    }
 
-function updateActiveLink() {
-    let current = '';
-    
-    // Find which section is currently in view
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop - 300) {
-            current = section.getAttribute('id');
+    if (panelClose) {
+        panelClose.addEventListener('click', closeMobileMenu);
+    }
+
+    document.addEventListener('click', function(e) {
+        if (mobilePanel && mobilePanel.classList.contains('active')) {
+            if (!mobilePanel.contains(e.target) && !mobileBtn.contains(e.target)) {
+                closeMobileMenu();
+            }
         }
     });
 
-    // ----- Update TOP navbar links (desktop) -----
-    document.querySelectorAll('.nav-links-premium .nav-link').forEach(link => {
-        link.classList.remove('active-nav');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active-nav');
+    document.querySelectorAll('.nav-link, .mobile-nav-panel .nav-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+    });
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
     });
 
-    // ----- Update BOTTOM navbar links (mobile) -----
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(link => {
-        link.classList.remove('active-nav');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active-nav');
-        }
-    });
-}
+    const sections = document.querySelectorAll('section[id]');
+    function updateActiveLink() {
+        let current = '';
+        sections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.clientHeight;
+            if (window.scrollY >= top - 300) {
+                current = section.getAttribute('id');
+            }
+        });
+        document.querySelectorAll('.nav-links-premium .nav-link, .mobile-nav-panel .nav-link').forEach(link => {
+            link.classList.remove('active-nav');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active-nav');
+            }
+        });
+        document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+            item.classList.remove('active-nav');
+            if (item.getAttribute('href') === '#' + current) {
+                item.classList.add('active-nav');
+            }
+        });
+    }
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
 
-// Listen to scroll and run the active link updater
-window.addEventListener('scroll', updateActiveLink);
-// Run once on load to set initial active state
-updateActiveLink();
-
-// ============================================================
-// TOP NAVBAR – Hamburger menu toggle
-// ============================================================
-
-if (mobileBtn) {
-    mobileBtn.addEventListener('click', () => {
-        mobileBtn.classList.toggle('active');
-        mobilePanelElem?.classList.toggle('active');
-    });
-}
-
-// Close mobile menu when clicking a link (top navbar)
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileBtn?.classList.remove('active');
-        mobilePanelElem?.classList.remove('active');
-    });
-});
-
-// ============================================================
-// BOTTOM NAVBAR – Smooth scroll on click (mobile)
-// ============================================================
-
-document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-        const target = document.querySelector(item.getAttribute('href'));
-        if (target) {
+    document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+        item.addEventListener('click', function(e) {
             e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
     });
-});
 
-// ============================================================
-// TOUCH RIPPLE EFFECT – for .touch-ripple elements (mobile)
-// ============================================================
-
-document.querySelectorAll('.touch-ripple').forEach(el => {
-    el.addEventListener('pointerdown', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        this.style.setProperty('--x', x + '%');
-        this.style.setProperty('--y', y + '%');
+    document.querySelectorAll('.touch-ripple').forEach(el => {
+        el.addEventListener('pointerdown', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            this.style.setProperty('--x', x + '%');
+            this.style.setProperty('--y', y + '%');
+        });
     });
-});
-
-// ============================================================
-// (Optional) Close bottom nav active state on route change
-// Just a safety net – already handled by updateActiveLink
-// ============================================================
-
-console.log('✅ Navbar & Touch Ripple initialized');
+})();
