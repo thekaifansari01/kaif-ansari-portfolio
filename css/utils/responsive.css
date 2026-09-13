@@ -129,6 +129,34 @@
 }
 
 @media (max-width: 968px) {
+    html,
+    body {
+        overflow-x: clip !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+        position: relative;
+    }
+
+    .hero-premium,
+    .hero-container,
+    .hero-left,
+    .hero-right,
+    .hero-image-wrapper,
+    .hero-image-premium,
+    .work-premium,
+    .about-premium,
+    .skills-premium,
+    .contact-premium,
+    .footer-premium,
+    .marquee-premium {
+        max-width: 100vw;
+        overflow-x: clip;
+    }
+
+    .floating-badge {
+        max-width: calc(100vw - 40px);
+    }
+
     .bottom-nav {
         display: flex !important;
     }
@@ -148,7 +176,6 @@
     body {
         padding-bottom: calc(var(--nav-height, 72px) + 40px + var(--safe-bottom));
         -webkit-overflow-scrolling: touch;
-        overflow-x: hidden;
     }
 
     #tsparticles {
