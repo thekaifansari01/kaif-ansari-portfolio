@@ -1,9 +1,10 @@
 .footer-premium {
-    padding: 60px 5% 40px;
+    position: relative;
+    padding: var(--space-16) 5% var(--space-10);
     border-top: 1px solid var(--border-light);
     background: var(--bg-secondary);
-    position: relative;
     overflow: hidden;
+    transition: background-color var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out);
 }
 
 .footer-premium::before {
@@ -14,15 +15,20 @@
     width: 60%;
     height: 60%;
     background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-    opacity: 0.02;
+    opacity: 0.06;
     border-radius: 50%;
     pointer-events: none;
-    animation: footerGlow 15s ease-in-out infinite alternate;
+    animation: footerGlow 18s ease-in-out infinite alternate;
+    transition: opacity var(--dur-slower) var(--ease-out);
 }
 
-@keyframes footerGlow {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(-10%, 10%) scale(1.3); }
+[data-theme="dark"] .footer-premium::before { opacity: 0.14; }
+
+.footer-premium .container-premium {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content-premium {
@@ -30,81 +36,59 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
-    position: relative;
-    z-index: 1;
+    gap: var(--space-8);
 }
 
 .footer-brand {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 0.1rem;
-    transition: transform 0.3s ease;
-}
-
-.footer-brand:hover {
-    transform: scale(1.03);
+    align-items: baseline;
+    gap: 2px;
 }
 
 .footer-brand .logo-text {
+    font-family: 'Space Grotesk', monospace;
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: var(--text-primary);
-    transition: color 0.3s ease;
-}
-
-.footer-brand:hover .logo-text {
-    background: linear-gradient(135deg, var(--text-primary), var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    transition: color var(--dur-base) var(--ease-out);
 }
 
 .footer-brand .logo-dot {
+    font-family: 'Space Grotesk', monospace;
     font-size: 2rem;
-    color: var(--accent);
-    display: inline-block;
-    animation: dotPulse 2s ease-in-out infinite;
-    transition: transform 0.3s ease;
+    background: var(--gradient-text);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 4s ease infinite, dotPulse 2.4s ease-in-out infinite;
     line-height: 1;
-}
-
-.footer-brand:hover .logo-dot {
-    transform: rotate(20deg) scale(1.3);
-}
-
-@keyframes dotPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.4); }
+    display: inline-block;
 }
 
 .footer-brand p {
     color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
+    font-size: var(--fs-sm);
+    margin-top: var(--space-2);
     width: 100%;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.footer-brand:hover p {
-    color: var(--text-secondary);
-    transform: translateX(4px);
+    transition: color var(--dur-base) var(--ease-out);
 }
 
 .footer-links {
     display: flex;
-    gap: 2rem;
+    gap: var(--space-6);
+    flex-wrap: wrap;
 }
 
 .footer-links a {
+    position: relative;
     color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-    position: relative;
-    padding: 0.2rem 0;
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    padding: 4px 0;
+    transition: color var(--dur-base) var(--ease-out);
 }
 
 .footer-links a::after {
@@ -112,81 +96,68 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 1.5px;
+    background: var(--gradient-1);
     border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform var(--dur-base) var(--ease-out);
 }
 
 .footer-links a:hover {
-    color: var(--accent);
-    transform: translateY(-2px);
+    color: var(--text-primary);
 }
 
 .footer-links a:hover::after {
-    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left center;
 }
 
 .footer-copyright {
     color: var(--text-muted);
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
+    font-size: var(--fs-sm);
     cursor: default;
+    transition: color var(--dur-base) var(--ease-out);
 }
 
-.footer-copyright:hover {
-    color: var(--text-secondary);
-    transform: scale(1.02);
-}
+.footer-copyright:hover { color: var(--text-secondary); }
 
 .footer-copyright p {
-    transition: color 0.3s ease;
+    transition: color var(--dur-base) var(--ease-out);
 }
 
 .footer-copyright:hover p {
-    color: var(--accent);
+    background: var(--gradient-text);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 6s ease infinite;
 }
 
 @media (max-width: 768px) {
+    .footer-premium { padding: var(--space-12) 5% var(--space-24); }
     .footer-content-premium {
         flex-direction: column;
         text-align: center;
-        gap: 1.5rem;
+        gap: var(--space-6);
     }
     .footer-brand {
         justify-content: center;
-    }
-    .footer-brand p {
-        margin-top: 0.25rem;
+        align-items: baseline;
     }
     .footer-links {
-        gap: 1.5rem;
-        flex-wrap: wrap;
         justify-content: center;
+        gap: var(--space-5);
     }
-    .footer-links a {
-        font-size: 0.9rem;
-    }
-    .footer-copyright {
-        font-size: 0.75rem;
-    }
+    .footer-copyright { font-size: var(--fs-xs); }
 }
 
 @media (max-width: 480px) {
-    .footer-premium {
-        padding: 40px 5% 30px;
-    }
-    .footer-links {
-        gap: 1rem;
-    }
-    .footer-links a {
-        font-size: 0.8rem;
-    }
-    .footer-brand .logo-text {
-        font-size: 1.3rem;
-    }
-    .footer-brand .logo-dot {
-        font-size: 1.6rem;
-    }
+    .footer-premium { padding: var(--space-10) 5% var(--space-24); }
+    .footer-links { gap: var(--space-4); }
+    .footer-links a { font-size: var(--fs-xs); }
+    .footer-brand .logo-text { font-size: 1.3rem; }
+    .footer-brand .logo-dot { font-size: 1.6rem; }
 }
