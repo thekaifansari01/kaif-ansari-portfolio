@@ -433,8 +433,17 @@
     .gradient-orb-2 { opacity: 0.15; }
 
     .hero-image-premium::before {
-        inset: -18px;
-        filter: blur(20px);
+        inset: -10px;
+        filter: blur(12px);
+        opacity: 0.35;
+    }
+
+    .hero-image-premium::after {
+        inset: -1px;
+    }
+
+    .image-glow {
+        opacity: 0.12;
     }
 
     .hero-container {
@@ -513,6 +522,17 @@
     .hero-title { font-size: 2rem; }
     .hero-description-premium { font-size: 0.9rem; }
     .hero-image-premium { width: 220px; height: 220px; }
+
+    .hero-image-premium::before {
+        inset: -8px;
+        filter: blur(9px);
+        opacity: 0.3;
+    }
+
+    .image-glow {
+        opacity: 0.1;
+    }
+
     .hero-avatar .avatar-image { border-width: 3px; }
     .hero-avatar .avatar-icon { font-size: 80px; }
     .hero-cert-badge { padding: 6px 14px; gap: 8px; }
