@@ -1,712 +1,729 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <script>
-        (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();
-    </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t='dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();
+</script>
 
-    <title>Kaif Ansari | AI Engineer &amp; LLM Developer – Building Agentic AI</title>
-    <meta name="description" content="Kaif Ansari is an AI Engineer building production-ready LLM agents, voice assistants, and RAG systems. Explore J.A.R.V.I.S, kairos.ai, and more." />
-    <meta name="keywords" content="Kaif Ansari, AI Engineer, LLM Developer, Voice AI, RAG, Agentic AI, Python, JavaScript, Portfolio, J.A.R.V.I.S, kairos.ai" />
-    <link rel="canonical" href="https://buildwithkaif.vercel.app/" />
+<title>Kaif Ansari — AI Engineer building agents that ship</title>
+<meta name="description" content="Kaif Ansari — AI Engineer from Muzaffarnagar. Building LLM agents, voice assistants, and RAG systems that actually ship." />
+<meta name="keywords" content="Kaif Ansari, AI Engineer, LLM Developer, Voice AI, RAG, Agentic AI, Python, JavaScript, Portfolio, J.A.R.V.I.S, kairos.ai" />
+<link rel="canonical" href="https://buildwithkaif.vercel.app/" />
 
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#06030f" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#0a0a0a" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://buildwithkaif.vercel.app/" />
-    <meta property="og:title" content="Kaif Ansari | AI Engineer &amp; LLM Developer" />
-    <meta property="og:description" content="Kaif Ansari builds intelligent agents, voice assistants, and full-stack AI systems. See his work." />
-    <meta property="og:image" content="https://buildwithkaif.vercel.app/assets/images/og-image.jpg" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://buildwithkaif.vercel.app/" />
+<meta property="og:title" content="Kaif Ansari — AI Engineer" />
+<meta property="og:description" content="Building LLM agents, voice assistants, and RAG systems that actually ship." />
+<meta property="og:image" content="https://buildwithkaif.vercel.app/assets/images/og-image.jpg" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://buildwithkaif.vercel.app/" />
-    <meta name="twitter:title" content="Kaif Ansari | AI Engineer &amp; LLM Developer" />
-    <meta name="twitter:description" content="Kaif Ansari builds intelligent agents, voice assistants, and full-stack AI systems." />
-    <meta name="twitter:image" content="https://buildwithkaif.vercel.app/assets/images/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kaif Ansari — AI Engineer" />
+<meta name="twitter:description" content="Building LLM agents, voice assistants, and RAG systems that actually ship." />
+<meta name="twitter:image" content="https://buildwithkaif.vercel.app/assets/images/og-image.jpg" />
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "@id": "https://buildwithkaif.vercel.app/#person",
-        "name": "Kaif Ansari",
-        "jobTitle": "AI Engineer & Creative Developer",
-        "description": "AI Engineer building production-ready LLM agents, voice assistants, and RAG systems.",
-        "image": "https://buildwithkaif.vercel.app/assets/images/mydp.png",
-        "url": "https://buildwithkaif.vercel.app/",
-        "email": "kaif.ansari.global@gmail.com",
-        "telephone": "+919286012879",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Muzaffarnagar",
-            "addressRegion": "Uttar Pradesh",
-            "addressCountry": "India"
-        },
-        "nationality": {
-            "@type": "Country",
-            "name": "India"
-        },
-        "sameAs": [
-            "https://github.com/thekaifansari01",
-            "https://linkedin.com/in/thekaifansari01",
-            "https://twitter.com/thekaifansari01"
-        ],
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Self-employed"
-        },
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "Shree Ram Group of College"
-        },
-        "knowsAbout": [
-            "Artificial Intelligence",
-            "Large Language Models (LLM)",
-            "Voice AI",
-            "RAG Systems",
-            "Python",
-            "Agentic AI"
-        ]
-    }
-    </script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Person",
+"@id": "https://buildwithkaif.vercel.app/#person",
+"name": "Kaif Ansari",
+"jobTitle": "AI Engineer",
+"description": "AI Engineer building production-ready LLM agents, voice assistants, and RAG systems.",
+"image": "https://buildwithkaif.vercel.app/assets/images/mydp.png",
+"url": "https://buildwithkaif.vercel.app/",
+"email": "kaif.ansari.global@gmail.com",
+"telephone": "+919286012879",
+"address": { "@type": "PostalAddress", "addressLocality": "Muzaffarnagar", "addressRegion": "Uttar Pradesh", "addressCountry": "India" },
+"nationality": { "@type": "Country", "name": "India" },
+"sameAs": [
+"https://github.com/thekaifansari01",
+"https://linkedin.com/in/thekaifansari01",
+"https://twitter.com/thekaifansari01"
+],
+"alumniOf": { "@type": "EducationalOrganization", "name": "Shree Ram Group of College" },
+"knowsAbout": ["Artificial Intelligence", "Large Language Models", "Voice AI", "RAG Systems", "Python", "Agentic AI"]
+}
+</script>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Kaif Ansari's Projects",
-        "description": "Production-ready AI projects by Kaif Ansari",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "item": {
-                    "@type": "SoftwareApplication",
-                    "name": "J.A.R.V.I.S",
-                    "description": "Voice AI assistant with Llama 3.3 & Gemini reasoning, wake-word detection, email automation, and PC control.",
-                    "applicationCategory": "AI Agent",
-                    "operatingSystem": "Windows, Linux",
-                    "url": "https://github.com/thekaifansari01/jarvis-by-kaif-ansari",
-                    "author": { "@id": "https://buildwithkaif.vercel.app/#person" }
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "item": {
-                    "@type": "SoftwareApplication",
-                    "name": "kairos.ai",
-                    "description": "AI coding workspace with multi-model chat, live Python execution via Pyodide, project RAG, and cloud sync.",
-                    "applicationCategory": "AI Workspace",
-                    "operatingSystem": "Web",
-                    "url": "https://github.com/thekaifansari01/kairos.ai",
-                    "author": { "@id": "https://buildwithkaif.vercel.app/#person" }
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "item": {
-                    "@type": "SoftwareApplication",
-                    "name": "Nexus Web Assistant",
-                    "description": "Intelligent page-aware AI assistant with real-time content scraping, Markdown rendering, and persistent memory.",
-                    "applicationCategory": "AI Assistant",
-                    "operatingSystem": "Web",
-                    "url": "https://github.com/thekaifansari01/NexusWebAssistant",
-                    "author": { "@id": "https://buildwithkaif.vercel.app/#person" }
-                }
-            },
-            {
-                "@type": "ListItem",
-                "position": 4,
-                "item": {
-                    "@type": "SoftwareApplication",
-                    "name": "GitHub Universe (Open Source)",
-                    "description": "Open-source hub featuring advanced AI agents, automation tools, LLM wrappers, and security tools.",
-                    "applicationCategory": "Open Source",
-                    "operatingSystem": "Cross-platform",
-                    "url": "https://github.com/thekaifansari01",
-                    "author": { "@id": "https://buildwithkaif.vercel.app/#person" }
-                }
-            }
-        ]
-    }
-    </script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0,1" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="assets/favicon/favicon.png" />
 
-    <link rel="icon" type="image/png" href="assets/favicon/favicon.png" />
+<link rel="stylesheet" href="css/variables.css" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<link rel="stylesheet" href="css/components/preloader.css" />
+<link rel="stylesheet" href="css/components/theme-switch.css" />
+<link rel="stylesheet" href="css/components/navbar.css" />
+<link rel="stylesheet" href="css/components/buttons.css" />
+<link rel="stylesheet" href="css/sections/hero.css" />
+<link rel="stylesheet" href="css/sections/marquee.css" />
+<link rel="stylesheet" href="css/sections/work.css" />
+<link rel="stylesheet" href="css/sections/about.css" />
+<link rel="stylesheet" href="css/sections/skills.css" />
+<link rel="stylesheet" href="css/sections/contact.css" />
+<link rel="stylesheet" href="css/layout/footer.css" />
+<link rel="stylesheet" href="css/utils/responsive.css" />
 
-    <link rel="stylesheet" href="css/variables.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <link rel="stylesheet" href="css/components/preloader.css" />
-    <link rel="stylesheet" href="css/components/cursor.css" />
-    <link rel="stylesheet" href="css/components/theme-switch.css" />
-    <link rel="stylesheet" href="css/components/navbar.css" />
-    <link rel="stylesheet" href="css/components/buttons.css" />
-    <link rel="stylesheet" href="css/sections/hero.css" />
-    <link rel="stylesheet" href="css/sections/marquee.css" />
-    <link rel="stylesheet" href="css/sections/work.css" />
-    <link rel="stylesheet" href="css/sections/about.css" />
-    <link rel="stylesheet" href="css/sections/skills.css" />
-    <link rel="stylesheet" href="css/sections/contact.css" />
-    <link rel="stylesheet" href="css/layout/footer.css" />
-    <link rel="stylesheet" href="css/utils/responsive.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.0.3/tsparticles.bundle.min.js"></script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
-    <div class="preloader">
-        <div class="preloader-content">
-            <div class="preloader-ring"></div>
-            <span>KA</span>
-        </div>
-    </div>
+<div class="preloader">
+<div class="preloader-text">
+<span class="preloader-prompt">$</span>
+<span>booting kaif.exe</span>
+<span class="preloader-cursor">_</span>
+</div>
+</div>
 
-    <div class="cursor-follower"></div>
-    <div class="cursor-dot-premium"></div>
+<nav class="navbar" aria-label="Primary">
+<div class="nav-inner">
+<a href="#home" class="nav-logo">
+<span class="logo-mark">~/</span>kaif
+</a>
+<div class="nav-links">
+<a href="#home" class="nav-link active-nav">home</a>
+<a href="#work" class="nav-link">work</a>
+<a href="#about" class="nav-link">about</a>
+<a href="#stack" class="nav-link">stack</a>
+<a href="#contact" class="nav-link">contact</a>
+</div>
+<div class="nav-actions">
+<button type="button" class="theme-toggle" aria-label="Toggle theme">
+<span class="material-icons-round icon-moon" aria-hidden="true">dark_mode</span>
+<span class="material-icons-round icon-sun" aria-hidden="true">light_mode</span>
+</button>
+<a href="https://drive.google.com/file/d/1zBgnHImJYmtMU5YKIKCCxFtpWCR3iQWZ/view?usp=drive_link" class="nav-resume" target="_blank" rel="noopener noreferrer">
+resume
+<span class="material-icons-round" aria-hidden="true">arrow_outward</span>
+</a>
+</div>
+</div>
+</nav>
 
-    <div class="theme-switch-wrapper">
-        <div class="theme-switch">
-            <button type="button" class="theme-switch-track" aria-label="Toggle theme">
-                <i class="fas fa-sun" aria-hidden="true"></i>
-                <i class="fas fa-moon" aria-hidden="true"></i>
-                <div class="theme-switch-thumb"></div>
-            </button>
-        </div>
-    </div>
+<nav class="bottom-nav" aria-label="Mobile navigation">
+<a href="#home" class="nav-item active-nav">
+<span class="material-icons-round" aria-hidden="true">home</span>
+<span class="nav-label">home</span>
+</a>
+<a href="#work" class="nav-item">
+<span class="material-icons-round" aria-hidden="true">folder</span>
+<span class="nav-label">work</span>
+</a>
+<a href="#about" class="nav-item">
+<span class="material-icons-round" aria-hidden="true">person</span>
+<span class="nav-label">about</span>
+</a>
+<a href="#stack" class="nav-item">
+<span class="material-icons-round" aria-hidden="true">code</span>
+<span class="nav-label">stack</span>
+</a>
+<a href="#contact" class="nav-item">
+<span class="material-icons-round" aria-hidden="true">mail</span>
+<span class="nav-label">contact</span>
+</a>
+</nav>
 
-    <nav class="navbar-premium" aria-label="Primary">
-        <div class="nav-container-premium">
-            <div class="logo-premium">
-                <a href="#home">
-                    <span class="logo-text">KAIF</span>
-                    <span class="logo-dot">.</span>
-                </a>
-            </div>
-            <div class="nav-links-premium">
-                <a href="#home" class="nav-link active-nav">
-                    <span class="material-icons-round" aria-hidden="true">home</span>
-                    <span>Home</span>
-                </a>
-                <a href="#work" class="nav-link">
-                    <span class="material-icons-round" aria-hidden="true">work</span>
-                    <span>Work</span>
-                </a>
-                <a href="#about" class="nav-link">
-                    <span class="material-icons-round" aria-hidden="true">person</span>
-                    <span>About</span>
-                </a>
-                <a href="#skills" class="nav-link">
-                    <span class="material-icons-round" aria-hidden="true">code</span>
-                    <span>Skills</span>
-                </a>
-                <a href="#contact" class="nav-link">
-                    <span class="material-icons-round" aria-hidden="true">chat</span>
-                    <span>Contact</span>
-                </a>
-            </div>
-            <div class="nav-cta">
-                <a href="https://drive.google.com/file/d/1zBgnHImJYmtMU5YKIKCCxFtpWCR3iQWZ/view?usp=drive_link" class="btn-outline-premium" target="_blank" rel="noopener noreferrer">
-                    <span>Resume</span>
-                    <span class="material-icons-round" aria-hidden="true">download</span>
-                </a>
-            </div>
-            <div class="mobile-menu-btn" aria-hidden="true">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </nav>
+<section id="home" class="hero">
+<div class="hero-inner">
+<div class="hero-left">
+<div class="hero-prompt">
+<span class="prompt-symbol">$</span>
+<span>whoami</span>
+<span class="prompt-cursor">_</span>
+</div>
+<h1 class="hero-title">
+Kaif Ansari
+<span class="title-accent">AI Engineer &amp; builder</span>
+</h1>
+<p class="hero-subtitle">
+I ship <span class="highlight">LLM agents</span>, voice assistants, and RAG systems that actually work in production. Not demos. Not wrappers. Real products.
+</p>
+<div class="hero-actions">
+<a href="#work" class="btn-primary">
+see my work
+<span class="material-icons-round" aria-hidden="true">arrow_forward</span>
+</a>
+<a href="#contact" class="btn-ghost">
+let's talk
+</a>
+</div>
+<div class="hero-stats">
+<div class="stat">
+<span class="stat-number" data-target="3">0</span>
+<span class="stat-label">years shipping</span>
+</div>
+<div class="stat">
+<span class="stat-number" data-target="20">0</span>
+<span class="stat-label">projects built</span>
+</div>
+<div class="stat">
+<span class="stat-number" data-target="5">0</span>
+<span class="stat-label">public repos</span>
+</div>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-photo">
+<div class="hero-photo-frame">
+<img src="assets/images/mydp.png" alt="Kaif Ansari" />
+<span class="hero-photo-caption">muzaffarnagar, india</span>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <nav class="bottom-nav" id="bottomNav" aria-label="Mobile navigation">
-        <a href="#home" class="nav-item active-nav">
-            <span class="material-icons-round" aria-hidden="true">home</span>
-            <span class="nav-label">Home</span>
-            <span class="nav-dot"></span>
-        </a>
-        <a href="#work" class="nav-item">
-            <span class="material-icons-round" aria-hidden="true">work</span>
-            <span class="nav-label">Work</span>
-            <span class="nav-dot"></span>
-        </a>
-        <a href="#about" class="nav-item">
-            <span class="material-icons-round" aria-hidden="true">person</span>
-            <span class="nav-label">About</span>
-            <span class="nav-dot"></span>
-        </a>
-        <a href="#skills" class="nav-item">
-            <span class="material-icons-round" aria-hidden="true">code</span>
-            <span class="nav-label">Skills</span>
-            <span class="nav-dot"></span>
-        </a>
-        <a href="#contact" class="nav-item">
-            <span class="material-icons-round" aria-hidden="true">chat</span>
-            <span class="nav-label">Contact</span>
-            <span class="nav-dot"></span>
-        </a>
-    </nav>
+<div class="marquee" id="marquee" aria-hidden="true">
+<span class="marquee-corner tl"></span>
+<span class="marquee-corner tr"></span>
+<span class="marquee-corner bl"></span>
+<span class="marquee-corner br"></span>
 
-    <section id="home" class="hero-premium">
-        <div class="hero-bg-premium">
-            <div id="tsparticles"></div>
-            <div class="gradient-orb-1"></div>
-            <div class="gradient-orb-2"></div>
-            <div class="grid-lines"></div>
-        </div>
-        <div class="hero-container">
-            <div class="hero-left" data-aos="fade-right" data-aos-duration="1000">
-                <a href="https://www.coursera.org/account/accomplishments/verify/H5WHCBLI9QF8" target="_blank" rel="noopener noreferrer" class="hero-cert-badge">
-                    <span class="material-icons-round cert-icon" aria-hidden="true">workspace_premium</span>
-                    <span class="cert-text">AWS Certified: GenAI with LLMs</span>
-                    <span class="material-icons-round external-icon" aria-hidden="true">arrow_outward</span>
-                </a>
-                <h1 class="hero-title">
-                    Kaif Ansari
-                    <span class="title-gradient">building AI</span>
-                    that truly works
-                </h1>
-                <p class="hero-description-premium">
-                    I build production-ready LLM agents, intelligent voice assistants, and full-stack AI systems that merge cutting-edge tech with scalable code.
-                </p>
-                <div class="hero-actions">
-                    <a href="#work" class="btn-primary-premium touch-ripple">
-                        <span>Explore projects</span>
-                        <span class="material-icons-round" aria-hidden="true">arrow_forward</span>
-                    </a>
-                    <a href="#contact" class="btn-ghost-premium touch-ripple">
-                        <span class="material-icons-round" aria-hidden="true">record_voice_over</span>
-                        Let's talk
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-premium">
-                        <span class="stat-number" data-target="3">0</span>
-                        <span class="stat-plus">+</span>
-                        <span class="stat-label">Years of Coding</span>
-                    </div>
-                    <div class="stat-premium">
-                        <span class="stat-number" data-target="20">0</span>
-                        <span class="stat-plus">+</span>
-                        <span class="stat-label">Projects Built</span>
-                    </div>
-                    <div class="stat-premium">
-                        <span class="stat-number" data-target="5">0</span>
-                        <span class="stat-plus">+</span>
-                        <span class="stat-label">GitHub Repos</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="hero-image-wrapper">
-                    <div class="hero-image-premium">
-                        <div class="image-glow"></div>
-                        <div class="hero-avatar">
-                            <span class="material-icons-round avatar-icon" aria-hidden="true">person</span>
-                            <img src="assets/images/mydp.png" alt="Kaif Ansari – AI Engineer &amp; Creative Developer" class="avatar-image" />
-                        </div>
-                    </div>
-                    <div class="floating-badge badge-1">
-                        <span class="material-icons-round" aria-hidden="true">psychology</span>
-                        <span>LLM Expert</span>
-                    </div>
-                    <div class="floating-badge badge-2">
-                        <span class="material-icons-round" aria-hidden="true">voice_chat</span>
-                        <span>Voice AI</span>
-                    </div>
-                    <div class="floating-badge badge-3">
-                        <span class="material-icons-round" aria-hidden="true">terminal</span>
-                        <span>RAG Systems</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-scroll-indicator" aria-hidden="true">
-            <span class="material-icons-round">mouse</span>
-            <span>Scroll to explore</span>
-        </div>
-    </section>
+<div class="marquee-header">
+<div class="marquee-live">
+<span class="live-indicator">
+<span class="live-ring"></span>
+<span class="live-ring ring-2"></span>
+<span class="live-core"></span>
+</span>
+<span class="live-text">system online</span>
+</div>
+<div class="marquee-meta">
+<span class="meta-item">
+<span class="meta-key">uptime</span>
+<span class="meta-val" id="marqueeUptime">00:00:00</span>
+</span>
+<span class="meta-sep">/</span>
+<span class="meta-item">
+<span class="meta-key">focus</span>
+<span class="meta-val accent">deep work</span>
+</span>
+<span class="meta-sep">/</span>
+<span class="meta-item meta-time" id="marqueeTime">--:--:--</span>
+</div>
+</div>
 
-    <div class="marquee-premium" aria-hidden="true">
-        <div class="marquee-content">
-            <span>✦ Python</span>
-            <span>✦ JavaScript/TS</span>
-            <span>✦ C++</span>
-            <span>✦ LLM Integration</span>
-            <span>✦ RAG / Vector DB</span>
-            <span>✦ Groq / Gemini</span>
-            <span>✦ FastAPI</span>
-            <span>✦ PyQt5</span>
-            <span>✦ Firebase</span>
-            <span>✦ Pyodide</span>
-            <span>✦ HTML/CSS</span>
-            <span>✦ ChromaDB</span>
-            <span>✦ Python</span>
-            <span>✦ JavaScript/TS</span>
-            <span>✦ C++</span>
-            <span>✦ LLM Integration</span>
-            <span>✦ RAG / Vector DB</span>
-            <span>✦ Groq / Gemini</span>
-            <span>✦ FastAPI</span>
-            <span>✦ PyQt5</span>
-        </div>
-    </div>
+<div class="marquee-track marquee-track-primary">
+<div class="marquee-row">
+<span class="marquee-item">
+<span class="item-idx">01</span>
+<span class="item-icon">◆</span>
+<span class="item-key">building</span>
+<span class="item-arrow">→</span>
+<span class="item-value">jarvis v2</span>
+<span class="item-badge wip">wip</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">02</span>
+<span class="item-icon">◇</span>
+<span class="item-key">reading</span>
+<span class="item-arrow">→</span>
+<span class="item-value">practitioner's guide to llms</span>
+<span class="item-badge read">reading</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">03</span>
+<span class="item-icon">⚡</span>
+<span class="item-key">learning</span>
+<span class="item-arrow">→</span>
+<span class="item-value">rust + wasm</span>
+<span class="item-badge learn">learning</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">04</span>
+<span class="item-icon">♫</span>
+<span class="item-key">listening</span>
+<span class="item-arrow">→</span>
+<span class="item-value">arctic monkeys on loop</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">05</span>
+<span class="item-icon">✦</span>
+<span class="item-key">obsessed</span>
+<span class="item-arrow">→</span>
+<span class="item-value">agentic workflows</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">06</span>
+<span class="item-icon">●</span>
+<span class="item-key">last commit</span>
+<span class="item-arrow">→</span>
+<span class="item-value">3h ago</span>
+<span class="item-badge ok">ok</span>
+</span>
+<span class="marquee-sep"></span>
 
-    <section id="work" class="work-premium">
-        <div class="container-premium">
-            <div class="section-header-premium" data-aos="fade-up">
-                <h2 class="section-title">
-                    <span class="title-gradient">Agentic AI</span> in production
-                </h2>
-                <div class="section-desc">
-                    <p>Production-ready AI assistants and scalable intelligent systems.</p>
-                </div>
-            </div>
-            <div class="work-grid-wrapper">
-                <div class="work-grid">
+<span class="marquee-item">
+<span class="item-idx">01</span>
+<span class="item-icon">◆</span>
+<span class="item-key">building</span>
+<span class="item-arrow">→</span>
+<span class="item-value">jarvis v2</span>
+<span class="item-badge wip">wip</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">02</span>
+<span class="item-icon">◇</span>
+<span class="item-key">reading</span>
+<span class="item-arrow">→</span>
+<span class="item-value">practitioner's guide to llms</span>
+<span class="item-badge read">reading</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">03</span>
+<span class="item-icon">⚡</span>
+<span class="item-key">learning</span>
+<span class="item-arrow">→</span>
+<span class="item-value">rust + wasm</span>
+<span class="item-badge learn">learning</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">04</span>
+<span class="item-icon">♫</span>
+<span class="item-key">listening</span>
+<span class="item-arrow">→</span>
+<span class="item-value">arctic monkeys on loop</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">05</span>
+<span class="item-icon">✦</span>
+<span class="item-key">obsessed</span>
+<span class="item-arrow">→</span>
+<span class="item-value">agentic workflows</span>
+</span>
+<span class="marquee-sep"></span>
+<span class="marquee-item">
+<span class="item-idx">06</span>
+<span class="item-icon">●</span>
+<span class="item-key">last commit</span>
+<span class="item-arrow">→</span>
+<span class="item-value">3h ago</span>
+<span class="item-badge ok">ok</span>
+</span>
+<span class="marquee-sep"></span>
+</div>
+</div>
 
-                    <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="100">
-                        <div class="work-card-inner">
-                            <div class="work-image">
-                                <div class="work-overlay">
-                                    <div class="work-links">
-                                        <a href="https://github.com/thekaifansari01/jarvis-by-kaif-ansari" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="View J.A.R.V.I.S project">
-                                            <span class="material-icons-round" aria-hidden="true">open_in_new</span>
-                                        </a>
-                                        <a href="https://github.com/thekaifansari01/jarvis-by-kaif-ansari" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="Source code for J.A.R.V.I.S">
-                                            <span class="material-icons-round" aria-hidden="true">code</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="work-icon">
-                                    <span class="material-icons-round" style="font-size: 48px;" aria-hidden="true">mic</span>
-                                </div>
-                            </div>
-                            <div class="work-info">
-                                <div class="work-category">AI Agent / Voice Assistant</div>
-                                <h3>J.A.R.V.I.S</h3>
-                                <p>Voice AI assistant featuring Llama 3.3 &amp; Gemini reasoning, wake-word detection, email automation, and PC control.</p>
-                                <div class="work-tech">
-                                    <span>Groq</span><span>Gemini</span><span>Deepgram</span>
-                                    <span>RAG</span><span>PyQt5</span><span>ChromaDB</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="marquee-track marquee-track-secondary">
+<div class="marquee-row">
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">python</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">typescript</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">c++</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">rust</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">groq</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">gemini</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">openrouter</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">chromadb</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">fastapi</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">docker</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">vercel</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">pyodide</span></span>
+<span class="marquee-sep"></span>
 
-                    <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="200">
-                        <div class="work-card-inner">
-                            <div class="work-image">
-                                <div class="work-overlay">
-                                    <div class="work-links">
-                                        <a href="https://github.com/thekaifansari01/kairos.ai" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="View kairos.ai project">
-                                            <span class="material-icons-round" aria-hidden="true">open_in_new</span>
-                                        </a>
-                                        <a href="https://github.com/thekaifansari01/kairos.ai" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="Source code for kairos.ai">
-                                            <span class="material-icons-round" aria-hidden="true">code</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="work-icon">
-                                    <span class="material-icons-round" style="font-size: 48px;" aria-hidden="true">terminal</span>
-                                </div>
-                            </div>
-                            <div class="work-info">
-                                <div class="work-category">AI Workspace / Code Interpreter</div>
-                                <h3>kairos.ai</h3>
-                                <p>AI coding workspace with multi-model chat, live Python execution via Pyodide, project RAG, and cloud sync.</p>
-                                <div class="work-tech">
-                                    <span>Pyodide</span><span>Transformers.js</span>
-                                    <span>Firebase</span><span>RAG</span><span>OpenRouter</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">python</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">typescript</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">c++</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">rust</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">groq</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">gemini</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">openrouter</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">chromadb</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">fastapi</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">docker</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">vercel</span></span>
+<span class="marquee-sep"></span>
+<span class="marquee-item"><span class="item-bullet"></span><span class="item-value">pyodide</span></span>
+<span class="marquee-sep"></span>
+</div>
+</div>
 
-                    <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="300">
-                        <div class="work-card-inner">
-                            <div class="work-image">
-                                <div class="work-overlay">
-                                    <div class="work-links">
-                                        <a href="https://github.com/thekaifansari01" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="View GitHub Universe">
-                                            <span class="material-icons-round" aria-hidden="true">open_in_new</span>
-                                        </a>
-                                        <a href="https://github.com/thekaifansari01" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="Source code on GitHub">
-                                            <span class="material-icons-round" aria-hidden="true">code</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="work-icon">
-                                    <span class="material-icons-round" style="font-size: 48px;" aria-hidden="true">hub</span>
-                                </div>
-                            </div>
-                            <div class="work-info">
-                                <div class="work-category">Open Source Ecosystem</div>
-                                <h3>GitHub Universe</h3>
-                                <p>Open-source hub featuring advanced AI agents, automation tools, LLM wrappers, and security tools.</p>
-                                <div class="work-tech">
-                                    <span>Python</span><span>LLM Ops</span>
-                                    <span>Agentic</span><span>Open Source</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="marquee-progress">
+<span class="marquee-progress-bar"></span>
+</div>
+</div>
 
-                    <div class="work-card touch-ripple" data-aos="fade-up" data-aos-delay="400">
-                        <div class="work-card-inner">
-                            <div class="work-image">
-                                <div class="work-overlay">
-                                    <div class="work-links">
-                                        <a href="https://github.com/thekaifansari01/NexusWebAssistant" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="View Nexus Web Assistant">
-                                            <span class="material-icons-round" aria-hidden="true">open_in_new</span>
-                                        </a>
-                                        <a href="https://github.com/thekaifansari01/NexusWebAssistant" target="_blank" rel="noopener noreferrer" class="work-link" aria-label="Source code for Nexus Web Assistant">
-                                            <span class="material-icons-round" aria-hidden="true">code</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="work-icon">
-                                    <span class="material-icons-round" style="font-size: 48px;" aria-hidden="true">smart_toy</span>
-                                </div>
-                            </div>
-                            <div class="work-info">
-                                <div class="work-category">AI Chat / Web Assistant</div>
-                                <h3>Nexus Web Assistant</h3>
-                                <p>Intelligent page-aware AI assistant with real-time content scraping, Markdown rendering, theme auto-detection, and persistent conversation memory.</p>
-                                <div class="work-tech">
-                                    <span>Groq API</span><span>Llama 4</span>
-                                    <span>Readability</span><span>IndexedDB</span>
-                                    <span>Marked.js</span><span>Turndown</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<section id="work" class="work">
+<div class="work-inner">
+<header class="section-header reveal">
+<span class="section-eyebrow">selected work</span>
+<h2 class="section-title">
+Things I've built <span class="muted">— from idea to deployment.</span>
+</h2>
+</header>
 
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="work-grid">
 
-    <section id="about" class="about-premium">
-        <div class="container-premium">
-            <div class="about-grid">
-                <div class="about-left" data-aos="fade-right">
-                    <div class="about-badge">
-                        <span class="material-icons-round" aria-hidden="true">person_outline</span>
-                        <span>Who I am</span>
-                    </div>
-                    <h2 class="about-title">
-                        Kaif Ansari —
-                        <span class="title-gradient">AI Engineer</span> &amp; BCA Student
-                    </h2>
-                    <div class="about-text">
-                        <p>I am an AI Engineer from Muzaffarnagar, UP, currently pursuing BCA at Shree Ram Group of College. I specialize in building voice assistants, RAG pipelines, and production-grade LLM agents.</p>
-                        <p>With a 3+ year coding journey in Python, JS, and C++, I have built complex independent projects like <strong>J.A.R.V.I.S</strong> and <strong>kairos.ai</strong>, focusing heavily on voice AI and autonomous workflows.</p>
-                        <p>Education: 12th from Hindu Intercollege Kandhla | 10th from Our India International School.</p>
-                    </div>
-                    <div class="about-quote">
-                        <span class="material-icons-round" aria-hidden="true">format_quote</span>
-                        <p>Building AI that doesn't just respond — but reasons, remembers, and acts autonomously.</p>
-                    </div>
-                </div>
-                <div class="about-right" data-aos="fade-left">
-                    <div class="experience-card">
-                        <div class="exp-header">
-                            <span class="material-icons-round" aria-hidden="true">school</span>
-                            <span>My Journey &amp; Milestones</span>
-                        </div>
-                        <div class="exp-item">
-                            <div class="exp-year">2026 - Present</div>
-                            <div class="exp-title">BCA (AI &amp; Cloud Computing)</div>
-                            <div class="exp-company">Shree Ram Group of College, Muzaffarnagar</div>
-                        </div>
-                        <div class="exp-item">
-                            <div class="exp-year">2023 - 2026</div>
-                            <div class="exp-title">Independent AI Builder</div>
-                            <div class="exp-company">Architecting J.A.R.V.I.S, kairos.ai &amp; LLM tools</div>
-                        </div>
-                        <div class="exp-item">
-                            <div class="exp-year">2022 - 2023</div>
-                            <div class="exp-title">Foundational Coding Journey</div>
-                            <div class="exp-company">Mastering Python, JS, C++ &amp; Open Source</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<article class="work-card feature reveal">
+<span class="work-bracket tl"></span>
+<span class="work-bracket tr"></span>
+<span class="work-bracket bl"></span>
+<span class="work-bracket br"></span>
+<span class="scanline"></span>
+<span class="work-index">01</span>
 
-    <section id="skills" class="skills-premium">
-        <div class="container-premium">
-            <div class="section-header-premium" data-aos="fade-up">
-                <span class="section-subtitle">Expertise &amp; Tooling</span>
-                <h2 class="section-title">
-                    <span class="title-gradient">AI engineering</span> stack
-                </h2>
-            </div>
-            <div class="skills-showcase">
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                    <div class="category-header">
-                        <span class="material-icons-round" aria-hidden="true">smart_toy</span>
-                        <h3>AI / LLM</h3>
-                    </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><span>Groq / Gemini / OpenRouter</span><div class="skill-level"><div class="skill-fill" style="width:92%"></div></div></div>
-                        <div class="skill-item"><span>RAG (ChromaDB, embeddings)</span><div class="skill-level"><div class="skill-fill" style="width:90%"></div></div></div>
-                        <div class="skill-item"><span>Voice AI (STT/TTS, wake word)</span><div class="skill-level"><div class="skill-fill" style="width:88%"></div></div></div>
-                        <div class="skill-item"><span>Agentic frameworks</span><div class="skill-level"><div class="skill-fill" style="width:85%"></div></div></div>
-                    </div>
-                </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <div class="category-header">
-                        <span class="material-icons-round" aria-hidden="true">code</span>
-                        <h3>Languages &amp; Backend</h3>
-                    </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><span>Python (FastAPI, PyQt5)</span><div class="skill-level"><div class="skill-fill" style="width:95%"></div></div></div>
-                        <div class="skill-item"><span>JavaScript / TypeScript</span><div class="skill-level"><div class="skill-fill" style="width:88%"></div></div></div>
-                        <div class="skill-item"><span>C++</span><div class="skill-level"><div class="skill-fill" style="width:80%"></div></div></div>
-                        <div class="skill-item"><span>Node.js / Firebase</span><div class="skill-level"><div class="skill-fill" style="width:85%"></div></div></div>
-                    </div>
-                </div>
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
-                    <div class="category-header">
-                        <span class="material-icons-round" aria-hidden="true">build</span>
-                        <h3>Tools &amp; Dev Ops</h3>
-                    </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><span>Docker / Git</span><div class="skill-level"><div class="skill-fill" style="width:82%"></div></div></div>
-                        <div class="skill-item"><span>Pyodide / Transformers.js</span><div class="skill-level"><div class="skill-fill" style="width:88%"></div></div></div>
-                        <div class="skill-item"><span>HTML5 / CSS3 / Tailwind</span><div class="skill-level"><div class="skill-fill" style="width:85%"></div></div></div>
-                        <div class="skill-item"><span>Vector DBs (Chroma, IndexedDB)</span><div class="skill-level"><div class="skill-fill" style="width:87%"></div></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<header class="work-card-header">
+<div class="work-dots"><span></span><span></span><span></span></div>
+<span class="work-path"><span class="prompt">$</span>cd ~/projects/jarvis</span>
+<span class="work-status live"><span class="status-dot"></span>live</span>
+</header>
 
-    <section id="contact" class="contact-premium">
-        <div class="container-premium">
-            <div class="contact-wrapper-premium" data-aos="fade-up">
-                <div class="contact-left">
-                    <span class="section-subtitle">Let's connect</span>
-                    <h2>Shape the future of <span class="title-gradient">AI agents</span> together</h2>
-                    <p>Let's build intelligent assistants, LLM pipelines, or full-stack AI apps together.</p>
-                    <div class="contact-info-premium">
-                        <div class="contact-item">
-                            <span class="material-icons-round" aria-hidden="true">mail</span>
-                            <div>
-                                <strong>Email</strong>
-                                <a href="mailto:kaif.ansari.global@gmail.com">kaif.ansari.global@gmail.com</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="material-icons-round" aria-hidden="true">call</span>
-                            <div>
-                                <strong>Phone</strong>
-                                <a href="tel:+919286012879">+91 92860 12879</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="material-icons-round" aria-hidden="true">location_on</span>
-                            <div>
-                                <strong>Location</strong>
-                                <span>Muzaffarnagar, Uttar Pradesh, India</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="social-premium">
-                        <a href="https://github.com/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
-                        <a href="https://linkedin.com/in/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-                        <a href="https://twitter.com/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="Twitter (X)"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-                <div class="contact-right">
-                    <form class="contact-form-premium" id="premiumContactForm" novalidate>
-                        <div class="form-group-premium">
-                            <input type="text" id="premiumName" name="name" required autocomplete="name" />
-                            <label for="premiumName">Your name</label>
-                            <span class="material-icons-round" aria-hidden="true">person</span>
-                        </div>
-                        <div class="form-group-premium">
-                            <input type="email" id="premiumEmail" name="email" required autocomplete="email" />
-                            <label for="premiumEmail">Email address</label>
-                            <span class="material-icons-round" aria-hidden="true">mail</span>
-                        </div>
-                        <div class="form-group-premium">
-                            <textarea id="premiumMessage" name="message" rows="4" required></textarea>
-                            <label for="premiumMessage">Message</label>
-                            <span class="material-icons-round" aria-hidden="true">edit_note</span>
-                        </div>
-                        <div class="form-group-premium">
-                            <div class="cf-turnstile" data-sitekey="0x4AAAAAADsUUL7SwwSgpEML"></div>
-                        </div>
-                        <button type="submit" class="btn-primary-premium full-width touch-ripple">
-                            <span>Send Message</span>
-                            <span class="material-icons-round" aria-hidden="true">send</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="work-card-body">
+<div class="work-card-meta">
+<span class="work-category">voice ai</span>
+<span class="work-tag">agents</span>
+<span class="work-tag">desktop</span>
+</div>
+<h3>J.A.R.V.I.S</h3>
+<p>A voice-first assistant with Llama 3.3 + Gemini reasoning, wake-word detection, email automation, and full PC control. Runs on Windows &amp; Linux. Built because I wanted my own JARVIS, not because a tutorial told me to.</p>
+<ul class="work-features">
+<li>wake-word detection with offline fallback</li>
+<li>email automation + calendar sync</li>
+<li>full PC control via python bridge</li>
+</ul>
+<div class="work-stack">
+<span>groq</span><span>gemini</span><span>deepgram</span><span>chromadb</span><span>pyqt5</span><span>rag</span>
+</div>
+</div>
 
-    <footer class="footer-premium">
-        <div class="container-premium">
-            <div class="footer-content-premium">
-                <div class="footer-brand">
-                    <span class="logo-text">KAIF</span>
-                    <span class="logo-dot">.</span>
-                    <p>Crafting intelligent agents since 2022</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#work">Work</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-copyright">
-                    <p>&copy; <span id="footerYear">2025</span> Kaif Ansari. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+<footer class="work-card-footer">
+<div class="work-metrics">
+<span class="work-metric"><span class="metric-icon">★</span><span class="metric-val">248</span></span>
+<span class="work-metric"><span class="metric-icon">⑂</span><span class="metric-val">42</span></span>
+<span class="work-metric"><span class="metric-icon">↻</span><span class="metric-val">2d ago</span></span>
+</div>
+<a href="https://github.com/thekaifansari01/jarvis-by-kaif-ansari" target="_blank" rel="noopener noreferrer" class="work-cta">
+open<span class="arrow">→</span>
+</a>
+</footer>
+</article>
 
-    <script src="modules/theme.js"></script>
-    <script src="modules/preloader.js"></script>
-    <script src="modules/cursor.js"></script>
-    <script src="modules/navbar.js"></script>
-    <script src="modules/avatar-loader.js"></script>
-    <script src="modules/smooth-scroll.js"></script>
-    <script src="modules/counters.js"></script>
-    <script src="modules/contact-form.js"></script>
-    <script src="modules/work-tilt.js"></script>
-    <script src="modules/hero-parallax.js"></script>
-    <script src="modules/skills-animation.js"></script>
-    <script src="modules/footer-year.js"></script>
+<article class="work-card reveal">
+<span class="scanline"></span>
+<span class="work-index">02</span>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true, offset: 100 });
-    </script>
+<header class="work-card-header">
+<div class="work-dots"><span></span><span></span><span></span></div>
+<span class="work-path"><span class="prompt">$</span>cd ~/projects/kairos</span>
+<span class="work-status shipped"><span class="status-dot nostroke"></span>shipped</span>
+</header>
 
-    <script src="modules/particles.js"></script>
+<div class="work-card-body">
+<div class="work-card-meta">
+<span class="work-category">workspace</span>
+<span class="work-tag">web</span>
+</div>
+<h3>kairos.ai</h3>
+<p>An AI coding workspace with multi-model chat, live Python execution via Pyodide, project RAG, and cloud sync. Runs entirely in the browser.</p>
+<div class="work-stack">
+<span>pyodide</span><span>transformers.js</span><span>firebase</span><span>openrouter</span>
+</div>
+</div>
 
-    <script>
-        window.NexusConfig = {
-            apiKey: 'e0415383ab2f7ffb5c0bbeb2412849068e515047ed8ca17058a25383fcfca14d',
-            model: 'qwen/qwen3.8-27b',
-        };
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/nexus-web-assistant@4.3.0/dist/nexus-assistant.min.js"></script>
+<footer class="work-card-footer">
+<div class="work-metrics">
+<span class="work-metric"><span class="metric-icon">★</span><span class="metric-val">96</span></span>
+<span class="work-metric"><span class="metric-icon">↻</span><span class="metric-val">1w ago</span></span>
+</div>
+<a href="https://github.com/thekaifansari01/kairos.ai" target="_blank" rel="noopener noreferrer" class="work-cta">
+open<span class="arrow">→</span>
+</a>
+</footer>
+</article>
+
+<article class="work-card reveal">
+<span class="scanline"></span>
+<span class="work-index">03</span>
+
+<header class="work-card-header">
+<div class="work-dots"><span></span><span></span><span></span></div>
+<span class="work-path"><span class="prompt">$</span>cd ~/projects/nexus</span>
+<span class="work-status shipped"><span class="status-dot nostroke"></span>shipped</span>
+</header>
+
+<div class="work-card-body">
+<div class="work-card-meta">
+<span class="work-category">browser extension</span>
+</div>
+<h3>Nexus</h3>
+<p>Page-aware AI assistant with real-time content scraping, markdown rendering, theme auto-detection, and persistent conversation memory.</p>
+<div class="work-stack">
+<span>groq</span><span>llama 4</span><span>indexeddb</span><span>marked.js</span>
+</div>
+</div>
+
+<footer class="work-card-footer">
+<div class="work-metrics">
+<span class="work-metric"><span class="metric-icon">★</span><span class="metric-val">61</span></span>
+<span class="work-metric"><span class="metric-icon">↻</span><span class="metric-val">3w ago</span></span>
+</div>
+<a href="https://github.com/thekaifansari01/NexusWebAssistant" target="_blank" rel="noopener noreferrer" class="work-cta">
+open<span class="arrow">→</span>
+</a>
+</footer>
+</article>
+
+<article class="work-card feature reveal">
+<span class="work-bracket tl"></span>
+<span class="work-bracket tr"></span>
+<span class="work-bracket bl"></span>
+<span class="work-bracket br"></span>
+<span class="scanline"></span>
+<span class="work-index">04</span>
+
+<header class="work-card-header">
+<div class="work-dots"><span></span><span></span><span></span></div>
+<span class="work-path"><span class="prompt">$</span>ls ~/github</span>
+<span class="work-status wip"><span class="status-dot"></span>wip</span>
+</header>
+
+<div class="work-card-body">
+<div class="work-card-meta">
+<span class="work-category">open source</span>
+<span class="work-tag">ongoing</span>
+</div>
+<h3>GitHub Universe</h3>
+<p>An ever-growing collection of AI agents, automation tools, LLM wrappers, and small utilities I build when I get bored at 2am. No polished landing pages, just code.</p>
+<ul class="work-features">
+<li>15+ open-source repos and counting</li>
+<li>llm wrappers, scrapers, automation scripts</li>
+<li>updated whenever inspiration strikes</li>
+</ul>
+<div class="work-stack">
+<span>python</span><span>typescript</span><span>llm-ops</span><span>agents</span>
+</div>
+</div>
+
+<footer class="work-card-footer">
+<div class="work-metrics">
+<span class="work-metric"><span class="metric-icon">★</span><span class="metric-val">512</span></span>
+<span class="work-metric"><span class="metric-icon">⑂</span><span class="metric-val">78</span></span>
+<span class="work-metric"><span class="metric-icon">↻</span><span class="metric-val">today</span></span>
+</div>
+<a href="https://github.com/thekaifansari01" target="_blank" rel="noopener noreferrer" class="work-cta">
+open<span class="arrow">→</span>
+</a>
+</footer>
+</article>
+
+</div>
+</div>
+</section>
+
+<section id="about" class="about">
+<div class="about-inner">
+<div class="about-grid">
+<div class="about-content reveal">
+<header class="section-header">
+<span class="section-eyebrow">about me</span>
+<h2>Not a rockstar. Just someone who ships.</h2>
+</header>
+<div class="about-text">
+<p>I'm Kaif — a 20-something AI engineer from <strong>Muzaffarnagar, UP</strong>. Currently doing BCA at Shree Ram Group of College. Before that, an ordinary kid from an ordinary school who found Python in 2022 and never shut up about it since.</p>
+<p>I build <strong>voice assistants</strong>, <strong>RAG pipelines</strong>, and <strong>agentic systems</strong>. Most of my learning came from breaking things in my own projects — not from courses or certificates. J.A.R.V.I.S and kairos.ai exist because I wanted them to exist.</p>
+<p>I write code mostly at night. I read papers I barely understand. I ship things nobody asked for. And once in a while, something actually works.</p>
+</div>
+<div class="about-note">
+<p>Building AI that doesn't just respond — but reasons, remembers, and acts. Still figuring out 90% of it.</p>
+</div>
+</div>
+<div class="about-timeline reveal">
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-year">2026 — present</div>
+<div class="timeline-title">BCA (AI &amp; Cloud Computing)</div>
+<div class="timeline-desc">Shree Ram Group of College, Muzaffarnagar</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2023 — 2026</div>
+<div class="timeline-title">Independent AI builder</div>
+<div class="timeline-desc">J.A.R.V.I.S, kairos.ai, Nexus, and a graveyard of abandoned side projects</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-year">2022 — 2023</div>
+<div class="timeline-title">First lines of code</div>
+<div class="timeline-desc">Python, C++, first GitHub commit, first all-nighter debugging a semicolon</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="stack" class="stack">
+<div class="stack-inner">
+<header class="section-header reveal">
+<span class="section-eyebrow">stack</span>
+<h2 class="section-title">
+Tools I actually use <span class="muted">— not everything I've touched.</span>
+</h2>
+</header>
+<div class="stack-grid">
+<div class="stack-category reveal">
+<h3>AI / LLM</h3>
+<div class="stack-list">
+<div class="stack-item"><span>groq / gemini / openrouter</span><span class="stack-status active">daily</span></div>
+<div class="stack-item"><span>rag (chromadb, embeddings)</span><span class="stack-status active">daily</span></div>
+<div class="stack-item"><span>voice ai (stt / tts)</span><span class="stack-status">often</span></div>
+<div class="stack-item"><span>agentic workflows</span><span class="stack-status">learning</span></div>
+</div>
+</div>
+<div class="stack-category reveal">
+<h3>Languages</h3>
+<div class="stack-list">
+<div class="stack-item"><span>python</span><span class="stack-status active">daily</span></div>
+<div class="stack-item"><span>typescript / javascript</span><span class="stack-status active">daily</span></div>
+<div class="stack-item"><span>c++</span><span class="stack-status">sometimes</span></div>
+<div class="stack-item"><span>rust</span><span class="stack-status">learning</span></div>
+</div>
+</div>
+<div class="stack-category reveal">
+<h3>Tools</h3>
+<div class="stack-list">
+<div class="stack-item"><span>fastapi / node</span><span class="stack-status active">daily</span></div>
+<div class="stack-item"><span>git / docker</span><span class="stack-status active">daily</span></div>
+<div class="stack-item"><span>pyodide / transformers.js</span><span class="stack-status">often</span></div>
+<div class="stack-item"><span>firebase / vercel</span><span class="stack-status">often</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<div class="contact-inner">
+<header class="section-header reveal">
+<span class="section-eyebrow">contact</span>
+<h2 class="section-title">
+Got something weird? <span class="muted">Let's build it.</span>
+</h2>
+</header>
+<div class="contact-grid">
+<div class="contact-left reveal">
+<h3>Reach me directly</h3>
+<p>For collabs, freelance, weird ideas, or just to say hi. I reply fast when it's interesting.</p>
+<div class="contact-terminal">
+<div class="contact-terminal-line">
+<span class="term-symbol">$</span>
+<span>mail →</span>
+<a href="mailto:kaif.ansari.global@gmail.com">kaif.ansari.global@gmail.com</a>
+</div>
+<div class="contact-terminal-line">
+<span class="term-symbol">$</span>
+<span>call →</span>
+<a href="tel:+919286012879">+91 92860 12879</a>
+</div>
+<div class="contact-terminal-line">
+<span class="term-symbol">$</span>
+<span>loc  →</span>
+<span>Muzaffarnagar, UP, India</span>
+</div>
+</div>
+<div class="social-row">
+<a href="https://github.com/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="GitHub">
+<i class="fab fa-github" aria-hidden="true"></i> github
+</a>
+<a href="https://linkedin.com/in/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="LinkedIn">
+<i class="fab fa-linkedin-in" aria-hidden="true"></i> linkedin
+</a>
+<a href="https://twitter.com/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="X">
+<i class="fab fa-x-twitter" aria-hidden="true"></i> twitter
+</a>
+</div>
+</div>
+<div class="contact-right reveal">
+<form class="contact-form" id="premiumContactForm" novalidate>
+<div class="form-field">
+<label for="premiumName">name</label>
+<input type="text" id="premiumName" name="name" required autocomplete="name" placeholder="who are you?" />
+</div>
+<div class="form-field">
+<label for="premiumEmail">email</label>
+<input type="email" id="premiumEmail" name="email" required autocomplete="email" placeholder="you@somewhere.com" />
+</div>
+<div class="form-field">
+<label for="premiumMessage">message</label>
+<textarea id="premiumMessage" name="message" rows="4" required placeholder="what's on your mind?"></textarea>
+</div>
+<div class="form-field">
+<div class="cf-turnstile" data-sitekey="0x4AAAAAADsUUL7SwwSgpEML"></div>
+</div>
+<button type="submit" class="btn-primary full-width">
+send message
+<span class="material-icons-round" aria-hidden="true">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-inner">
+<div class="footer-top">
+<a href="#home" class="footer-logo">
+<span class="logo-mark">~/</span>kaif
+</a>
+<div class="footer-links">
+<a href="#work">work</a>
+<a href="#about">about</a>
+<a href="#stack">stack</a>
+<a href="#contact">contact</a>
+</div>
+</div>
+<div class="footer-bottom">
+<span>&copy; <span id="footerYear">2026</span> kaif ansari · made in muzaffarnagar</span>
+<span>built at 3am with too much caffeine</span>
+</div>
+</div>
+</footer>
+
+<script src="modules/theme.js"></script>
+<script src="modules/preloader.js"></script>
+<script src="modules/navbar.js"></script>
+<script src="modules/avatar-loader.js"></script>
+<script src="modules/smooth-scroll.js"></script>
+<script src="modules/counters.js"></script>
+<script src="modules/contact-form.js"></script>
+<script src="modules/footer-year.js"></script>
+<script src="modules/reveal.js"></script>
+<script src="modules/marquee.js"></script>
 </body>
 </html>

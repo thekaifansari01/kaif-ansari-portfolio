@@ -1,23 +1,15 @@
-// modules/avatar-loader.js
-(function(){
-    const avatarImage = document.querySelector('.hero-avatar .avatar-image');
-    const avatarIcon = document.querySelector('.hero-avatar .avatar-icon');
-    if (!avatarImage) return;
+(function () {
+    var image = document.querySelector('.hero-photo img');
+    if (!image) return;
+    image.style.opacity = '0';
+    image.style.transition = 'opacity 0.5s ease';
 
-    if (avatarIcon) avatarIcon.style.display = 'flex';
-    avatarImage.style.display = 'none';
-    avatarImage.classList.remove('loaded');
-
-    const img = new Image();
-    img.onload = function() {
-        if (avatarIcon) avatarIcon.style.display = 'none';
-        avatarImage.style.display = 'block';
-        avatarImage.classList.add('loaded');
+    var probe = new Image();
+    probe.onload = function () {
+        image.style.opacity = '1';
     };
-    img.onerror = function() {
-        if (avatarIcon) avatarIcon.style.display = 'flex';
-        avatarImage.style.display = 'none';
-        avatarImage.classList.remove('loaded');
+    probe.onerror = function () {
+        image.style.display = 'none';
     };
-    img.src = avatarImage.src;
+    probe.src = image.src;
 })();

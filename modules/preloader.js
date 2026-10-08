@@ -1,6 +1,10 @@
-window.addEventListener('load', () => {
-    const preloader = document.querySelector('.preloader');
-    setTimeout(() => {
-        if (preloader) preloader.classList.add('fade-out');
-    }, 500);
-});
+(function () {
+    window.addEventListener('load', function () {
+        var preloader = document.querySelector('.preloader');
+        if (!preloader) return;
+        setTimeout(function () {
+            preloader.classList.add('fade-out');
+            setTimeout(function () { preloader.remove(); }, 600);
+        }, 600);
+    });
+})();

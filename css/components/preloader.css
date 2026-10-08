@@ -6,20 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition:
-        opacity 0.7s var(--ease-out),
-        visibility 0.7s var(--ease-out);
-    will-change: opacity;
-}
-
-.preloader::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 30% 40%, var(--accent-glow-soft), transparent 50%),
-        radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.1), transparent 50%);
-    pointer-events: none;
+    transition: opacity 0.5s var(--ease-out), visibility 0.5s var(--ease-out);
 }
 
 .preloader.fade-out {
@@ -27,48 +14,21 @@
     visibility: hidden;
 }
 
-.preloader-content {
-    position: relative;
-    width: 90px;
-    height: 90px;
+.preloader-text {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-secondary);
     display: flex;
+    gap: 8px;
     align-items: center;
-    justify-content: center;
 }
 
-.preloader-ring {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent, var(--accent), var(--accent-2), var(--accent-3), transparent);
-    animation: spin 1.2s linear infinite;
-    -webkit-mask: radial-gradient(circle, transparent 62%, black 64%);
-    mask: radial-gradient(circle, transparent 62%, black 64%);
-    filter: drop-shadow(0 0 12px var(--accent-glow));
-}
-
-.preloader-ring::before {
-    content: '';
-    position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-glow), transparent 70%);
-    opacity: 0.5;
-    animation: pulse 1.5s ease-in-out infinite;
-    z-index: -1;
-}
-
-.preloader-content span {
-    position: relative;
-    font-family: 'Space Grotesk', monospace;
+.preloader-prompt {
+    color: var(--accent);
     font-weight: var(--fw-bold);
-    font-size: 1.25rem;
-    letter-spacing: 0.05em;
-    background: var(--gradient-text);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientShift 2s ease infinite;
-    z-index: 1;
+}
+
+.preloader-cursor {
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
 }

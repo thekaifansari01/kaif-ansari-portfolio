@@ -1,194 +1,68 @@
-.skills-premium {
+.stack {
     padding: 100px 5%;
-    position: relative;
-    overflow: hidden;
 }
 
-.skills-premium .container-premium {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
+.stack-inner { max-width: 1280px; margin: 0 auto; }
 
-.skills-premium::before {
-    content: '';
-    position: absolute;
-    top: -30%;
-    left: -20%;
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-    opacity: 0.06;
-    border-radius: 50%;
-    animation: orbFloat 22s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
-    transition: opacity var(--dur-slower) var(--ease-out);
-}
-
-[data-theme="dark"] .skills-premium::before { opacity: 0.12; }
-
-.skills-showcase {
+.stack-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
-    position: relative;
-    z-index: 1;
+    gap: var(--space-8);
+    margin-top: var(--space-10);
 }
 
-.skill-category {
-    position: relative;
-    background: var(--card-bg);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
-    overflow: hidden;
-    transition:
-        transform var(--dur-base) var(--ease-spring),
-        box-shadow var(--dur-base) var(--ease-out),
-        border-color var(--dur-base) var(--ease-out);
-}
-
-.skill-category::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: var(--gradient-text);
-    background-size: 200% 200%;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity var(--dur-base) var(--ease-out);
-    animation: gradientShift 5s ease infinite;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.skill-category:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-xl);
-    border-color: transparent;
-}
-
-.skill-category:hover::after { opacity: 1; }
-
-.category-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-6);
-    position: relative;
-    z-index: 1;
-}
-
-.category-header .material-icons-round {
-    font-size: 24px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-md);
-    background: var(--accent-soft);
-    border: 1px solid var(--border-light);
-    color: var(--accent);
-    animation: iconFloat 3s ease-in-out infinite;
-    transition: transform var(--dur-base) var(--ease-spring), background-color var(--dur-base) var(--ease-out);
-}
-
-.skill-category:hover .category-header .material-icons-round {
-    transform: rotate(8deg) scale(1.08);
-    background: var(--accent-soft-2);
-}
-
-.category-header h3 {
-    font-size: var(--fs-lg);
+.stack-category h3 {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
     font-weight: var(--fw-semibold);
     color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.02em;
 }
 
-.skill-items {
+.stack-category h3::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.stack-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    position: relative;
-    z-index: 1;
+    border-top: 1px solid var(--border-light);
 }
 
-.skill-item {
+.stack-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: var(--space-3);
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-family: var(--font-mono);
     font-size: var(--fs-sm);
-    padding: 2px 0;
-    transition: transform var(--dur-base) var(--ease-out);
+    color: var(--text-secondary);
+    transition: color var(--dur-base) var(--ease-out), padding-left var(--dur-base) var(--ease-out);
 }
 
-.skill-item:hover { transform: translateX(3px); }
-
-.skill-item > span:first-child {
-    font-weight: var(--fw-medium);
+.stack-item:hover {
     color: var(--text-primary);
-    line-height: 1.4;
+    padding-left: 6px;
 }
 
-.skill-level {
-    width: 110px;
-    height: 5px;
-    background: var(--border-subtle);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
+.stack-item .stack-status {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
 }
 
-.skill-fill {
-    height: 100%;
-    background: var(--gradient-1);
-    background-size: 200% 100%;
-    border-radius: var(--radius-full);
-    width: 0;
-    position: relative;
-    transition: width 1.2s var(--ease-out);
-    animation: gradientShift 4s ease infinite;
-}
+.stack-item .stack-status.active { color: var(--accent); }
 
-.skill-fill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    border-radius: inherit;
-    animation: shimmer 2.4s infinite;
-}
-
-.skill-category:hover .skill-fill {
-    box-shadow: 0 0 12px var(--accent-glow);
-}
-
-@media (max-width: 968px) {
-    .skills-premium { padding: 70px 5%; }
-    .skills-showcase {
-        grid-template-columns: 1fr;
-        gap: var(--space-5);
-    }
-    .skill-category { padding: var(--space-6); }
-    .skill-level { width: 90px; }
-    .skill-item { font-size: 0.85rem; }
-    .category-header .material-icons-round { width: 40px; height: 40px; font-size: 22px; }
-}
-
-@media (max-width: 480px) {
-    .skill-category { padding: var(--space-5); }
-    .skill-level { width: 70px; height: 4px; }
-    .skill-item { font-size: 0.78rem; gap: var(--space-2); }
-    .category-header { margin-bottom: var(--space-4); }
-    .category-header h3 { font-size: var(--fs-base); }
-    .category-header .material-icons-round { width: 36px; height: 36px; font-size: 20px; }
-    .skill-items { gap: var(--space-3); }
+@media (max-width: 768px) {
+    .stack { padding: 70px 5%; }
+    .stack-grid { grid-template-columns: 1fr; gap: var(--space-6); }
 }
