@@ -1,34 +1,155 @@
 .preloader {
     position: fixed;
     inset: 0;
-    background: var(--bg-primary);
+    background: radial-gradient(circle at 50% 50%, #0e0e0e 0%, #050505 75%);
     z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.5s var(--ease-out), visibility 0.5s var(--ease-out);
+    transition: opacity 0.75s var(--ease-out);
+    will-change: opacity;
 }
 
 .preloader.fade-out {
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
 }
 
-.preloader-text {
+.preloader-stage {
+    width: min(78vmin, 480px);
+    height: min(78vmin, 480px);
+    position: relative;
+    will-change: transform;
+}
+
+.preloader-stage.shake {
+    animation: pl-shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes pl-shake {
+    0%, 100% { transform: translate(0, 0); }
+    15% { transform: translate(-3px, 2px); }
+    30% { transform: translate(3px, -2px); }
+    45% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    75% { transform: translate(-1px, 1px); }
+}
+
+.preloader-stage svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    display: block;
+}
+
+.pl-grid-bg {
+    opacity: 0;
+    transition: opacity 1.6s var(--ease-out);
+}
+.pl-grid-bg.on { opacity: 1; }
+
+.pl-ambient {
+    opacity: 0;
+    transition: opacity 1.8s var(--ease-out);
+}
+.pl-ambient.on {
+    opacity: 1;
+    animation: pl-ambient-pulse 5s ease-in-out infinite;
+}
+@keyframes pl-ambient-pulse {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+}
+
+.pl-edge {
+    fill: none;
+    stroke: rgba(200, 255, 0, 0.32);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 1;
+    transition: stroke 0.45s var(--ease-out), opacity 0.55s var(--ease-out);
+}
+.pl-edge.active {
+    stroke: var(--accent);
+    filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+.pl-edge.fading { opacity: 0.06; }
+
+.pl-reroute {
+    opacity: 0;
+    transition: stroke-dashoffset 0.55s var(--ease-out),
+                stroke 0.45s var(--ease-out),
+                opacity 0.45s var(--ease-out);
+}
+.pl-reroute.visible { opacity: 1; }
+
+.pl-node {
+    fill: #0a0a0a;
+    stroke: var(--accent);
+    stroke-width: 1.8;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out),
+                fill 0.35s var(--ease-out),
+                stroke 0.35s var(--ease-out),
+                r 0.3s var(--ease-out);
+}
+.pl-node.on { opacity: 1; }
+.pl-node.hit {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 9px var(--accent-glow));
+}
+.pl-node.flash {
+    fill: #ff3b3b;
+    stroke: #ff3b3b;
+    filter: drop-shadow(0 0 12px rgba(255, 59, 59, 0.8));
+}
+
+.pl-ring {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    pointer-events: none;
+}
+.pl-ring.pulse {
+    animation: pl-ring-pulse 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes pl-ring-pulse {
+    0%   { transform: scale(1); opacity: 0.9; stroke-width: 1.3; }
+    100% { transform: scale(7); opacity: 0;   stroke-width: 0.4; }
+}
+
+.pl-signal {
+    fill: var(--accent);
+    filter: drop-shadow(0 0 8px var(--accent));
+    opacity: 0;
+    transition: opacity 0.25s var(--ease-out);
+    transform: translate(80px, 200px);
+    will-change: transform;
+}
+.pl-signal.on { opacity: 1; }
+.pl-trail-2.on { opacity: 0.55; filter: drop-shadow(0 0 6px var(--accent)); }
+.pl-trail-3.on { opacity: 0.28; filter: drop-shadow(0 0 4px var(--accent)); }
+
+.pl-brand {
     font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    color: var(--text-secondary);
-    display: flex;
-    gap: 8px;
-    align-items: center;
+    font-size: 26px;
+    font-weight: 600;
+    fill: #f5f5f5;
+    letter-spacing: -0.02em;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+.pl-tilde { fill: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+    .preloader { display: none; }
 }
 
-.preloader-prompt {
-    color: var(--accent);
-    font-weight: var(--fw-bold);
-}
-
-.preloader-cursor {
-    color: var(--accent);
-    animation: blink 1s step-end infinite;
+@media (max-width: 480px) {
+    .preloader-stage { width: 82vmin; height: 82vmin; }
+    .pl-brand { font-size: 22px; }
 }

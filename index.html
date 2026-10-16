@@ -75,12 +75,47 @@
 </head>
 <body>
 
-<div class="preloader">
-<div class="preloader-text">
-<span class="preloader-prompt">$</span>
-<span>booting kaif.exe</span>
-<span class="preloader-cursor">_</span>
-</div>
+<div class="preloader" id="preloader">
+  <div class="preloader-stage" id="pl-stage">
+    <svg viewBox="-40 -80 480 520" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <pattern id="pl-grid-pattern" width="32" height="32" patternUnits="userSpaceOnUse">
+          <path d="M32 0 H0 V32" fill="none" stroke="rgba(200,255,0,0.07)" stroke-width="0.4"/>
+        </pattern>
+        <radialGradient id="pl-ambient-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(200,255,0,0.10)"/>
+          <stop offset="100%" stop-color="rgba(200,255,0,0)"/>
+        </radialGradient>
+      </defs>
+
+      <rect class="pl-grid-bg" id="pl-grid" x="-40" y="-80" width="480" height="520" fill="url(#pl-grid-pattern)"/>
+      <circle class="pl-ambient" id="pl-ambient" cx="200" cy="200" r="220" fill="url(#pl-ambient-glow)"/>
+
+      <path class="pl-edge" id="pl-e-loop" d="M320,200 Q200,-40 80,200"/>
+      <path class="pl-edge" id="pl-e01" d="M80,200 L160,200"/>
+      <path class="pl-edge" id="pl-e12" d="M160,200 L240,220"/>
+      <path class="pl-edge" id="pl-e23" d="M240,220 L320,200"/>
+      <path class="pl-edge pl-reroute" id="pl-e23-new" d="M240,220 C270,150 290,180 320,200"/>
+
+      <circle class="pl-ring" id="pl-ring0" cx="80"  cy="200" r="5.5"/>
+      <circle class="pl-ring" id="pl-ring1" cx="160" cy="200" r="5.5"/>
+      <circle class="pl-ring" id="pl-ring2" cx="240" cy="220" r="5.5"/>
+      <circle class="pl-ring" id="pl-ring3" cx="320" cy="200" r="5.5"/>
+
+      <circle class="pl-node" id="pl-n0" cx="80"  cy="200" r="5.5"/>
+      <circle class="pl-node" id="pl-n1" cx="160" cy="200" r="5.5"/>
+      <circle class="pl-node" id="pl-n2" cx="240" cy="220" r="5.5"/>
+      <circle class="pl-node" id="pl-n3" cx="320" cy="200" r="5.5"/>
+
+      <circle class="pl-signal pl-trail-3" id="pl-signal-3" cx="0" cy="0" r="2"/>
+      <circle class="pl-signal pl-trail-2" id="pl-signal-2" cx="0" cy="0" r="3"/>
+      <circle class="pl-signal" id="pl-signal" cx="0" cy="0" r="4.5"/>
+
+      <text class="pl-brand" id="pl-brand" x="200" y="150">
+        <tspan class="pl-tilde" id="pl-tilde"></tspan><tspan id="pl-name"></tspan>
+      </text>
+    </svg>
+  </div>
 </div>
 
 <nav class="navbar" aria-label="Primary">
