@@ -105,7 +105,7 @@
     color: var(--accent-ink);
     background: var(--accent);
     border-color: var(--accent-ink);
-    transform: translate(-2px, -2px) rotate(0) scale(1.03);
+    transform: translate(calc(-2px + var(--mag-x, 0px)), calc(-2px + var(--mag-y, 0px))) rotate(0) scale(1.03);
     box-shadow: 5px 5px 0 var(--nb-shadow);
 }
 

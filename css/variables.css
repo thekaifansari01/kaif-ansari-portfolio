@@ -54,9 +54,9 @@
     --radius-lg: 10px;
     --radius-full: 999px;
 
-    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
-    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'Space Mono', 'Courier New', monospace;
+    --font-display: 'Clash Display', system-ui, sans-serif;
+    --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Geist Mono', 'Courier New', monospace;
 
     --fs-xs: 0.75rem;
     --fs-sm: 0.8125rem;
@@ -106,6 +106,9 @@
 
     --accent-symbol: #c2410c;
 
+    --cursor-color: #0a0a0a;
+    --cursor-glow: 0 0 0 transparent;
+
     --pl-bg-1: #f2ece0;
     --pl-bg-2: #e6e0d2;
     --pl-brand-fill: #0a0a0a;
@@ -148,6 +151,9 @@
     --nb-shadow-hover: 8px;
 
     --accent-symbol: #fb923c;
+
+    --cursor-color: #f5efe3;
+    --cursor-glow: 0 0 12px rgba(245, 239, 227, 0.45), 0 0 24px rgba(245, 239, 227, 0.18);
 
     --pl-bg-1: #0e0e0e;
     --pl-bg-2: #050505;

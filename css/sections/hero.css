@@ -150,11 +150,14 @@
     position: relative;
     width: 100%;
     max-width: 340px;
-    transform: rotate(2deg);
+    transform: rotate(2deg) translateY(var(--hero-py, 0px));
     transition: transform var(--dur-slow) var(--ease-spring);
+    will-change: transform;
 }
 
-.hero-photo:hover { transform: rotate(0deg) scale(1.02); }
+.hero-photo:hover {
+    transform: rotate(0deg) scale(1.02) translateY(var(--hero-py, 0px));
+}
 
 .hero-photo-frame {
     position: relative;

@@ -42,7 +42,7 @@
 .btn-primary:hover,
 .btn-ghost:hover,
 .btn-outline:hover {
-    transform: translate(-2px, -2px);
+    transform: translate(calc(-2px + var(--mag-x, 0px)), calc(-2px + var(--mag-y, 0px)));
     box-shadow: var(--nb-shadow-hover) var(--nb-shadow-hover) 0 var(--nb-shadow);
 }
 
