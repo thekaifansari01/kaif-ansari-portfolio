@@ -16,9 +16,9 @@ html {
 body {
     font-family: var(--font-body);
     font-size: var(--fs-base);
-    font-weight: var(--fw-regular);
-    line-height: var(--lh-normal);
-    letter-spacing: -0.005em;
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: 0;
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: clip;
@@ -99,6 +99,13 @@ button, input, textarea, select {
     opacity: 1;
     transform: translateY(0);
 }
+
+.about,
+.stack,
+.contact {
+    border-top: var(--nb-border-w) solid var(--nb-border);
+}
+
 .cursor-dot,
 .cursor-ring {
     position: fixed;

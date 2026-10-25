@@ -54,8 +54,8 @@
     --radius-lg: 10px;
     --radius-full: 999px;
 
-    --font-display: 'Clash Display', system-ui, sans-serif;
-    --font-body: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Anton', 'Impact', system-ui, sans-serif;
+    --font-body: 'Fraunces', Georgia, 'Times New Roman', serif;
     --font-mono: 'Geist Mono', 'Courier New', monospace;
 
     --fs-xs: 0.75rem;
@@ -98,7 +98,7 @@
     --z-modal: 500;
 
     --nb-border: #0a0a0a;
-    --nb-border-w: 2.5px;
+    --nb-border-w: 3px;
     --nb-shadow: #0a0a0a;
     --nb-shadow-offset: 5px;
     --nb-shadow-hover: 8px;

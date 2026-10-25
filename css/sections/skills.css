@@ -35,35 +35,51 @@
 .stack-list {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--border-light);
+    gap: 8px;
 }
 
 .stack-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border-light);
+    padding: 10px 14px;
+    border: 2px solid var(--nb-border);
+    border-radius: var(--nb-radius);
+    background: var(--bg-primary);
     font-family: var(--font-mono);
     font-size: var(--fs-sm);
-    color: var(--text-secondary);
-    transition: color var(--dur-base) var(--ease-out), padding-left var(--dur-base) var(--ease-out);
+    color: var(--text-primary);
+    box-shadow: 3px 3px 0 var(--nb-shadow);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.25s ease,
+                background-color 0.25s ease,
+                color 0.25s ease;
 }
 
 .stack-item:hover {
-    color: var(--text-primary);
-    padding-left: 10px;
-    background: var(--accent-soft);
-    border-bottom-color: var(--nb-border);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--nb-shadow);
+    background: var(--accent);
+    color: var(--accent-ink);
 }
 
 .stack-item .stack-status {
     font-size: 0.65rem;
     color: var(--text-muted);
     letter-spacing: 0.05em;
+    transition: color 0.25s ease;
 }
 
-.stack-item .stack-status.active { color: var(--accent-symbol); font-weight: 600; }
+.stack-item .stack-status.active {
+    color: var(--accent-symbol);
+    font-weight: 600;
+}
+
+.stack-item:hover .stack-status,
+.stack-item:hover .stack-status.active {
+    color: var(--accent-ink);
+    opacity: 0.75;
+}
 
 @media (max-width: 768px) {
     .stack { padding: 70px 5%; }
