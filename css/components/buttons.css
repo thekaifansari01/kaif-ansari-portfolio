@@ -7,49 +7,57 @@
     padding: 12px 22px;
     font-family: var(--font-mono);
     font-size: var(--fs-sm);
-    font-weight: var(--fw-medium);
-    border-radius: var(--radius-sm);
+    font-weight: 600;
+    border-radius: var(--nb-radius);
     cursor: pointer;
-    transition: all var(--dur-base) var(--ease-out);
-    border: 1px solid transparent;
+    border: var(--nb-border-w) solid var(--nb-border);
     text-decoration: none;
     line-height: 1;
+    position: relative;
+    transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.18s ease,
+                color 0.18s ease,
+                border-color 0.18s ease;
+    box-shadow: var(--nb-shadow-offset) var(--nb-shadow-offset) 0 var(--nb-shadow);
 }
 
 .btn-primary {
     background: var(--accent);
     color: var(--accent-ink);
-    border-color: var(--accent);
+    border-color: var(--accent-ink);
 }
-
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px var(--accent-glow);
-}
-
-.btn-primary:active { transform: translateY(0); }
 
 .btn-ghost {
-    background: transparent;
+    background: var(--bg-primary);
     color: var(--text-primary);
-    border-color: var(--border-light);
-}
-
-.btn-ghost:hover {
-    border-color: var(--border-strong);
-    background: var(--bg-tertiary);
 }
 
 .btn-outline {
     background: transparent;
     color: var(--text-primary);
-    border-color: var(--border-light);
     padding: 10px 18px;
 }
 
+.btn-primary:hover,
+.btn-ghost:hover,
 .btn-outline:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--nb-shadow-hover) var(--nb-shadow-hover) 0 var(--nb-shadow);
+}
+
+.btn-ghost:hover,
+.btn-outline:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent-ink);
+}
+
+.btn-primary:active,
+.btn-ghost:active,
+.btn-outline:active {
+    transform: translate(var(--nb-shadow-offset), var(--nb-shadow-offset));
+    box-shadow: 0 0 0 var(--nb-shadow);
 }
 
 .btn-primary .material-icons-round,

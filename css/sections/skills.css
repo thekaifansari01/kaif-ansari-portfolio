@@ -25,10 +25,11 @@
 
 .stack-category h3::before {
     content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-symbol);
+    border-radius: 1px;
+    transform: rotate(45deg);
 }
 
 .stack-list {
@@ -51,7 +52,9 @@
 
 .stack-item:hover {
     color: var(--text-primary);
-    padding-left: 6px;
+    padding-left: 10px;
+    background: var(--accent-soft);
+    border-bottom-color: var(--nb-border);
 }
 
 .stack-item .stack-status {
@@ -60,7 +63,7 @@
     letter-spacing: 0.05em;
 }
 
-.stack-item .stack-status.active { color: var(--accent); }
+.stack-item .stack-status.active { color: var(--accent-symbol); font-weight: 600; }
 
 @media (max-width: 768px) {
     .stack { padding: 70px 5%; }

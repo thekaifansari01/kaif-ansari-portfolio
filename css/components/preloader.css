@@ -1,7 +1,7 @@
 .preloader {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, #0e0e0e 0%, #050505 75%);
+    background: radial-gradient(circle at 50% 50%, var(--pl-bg-1) 0%, var(--pl-bg-2) 75%);
     z-index: 99999;
     display: flex;
     align-items: center;
@@ -63,7 +63,7 @@
 
 .pl-edge {
     fill: none;
-    stroke: rgba(200, 255, 0, 0.32);
+    stroke: var(--pl-edge-base);
     stroke-width: 1.5;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -85,7 +85,7 @@
 .pl-reroute.visible { opacity: 1; }
 
 .pl-node {
-    fill: #0a0a0a;
+    fill: var(--pl-node-fill);
     stroke: var(--accent);
     stroke-width: 1.8;
     opacity: 0;
@@ -100,9 +100,9 @@
     filter: drop-shadow(0 0 9px var(--accent-glow));
 }
 .pl-node.flash {
-    fill: #ff3b3b;
-    stroke: #ff3b3b;
-    filter: drop-shadow(0 0 12px rgba(255, 59, 59, 0.8));
+    fill: var(--pl-flash);
+    stroke: var(--pl-flash);
+    filter: drop-shadow(0 0 12px var(--pl-flash));
 }
 
 .pl-ring {
@@ -138,12 +138,12 @@
     font-family: var(--font-mono);
     font-size: 26px;
     font-weight: 600;
-    fill: #f5f5f5;
+    fill: var(--pl-brand-fill);
     letter-spacing: -0.02em;
     text-anchor: middle;
     dominant-baseline: middle;
 }
-.pl-tilde { fill: var(--accent); }
+.pl-tilde { fill: var(--accent-symbol); }
 
 @media (prefers-reduced-motion: reduce) {
     .preloader { display: none; }

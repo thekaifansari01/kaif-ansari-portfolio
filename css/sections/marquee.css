@@ -21,8 +21,8 @@
     position: relative;
     background: var(--mq-bg);
     color: var(--mq-fg);
-    border-top: 1px solid var(--mq-border);
-    border-bottom: 1px solid var(--mq-border);
+    border-top: var(--nb-border-w) solid var(--nb-border);
+    border-bottom: var(--nb-border-w) solid var(--nb-border);
     overflow: hidden;
     font-family: var(--font-mono);
     isolation: isolate;
@@ -76,8 +76,8 @@
     position: absolute;
     width: 14px;
     height: 14px;
-    color: var(--accent);
-    opacity: 0.55;
+    color: var(--accent-symbol);
+    opacity: 0.7;
     pointer-events: none;
     z-index: 4;
 }
@@ -122,7 +122,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--accent);
+    color: var(--accent-symbol);
     font-weight: 700;
     flex-shrink: 0;
 }
@@ -191,7 +191,7 @@
     font-size: 0.7rem;
 }
 
-.meta-val.accent { color: var(--accent); }
+.meta-val.accent { color: var(--accent-symbol); }
 
 .meta-sep {
     color: var(--mq-dim-soft);
@@ -269,7 +269,7 @@
     letter-spacing: 0.005em;
     padding: 5px 10px;
     border-radius: 3px;
-    border: 1px solid transparent;
+    border: 1.5px solid transparent;
     transition:
         color 0.25s ease,
         background-color 0.25s ease,
@@ -280,11 +280,11 @@
 }
 
 .marquee-item:hover {
-    color: var(--accent);
-    background: var(--mq-hover-bg);
-    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px -6px var(--accent-glow);
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-color: var(--accent-ink);
+    transform: translate(-2px, -2px) scale(1.04);
+    box-shadow: 3px 3px 0 var(--nb-shadow);
 }
 
 .item-idx {
@@ -302,17 +302,22 @@
 
 .marquee-item:hover .item-idx {
     opacity: 1;
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--accent-ink);
+    color: var(--accent-ink);
+}
+
+.marquee-item:hover .item-icon,
+.marquee-item:hover .item-key {
+    color: var(--accent-ink);
 }
 
 .item-icon {
     font-size: 0.75rem;
-    color: var(--accent);
-    opacity: 0.85;
+    color: var(--accent-symbol);
+    opacity: 1;
     flex-shrink: 0;
     line-height: 1;
-    transition: transform 0.3s ease, opacity 0.25s ease;
+    transition: transform 0.3s ease, opacity 0.25s ease, color 0.25s ease;
 }
 
 .marquee-item:hover .item-icon {
@@ -321,10 +326,11 @@
 }
 
 .item-key {
-    color: var(--accent);
+    color: var(--accent-symbol);
     font-weight: 600;
-    opacity: 0.9;
+    opacity: 1;
     font-size: 0.78rem;
+    transition: color 0.25s ease;
 }
 
 .item-arrow {
@@ -382,9 +388,9 @@
     display: inline-block;
     width: 4px;
     height: 4px;
-    background: var(--accent);
+    background: var(--accent-symbol);
     border-radius: 50%;
-    opacity: 0.28;
+    opacity: 0.45;
     flex-shrink: 0;
     align-self: center;
 }

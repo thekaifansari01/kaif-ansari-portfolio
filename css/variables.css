@@ -54,9 +54,9 @@
     --radius-lg: 10px;
     --radius-full: 999px;
 
-    --font-display: 'Space Grotesk', system-ui, sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Space Mono', 'Courier New', monospace;
 
     --fs-xs: 0.75rem;
     --fs-sm: 0.8125rem;
@@ -97,6 +97,22 @@
     --z-nav: 100;
     --z-modal: 500;
 
+    --nb-border: #0a0a0a;
+    --nb-border-w: 2.5px;
+    --nb-shadow: #0a0a0a;
+    --nb-shadow-offset: 5px;
+    --nb-shadow-hover: 8px;
+    --nb-radius: 4px;
+
+    --accent-symbol: #c2410c;
+
+    --pl-bg-1: #f2ece0;
+    --pl-bg-2: #e6e0d2;
+    --pl-brand-fill: #0a0a0a;
+    --pl-edge-base: rgba(194, 65, 12, 0.35);
+    --pl-node-fill: #f2ece0;
+    --pl-flash: #dc2626;
+
     --nav-height: 64px;
     --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
@@ -125,6 +141,20 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
     --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+
+    --nb-border: #f5efe3;
+    --nb-shadow: #f5efe3;
+    --nb-shadow-offset: 5px;
+    --nb-shadow-hover: 8px;
+
+    --accent-symbol: #fb923c;
+
+    --pl-bg-1: #0e0e0e;
+    --pl-bg-2: #050505;
+    --pl-brand-fill: #f5efe3;
+    --pl-edge-base: rgba(251, 146, 60, 0.32);
+    --pl-node-fill: #0e0e0e;
+    --pl-flash: #ff3b3b;
 }
 
 html { color-scheme: light; }

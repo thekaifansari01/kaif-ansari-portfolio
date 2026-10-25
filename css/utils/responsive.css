@@ -10,11 +10,10 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 9998;
-    background: var(--glass-bg-strong);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-md);
+    background: var(--bg-primary);
+    border: var(--nb-border-w) solid var(--nb-border);
+    border-radius: var(--nb-radius);
+    box-shadow: 4px 4px 0 var(--nb-shadow);
     padding: 6px;
     justify-content: space-around;
     align-items: center;
@@ -51,6 +50,9 @@
 .bottom-nav .nav-item.active-nav {
     color: var(--accent-ink);
     background: var(--accent);
+    border: 1.5px solid var(--accent-ink);
+    box-shadow: 2px 2px 0 var(--nb-shadow);
+    transform: rotate(-1.5deg);
 }
 
 .bottom-nav .nav-item:active { transform: scale(0.95); }
