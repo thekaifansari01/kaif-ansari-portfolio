@@ -1,23 +1,23 @@
 <div align="center">
 
-# Kaif Ansari — AI Engineer & Creative Developer
+# Kaif Ansari — AI Engineer
 
-### Autonomous AI Agents | Voice AI | RAG Systems | Full-Stack Engineering
+### LLM Agents · Voice AI · RAG Systems · Full-Stack Engineering
 
-Production-grade personal portfolio website showcasing AI engineering projects, intelligent agent architectures, and full-stack applications. Built with clean vanilla HTML5, CSS3, and modern JavaScript.
+Production-grade personal portfolio showcasing AI engineering projects, intelligent agent architectures, and interactive web experiences. Built with zero frameworks — pure HTML5, CSS3, and modular vanilla JavaScript.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-buildwithkaif.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://buildwithkaif.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-kaifansari.me-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://kaifansari.me)
 [![GitHub](https://img.shields.io/badge/GitHub-thekaifansari01-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/thekaifansari01)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-thekaifansari01-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/thekaifansari01)
-[![X / Twitter](https://img.shields.io/badge/X-thekaifansari01-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/thekaifansari01)
+[![X](https://img.shields.io/badge/X-thekaifansari01-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/thekaifansari01)
 
-[![Made with HTML5](https://img.shields.io/badge/Made%20with-HTML5-E34F26?logo=html5&logoColor=white)](https://buildwithkaif.vercel.app)
-[![Styled with CSS3](https://img.shields.io/badge/Styled%20with-CSS3-1572B6?logo=css3&logoColor=white)](https://buildwithkaif.vercel.app)
-[![Powered by Vanilla JS](https://img.shields.io/badge/Powered%20by-Vanilla%20JS-F7DF1E?logo=javascript&logoColor=black)](https://buildwithkaif.vercel.app)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://buildwithkaif.vercel.app)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green)](https://github.com/thekaifansari01)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](#)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](#)
+[![Vanilla JS](https://img.shields.io/badge/Vanilla_JS-F7DF1E?logo=javascript&logoColor=black)](#)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)](#)
+[![MIT License](https://img.shields.io/badge/License-MIT-green)](#)
 
-[Explore Portfolio](https://buildwithkaif.vercel.app) · [Report Bug](https://github.com/thekaifansari01/portfolio/issues) · [Request Feature](https://github.com/thekaifansari01/portfolio/issues)
+[Explore Portfolio](https://kaifansari.me) · [Report Bug](https://github.com/thekaifansari01/portfolio/issues) · [Request Feature](https://github.com/thekaifansari01/portfolio/issues)
 
 </div>
 
@@ -26,74 +26,78 @@ Production-grade personal portfolio website showcasing AI engineering projects, 
 ## Table of Contents
 
 - [Overview](#overview)
-- [Key Features](#key-features)
-- [Tech Stack & Architecture](#tech-stack--architecture)
-- [Project Directory Structure](#project-directory-structure)
-- [Core Portfolio Sections](#core-portfolio-sections)
-- [Showcased AI Projects](#showcased-ai-projects)
+- [Highlights](#highlights)
+- [Tech Stack](#tech-stack)
+- [Directory Structure](#directory-structure)
+- [Site Sections](#site-sections)
+- [Flagship Projects](#flagship-projects)
 - [SEO & Crawler Optimization](#seo--crawler-optimization)
-- [Local Setup & Development](#local-setup--development)
-- [Deployment Guide](#deployment-guide)
-- [Connect with Kaif Ansari](#connect-with-kaif-ansari)
+- [Local Development](#local-development)
+- [Deployment](#deployment)
+- [Contact](#contact)
 - [License](#license)
 
 ---
 
 ## Overview
 
-Welcome to the official repository for **Kaif Ansari**'s personal portfolio. Kaif Ansari is an **AI Engineer** and developer from Muzaffarnagar, UP, India, specializing in building production-ready LLM agents, intelligent voice assistants, and scalable RAG pipelines.
+Official repository for **Kaif Ansari** — AI Engineer from Muzaffarnagar, Uttar Pradesh, India. This portfolio showcases production AI work including LLM agents, voice assistants, and RAG pipelines, alongside a custom-built interactive frontend.
 
-This portfolio highlights flagship open-source AI projects including **J.A.R.V.I.S**, **Kairos.ai**, **GitHub Universe**, and **Nexus Web Assistant**.
-
-The web application is built with **zero heavy frameworks** to ensure maximum performance, instant load times, and perfect SEO indexability using pure HTML5, CSS3 with custom variables, and modular ES6+ JavaScript.
+The site is designed in a **neubrutalist** visual language: thick borders, hard offset shadows, sticker badges, and dual-theme polish. No frameworks, no build step — just hand-crafted CSS and ES6 modules for a tiny footprint and instant loads.
 
 ---
 
-## Key Features
+## Highlights
 
-### Design & User Experience
-- **Light / Dark Theme Engine** — Dynamic color mode switching with `localStorage` state retention.
-- **Custom Precision Cursor** — Interactive custom follower ring and dot optimized for desktop viewports.
-- **Branded Preloader** — Custom loading animation featuring the "KA" monogram.
-- **Particle System** — GPU-accelerated particle canvas powered by `tsparticles` on desktop viewports.
-- **Scroll Animations** — Reveal animations triggered on scroll via AOS (Animate On Scroll).
-- **Parallax Visuals** — Mouse-tracked 3D tilt and floating badge movement.
+### Design System
+- **Neubrutalist UI** — 2.5px borders, offset hard shadows, sticker-style rotating tags, press-down button physics.
+- **Dual-Theme Engine** — Warm cream (light) and warm black (dark) with `localStorage` persistence. Every component is hand-tuned for both themes.
+- **Custom Typography Trio** — Clash Display (headings), Geist (body), Geist Mono (code/UI).
+- **Themed Preloader** — Branded SVG graph animation (nodes → edges → reroute → loop) with theme-aware colors.
+- **Grain Overlay** — Subtle SVG noise texture for depth.
 
-### Navigation Architecture
-- **Desktop Floating Pill Navbar** — Glassmorphic floating header with active section tracking.
-- **Mobile Bottom Navigation Bar** — Touch-friendly bottom tab interface adhering to mobile UX standards.
-- **Smooth Anchor Scrolling** — Native performant scrolling between portfolio sections.
+### Interaction & Motion
+- **5-State Precision Cursor** — Default, link, card, text-input, and image states. Monochrome, theme-aware, with click feedback.
+- **Magnetic Buttons** — Primary CTAs subtly pull toward the cursor on hover.
+- **Text Scramble** — Nav and footer links scramble random glyphs into place on hover.
+- **Parallax Hero Photo** — Subtle scroll-driven vertical movement.
+- **Reveal-on-Scroll** — IntersectionObserver-based fade-up animations with reduced-motion respect.
+- **Section Title Underline** — Animated accent underline that draws in on reveal.
+- **Infinite Marquee** — Dual-track scrolling feed (status + tech stack) with dynamic speed based on scroll velocity, pause-on-hover, and tap-to-highlight.
+- **Live Widgets** — IST clock, session uptime counter, animated stat counters.
+- **Diamond Timeline Markers** — Rotated square nodes that expand and shift color on hover.
 
-### Interactive Components
-- **Infinite Work Marquee** — Continuous tech stack marquee with pause-on-hover interaction.
-- **Animated Skill Meters** — Scroll-triggered progress bars with gradient shimmer styling.
-- **Live Counter Metrics** — Dynamic experience statistics counters.
-- **3D Interactive Cards** — Gyroscope/mouse-driven tilt mechanics on featured work cards.
+### Navigation
+- **Fixed Brutalist Navbar** — Thick bottom border + hard shadow, active-section tracking via scroll position.
+- **Mobile Bottom Nav** — Touch-friendly pill tab bar with tilted active state, safe-area aware.
+- **Smooth Anchor Scrolling** — Native `scrollIntoView` with reduced-motion respect.
 
 ### Security & Infrastructure
-- **Bot Mitigation** — Cloudflare Turnstile CAPTCHA integration protecting contact endpoints.
-- **Serverless API Handler** — Python-powered API serverless function (`/api/send`) for contact requests.
-- **User Feedback System** — Asynchronous status notifications for user interactions.
+- **Cloudflare Turnstile** — Bot mitigation on the contact form.
+- **Python Serverless API** — `/api/send` verifies Turnstile token and delivers mail via SMTP.
+- **Async Toast Feedback** — Non-blocking status notifications.
+- **Accessibility** — `prefers-reduced-motion` respected globally, focus-visible orange outlines, semantic HTML, ARIA labels.
 
 ---
 
-## Tech Stack & Architecture
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| **Markup & Semantics** | HTML5 (SEO & Accessibility Optimized) |
-| **Styling & Design Tokens** | CSS3 (Variables, CSS Grid, Flexbox, Animations) |
-| **Client-Side Logic** | Vanilla JavaScript (Modular ES6+) |
-| **Typography** | Space Grotesk, Plus Jakarta Sans |
-| **Iconography** | Material Icons Round, Material Symbols, Font Awesome 6.5.1 |
-| **Libraries** | AOS 2.3.1, tsparticles 3.0.3 |
-| **Security & Verification** | Cloudflare Turnstile |
-| **Backend Endpoint** | Python Serverless Function (Vercel) |
-| **Hosting Platform** | Vercel Edge Network |
+| **Markup** | HTML5 (semantic, SEO, accessible) |
+| **Styling** | CSS3 — custom properties, Grid, Flexbox, `color-mix`, `mask-image`, `backdrop-filter` fallbacks |
+| **Logic** | Vanilla JavaScript (modular IIFE scripts, ES2020+) |
+| **Typography** | Clash Display, Geist, Geist Mono |
+| **Iconography** | Material Icons Round, Font Awesome 6.5.1 |
+| **Security** | Cloudflare Turnstile |
+| **Backend** | Python serverless function (Vercel) |
+| **Hosting** | Vercel Edge Network |
+
+No build tools. No bundlers. No frameworks. Deploy as-is.
 
 ---
 
-## Project Directory Structure
+## Directory Structure
 
 ```text
 portfolio/
@@ -102,6 +106,7 @@ portfolio/
 ├── sitemap.xml
 ├── README.md
 ├── requirements.txt
+├── google6831778c190e4906.html
 ├── .vercel/
 │   ├── project.json
 │   └── README.txt
@@ -113,7 +118,6 @@ portfolio/
 │   ├── animations.css
 │   ├── components/
 │   │   ├── buttons.css
-│   │   ├── cursor.css
 │   │   ├── navbar.css
 │   │   ├── preloader.css
 │   │   └── theme-switch.css
@@ -134,74 +138,83 @@ portfolio/
 │   ├── counters.js
 │   ├── cursor.js
 │   ├── footer-year.js
-│   ├── hero-parallax.js
+│   ├── magnetic.js
+│   ├── marquee.js
 │   ├── navbar.js
-│   ├── particles.js
+│   ├── parallax.js
 │   ├── preloader.js
-│   ├── skills-animation.js
+│   ├── reveal.js
+│   ├── scramble.js
 │   ├── smooth-scroll.js
-│   ├── theme.js
-│   └── work-tilt.js
+│   └── theme.js
 └── assets/
-    └── favicon/
-        └── favicon.png
+    ├── favicon/
+    │   └── favicon.png
+    └── images/
+        ├── mydp.png
+        └── og-image.jpg
 ```
 
 ---
 
-## Core Portfolio Sections
+## Site Sections
 
-- **Hero Section** — High-impact introduction highlighting certifications, key capabilities, and call-to-action buttons.
-- **Work Showcase** — Interactive grid featuring major AI projects with live preview links and repository connections.
-- **About & Experience** — Professional profile of Kaif Ansari, educational background, and technical journey milestones.
-- **Skills Matrix** — Categorized technical proficiency in AI/LLM engineering, full-stack backends, and DevOps tooling.
-- **Contact Hub** — Secure communication gateway powered by Cloudflare Turnstile and serverless mail delivery.
+| Section | Purpose |
+|---|---|
+| **Hero** | Terminal-style intro, name, tagline, dual CTA, animated stat counters, tape-framed portrait |
+| **Live Marquee** | Real-time status feed (building / reading / listening / last commit) + scrolling tech stack |
+| **Work** | Interactive project grid — flagship AI projects with metrics, stack tags, live repo links |
+| **About** | Bio, editorial note card, career timeline with diamond markers |
+| **Stack** | Grouped technical proficiency (AI/LLM, Languages, Tools) with daily/often/learning status |
+| **Contact** | Terminal-style contact card, social links, secure form (Turnstile + serverless mail) |
+| **Footer** | Stamped copyright note, quick nav |
 
 ---
 
-## Showcased AI Projects
+## Flagship Projects
 
-| Project | Category | Key Highlights | Repository Link |
+| Project | Category | Highlights | Repo |
 |---|---|---|---|
-| **J.A.R.V.I.S** | Voice AI Agent | Multi-LLM failover, Llama 3.3, Gemini reasoning, PC automation, wake-word detection | [GitHub Repo](https://github.com/thekaifansari01/jarvis-by-kaif-ansari) |
-| **Kairos.ai** | AI Code Interpreter | In-browser Python execution via Pyodide, RAG pipeline, Firebase cloud sync | [GitHub Repo](https://github.com/thekaifansari01/kairos.ai) |
-| **GitHub Universe** | Open Source Hub | Ecosystem of AI agents, LLM wrappers, security utilities, and automation scripts | [GitHub Profile](https://github.com/thekaifansari01) |
-| **Nexus Web Assistant** | Page-Aware AI Agent | Real-time web content extraction, Llama models, local conversation memory | [GitHub Repo](https://github.com/thekaifansari01/NexusWebAssistant) |
+| **J.A.R.V.I.S** | Voice AI Agent | Multi-LLM failover (Groq + Gemini + Deepgram), wake-word detection, PC automation, email & calendar sync | [GitHub](https://github.com/thekaifansari01/jarvis-by-kaif-ansari) |
+| **kairos.ai** | AI Workspace | Multi-model chat, in-browser Python via Pyodide, project RAG, Firebase sync | [GitHub](https://github.com/thekaifansari01/kairos.ai) |
+| **Nexus** | Browser Extension | Page-aware assistant, real-time scraping, markdown rendering, persistent memory | [GitHub](https://github.com/thekaifansari01/NexusWebAssistant) |
+| **GitHub Universe** | Open Source Hub | Growing collection of AI agents, LLM wrappers, scrapers, and automation utilities | [Profile](https://github.com/thekaifansari01) |
 
 ---
 
 ## SEO & Crawler Optimization
 
-The portfolio is fully optimized for search engines to rank for **"Kaif Ansari"**, **"AI Engineer"**, and **"LLM Developer"**:
+Optimized to rank for **"Kaif Ansari"**, **"AI Engineer"**, and **"LLM Developer"**:
 
-- **Advanced Meta Tags** — Title, description, and keywords strategically placed.
-- **Open Graph & Twitter Cards** — Rich social media previews for sharing.
-- **JSON-LD Structured Data** — Schema markup for Person, SoftwareApplication (projects), and ItemList.
-- **Proper Heading Hierarchy** — H1 for name, H2 for sections, H3 for projects.
-- **Canonical URL** — Prevents duplicate content issues.
-- **Robots.txt** — Allows all crawlers and points to the sitemap.
-- **XML Sitemap** — Ensures Google indexes the main page efficiently.
+- Complete meta tags — title, description, keywords, canonical
+- Open Graph + Twitter Card rich previews
+- JSON-LD structured data — `Person`, `sameAs`, `knowsAbout`, `alumniOf`
+- Semantic heading hierarchy (H1 name → H2 sections → H3 projects)
+- `robots.txt` allowing all crawlers and pointing to sitemap
+- XML sitemap for primary URL
+- Google Search Console verification file
+- `theme-color` meta for browser chrome
 
 ---
 
-## Local Setup & Development
+## Local Development
 
-### Clone Repository
+### Clone
 
 ```bash
 git clone https://github.com/thekaifansari01/portfolio.git
 cd portfolio
 ```
 
-### Static Frontend Server
+### Static preview
 
 ```bash
 python -m http.server 8000
 ```
 
-Open `http://localhost:8000` in your web browser.
+Open `http://localhost:8000`.
 
-### Full Stack Dev Server (With Serverless API)
+### Full stack (with serverless API)
 
 ```bash
 npm install -g vercel
@@ -209,34 +222,50 @@ pip install -r requirements.txt
 vercel dev
 ```
 
+### Environment variables for `/api/send`
+
+| Variable | Purpose |
+|---|---|
+| `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret |
+| `SMTP_HOST` | SMTP server (default `smtp.gmail.com`) |
+| `SMTP_PORT` | SMTP port (default `587`) |
+| `SMTP_USER` | SMTP login |
+| `SMTP_PASS` | SMTP password / app password |
+| `TO_EMAIL` | Destination inbox |
+
 ---
 
-## Deployment Guide
+## Deployment
 
-Deploy seamlessly on **Vercel** with automatic serverless function detection:
+Deploy to Vercel — serverless function is auto-detected from `/api`:
 
 ```bash
 vercel --prod
 ```
 
+Post-deploy checklist:
+
+1. Add all environment variables in Vercel Project Settings
+2. Verify the Cloudflare Turnstile site key in `index.html` matches the deployed domain
+3. Submit the sitemap in Google Search Console
+4. Confirm `https://kaifansari.me` resolves and serves the latest deploy
+
 ---
 
-## Connect with Kaif Ansari
+## Contact
 
-**Kaif Ansari** — AI Engineer & Creative Developer
-
-*Building Autonomous AI Agents & Voice Intelligence*
+**Kaif Ansari** — AI Engineer
 
 Muzaffarnagar, Uttar Pradesh, India
 
 - **Email**: [kaif.ansari.global@gmail.com](mailto:kaif.ansari.global@gmail.com)
-- **Phone**: [+91 99272 72822](tel:+919927272822)
+- **Phone**: [+91 92860 12879](tel:+919286012879)
 - **GitHub**: [github.com/thekaifansari01](https://github.com/thekaifansari01)
 - **LinkedIn**: [linkedin.com/in/thekaifansari01](https://linkedin.com/in/thekaifansari01)
-- **Twitter/X**: [x.com/thekaifansari01](https://x.com/thekaifansari01)
+- **X**: [x.com/thekaifansari01](https://x.com/thekaifansari01)
 
 ---
 
 ## License
 
-Distributed under the **MIT License**. Created by **Kaif Ansari** (`thekaifansari01`).
+Released under the **MIT License**. Designed and built by **Kaif Ansari** ([@thekaifansari01](https://github.com/thekaifansari01)).
