@@ -156,6 +156,7 @@
 <link rel="stylesheet" href="css/sections/contact.css" />
 <link rel="stylesheet" href="css/layout/footer.css" />
 <link rel="stylesheet" href="css/utils/responsive.css" />
+<link rel="stylesheet" href="css/brutalist.css" />
 </head>
 <body>
 
@@ -378,7 +379,7 @@ Things I've built <span class="muted">— from idea to deployment.</span>
 </h2>
 </header>
 
-<div class="work-grid">
+<div class="work-grid" data-stagger>
 
 <article class="work-card feature reveal">
 <span class="work-bracket tl"></span>
@@ -554,7 +555,7 @@ open<span class="arrow">→</span>
 </div>
 </div>
 <div class="about-timeline reveal">
-<div class="timeline">
+<div class="timeline" data-stagger>
 <div class="timeline-item">
 <div class="timeline-year">2026 — present</div>
 <div class="timeline-title">BCA (AI &amp; Cloud Computing)</div>
@@ -584,7 +585,7 @@ open<span class="arrow">→</span>
 Tools I actually use <span class="muted">— not everything I've touched.</span>
 </h2>
 </header>
-<div class="stack-grid">
+<div class="stack-grid" data-stagger>
 <div class="stack-category reveal">
 <h3>AI / LLM</h3>
 <div class="stack-list">
@@ -651,7 +652,7 @@ Got something weird? <span class="muted">Let's build it.</span>
 </div>
 </div>
 </div>
-<div class="social-row">
+<div class="social-row" data-stagger>
 <a href="https://github.com/thekaifansari01" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="Kaif Ansari on GitHub">
 <i class="fab fa-github" aria-hidden="true"></i> github
 </a>
@@ -706,8 +707,20 @@ send message
 </div>
 </div>
 <div class="footer-bottom">
-<span>&copy; <span id="footerYear">2026</span> kaif ansari · made with <span class="footer-heart">❤</span> by Jarvis</span>
-<span>built at 3am with too much caffeine</span>
+<span class="footer-credit-line">
+&copy; <span id="footerYear">2026</span> kaif ansari · designed, coded &amp; deployed by
+<a href="https://github.com/thekaifansari01/jarvis-os-agent" target="_blank" rel="noopener noreferrer" class="footer-credit-link" aria-label="Jarvis OS Agent — the autonomous AI that built this site" title="View Jarvis OS Agent on GitHub">
+<span class="footer-credit-heart" aria-hidden="true">❤</span>
+<span class="footer-credit-logo">JARVIS</span>
+<span class="footer-credit-tag">autonomous agent</span>
+<span class="footer-credit-arrow" aria-hidden="true">↗</span>
+</a>
+</span>
+<a href="https://github.com/thekaifansari01/jarvis-os-agent" target="_blank" rel="noopener noreferrer" class="footer-agent-cta" aria-label="Explore the Jarvis OS Agent source code on GitHub" title="Explore Jarvis OS Agent source">
+<span class="footer-agent-pulse" aria-hidden="true"></span>
+explore the agent that shipped this
+<span class="footer-agent-arrow" aria-hidden="true">→</span>
+</a>
 </div>
 </div>
 </footer>
@@ -744,6 +757,9 @@ send message
   </div>
 </div>
 
+<div class="cursor-label" id="cursorLabel" aria-hidden="true"></div>
+<canvas class="burst-canvas" id="burstCanvas" aria-hidden="true"></canvas>
+
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="modules/theme.js" defer></script>
 <script src="modules/preloader.js" defer></script>
@@ -760,5 +776,6 @@ send message
 <script src="modules/scramble.js" defer></script>
 <script src="modules/parallax.js" defer></script>
 <script src="modules/newsletter-popup.js" defer></script>
+<script src="modules/brutalist.js" defer></script>
 </body>
 </html>

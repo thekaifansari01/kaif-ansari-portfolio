@@ -1,0 +1,255 @@
+.cursor-label {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 4px 8px;
+  background: var(--accent-symbol, #ff5c00);
+  color: #0a0a0a;
+  border: 2px solid #0a0a0a;
+  box-shadow: 3px 3px 0 #0a0a0a;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(14px, 14px) rotate(-3deg) scale(0);
+  transform-origin: top left;
+  transition: opacity 100ms steps(2, end), transform 130ms steps(3, end);
+  will-change: transform;
+}
+
+.cursor-label.is-visible {
+  opacity: 1;
+  transform: translate(14px, 14px) rotate(-3deg) scale(1);
+}
+
+.burst-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.form-field,
+.nb-popup-field {
+  position: relative;
+}
+
+.form-field::before,
+.form-field::after,
+.nb-popup-field::before,
+.nb-popup-field::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent-symbol, #ff5c00);
+  border-style: solid;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 100ms steps(2, end), transform 160ms steps(3, end);
+  z-index: 3;
+}
+
+.form-field::before,
+.nb-popup-field::before {
+  top: -5px;
+  left: -5px;
+  border-width: 2px 0 0 2px;
+  transform: translate(8px, 8px);
+}
+
+.form-field::after,
+.nb-popup-field::after {
+  bottom: -5px;
+  right: -5px;
+  border-width: 0 2px 2px 0;
+  transform: translate(-8px, -8px);
+}
+
+.form-field:has(input, textarea):focus-within::before,
+.form-field:has(input, textarea):focus-within::after,
+.nb-popup-field:has(input, textarea):focus-within::before,
+.nb-popup-field:has(input, textarea):focus-within::after {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+@keyframes brutal-glitch {
+  0%, 100% { transform: translate(0, 0); }
+  12% { transform: translate(-6px, 3px); }
+  24% { transform: translate(6px, -3px); }
+  36% { transform: translate(-5px, -2px); }
+  48% { transform: translate(5px, 4px); }
+  60% { transform: translate(-3px, -4px); }
+  72% { transform: translate(4px, 2px); }
+  84% { transform: translate(-2px, 3px); }
+}
+
+.section-header h2.is-glitched {
+  animation: brutal-glitch 340ms linear 1;
+}
+
+@keyframes brutal-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-8px); }
+  30% { transform: translateX(8px); }
+  45% { transform: translateX(-6px); }
+  60% { transform: translateX(6px); }
+  75% { transform: translateX(-3px); }
+  90% { transform: translateX(3px); }
+}
+
+.form-field.has-error input,
+.form-field.has-error textarea,
+.nb-popup-field.has-error input {
+  animation: brutal-shake 260ms linear 1;
+  border-color: #ff3b30 !important;
+}
+
+@keyframes brutal-popup-stamp {
+  0% { transform: translateY(-32px) rotate(-3deg) scale(0.94); opacity: 0; }
+  55% { transform: translateY(6px) rotate(1.5deg) scale(1.03); opacity: 1; }
+  80% { transform: translateY(-2px) rotate(-0.5deg) scale(0.99); opacity: 1; }
+  100% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
+}
+
+.nb-popup.is-stamping {
+  animation: brutal-popup-stamp 320ms steps(5, end) 1;
+}
+
+[data-stagger] > :nth-child(1) { --stagger-i: 0; }
+[data-stagger] > :nth-child(2) { --stagger-i: 1; }
+[data-stagger] > :nth-child(3) { --stagger-i: 2; }
+[data-stagger] > :nth-child(4) { --stagger-i: 3; }
+[data-stagger] > :nth-child(5) { --stagger-i: 4; }
+[data-stagger] > :nth-child(6) { --stagger-i: 5; }
+[data-stagger] > :nth-child(7) { --stagger-i: 6; }
+[data-stagger] > :nth-child(8) { --stagger-i: 7; }
+
+[data-stagger] > .reveal {
+  transition-property: opacity, transform;
+  transition-duration: 380ms;
+  transition-timing-function: steps(4, end);
+}
+
+[data-stagger] > .reveal.is-visible {
+  transition-delay: calc(var(--stagger-i, 0) * 110ms);
+}
+
+[data-stagger] > .stagger-item {
+  opacity: 0;
+  transform: translateY(16px) scale(1.04) rotate(-1.5deg);
+  transition-property: opacity, transform;
+  transition-duration: 340ms;
+  transition-timing-function: steps(4, end);
+  transition-delay: calc(var(--stagger-i, 0) * 110ms);
+}
+
+[data-stagger].is-staggered > .stagger-item {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+.stack-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.stack-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent-symbol, #ff5c00);
+  opacity: 0.14;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 180ms steps(3, end);
+  pointer-events: none;
+}
+
+.stack-item:hover::before {
+  transform: scaleX(1);
+}
+
+.stack-item > * {
+  position: relative;
+  transition: transform 180ms steps(3, end);
+}
+
+.stack-item:hover > :first-child {
+  transform: translateX(6px);
+}
+
+.timeline-item {
+  transition: transform 140ms steps(2, end);
+}
+
+.timeline-item:hover .timeline-year,
+.timeline-item:hover .timeline-title {
+  transform: translateX(-6px);
+}
+
+.timeline-year,
+.timeline-title {
+  transition: transform 140ms steps(2, end);
+}
+
+.work-card.feature {
+  position: relative;
+}
+
+.work-card.feature .work-bracket {
+  transition: transform 200ms steps(3, end), opacity 200ms steps(2, end);
+}
+
+.work-card.feature:hover .work-bracket.tl {
+  transform: translate(-8px, -8px);
+}
+
+.work-card.feature:hover .work-bracket.tr {
+  transform: translate(8px, -8px);
+}
+
+.work-card.feature:hover .work-bracket.bl {
+  transform: translate(-8px, 8px);
+}
+
+.work-card.feature:hover .work-bracket.br {
+  transform: translate(8px, 8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-label,
+  .form-field::before,
+  .form-field::after,
+  .nb-popup-field::before,
+  .nb-popup-field::after,
+  [data-stagger] > .reveal,
+  [data-stagger] > .stagger-item,
+  [data-stagger].is-staggered > .stagger-item,
+  .section-header h2.is-glitched,
+  .form-field.has-error input,
+  .form-field.has-error textarea,
+  .nb-popup-field.has-error input,
+  .nb-popup.is-stamping,
+  .stack-item::before,
+  .stack-item > *,
+  .timeline-item,
+  .timeline-year,
+  .timeline-title,
+  .work-card.feature .work-bracket {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .cursor-label.is-visible {
+    transform: translate(14px, 14px) rotate(-3deg) scale(1);
+  }
+}
