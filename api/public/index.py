@@ -229,16 +229,12 @@ class handler(BaseHTTPRequestHandler):
             email_sent = _send_contact_email(name, email, message)
 
             if stored:
-                new_status = 'read' if email_sent else 'unread'
                 try:
                     raw = redis_cmd('hget', 'contact:messages', message_id)
                     if raw:
                         p = json.loads(raw)
-                        p['status'] = new_status
                         p['email_sent'] = bool(email_sent)
                         redis_cmd('hset', 'contact:messages', message_id, json.dumps(p))
-                        if new_status == 'read':
-                            redis_cmd('srem', 'contact:unread', message_id)
                 except Exception:
                     pass
 
