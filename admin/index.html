@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>admin · kaifansari.me</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --bg2: #121212;
+  --bg3: #1a1a1a;
+  --text: #f5f5f5;
+  --text2: #a8a8a8;
+  --muted: #6a6a6a;
+  --accent: #c8ff00;
+  --ink: #0a0a0a;
+  --border: #f5efe3;
+  --shadow: #f5efe3;
+  --danger: #ff3b30;
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --font-display: 'Anton', Impact, 'Arial Black', sans-serif;
+  --font-body: 'Fraunces', Georgia, serif;
+  --font-mono: 'Geist Mono', 'Courier New', ui-monospace, monospace;
+  --radius: 3px;
+  --bw: 3px;
+  --offset: 5px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { color-scheme: dark; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+code { font-family: var(--font-mono); background: var(--bg2); padding: 1px 6px; border-radius: 2px; border: 1px solid var(--border); }
+
+.screen { min-height: 100vh; }
+.screen-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(200, 255, 0, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(194, 65, 12, 0.08), transparent 40%),
+    var(--bg);
+}
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg2);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: 10px 10px 0 var(--accent);
+}
+.login-brand {
+  display: inline-block;
+  padding: 6px 12px;
+  background: var(--accent);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  border-radius: 2px;
+  transform: rotate(-1.5deg);
+  margin-bottom: 20px;
+}
+.login-brand span {
+  margin-left: 6px;
+  padding: 1px 6px;
+  background: var(--ink);
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.login-card h1 {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 0.95;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.login-card p { color: var(--text2); font-size: 13px; margin-bottom: 24px; line-height: 1.7; }
+.login-card label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--accent);
+  border: 1.5px solid var(--ink);
+  padding: 3px 9px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  width: fit-content;
+  margin-bottom: 6px;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+.login-card input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.login-card input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 var(--shadow);
+  transform: translate(-1px, -1px);
+}
+.login-status {
+  display: none;
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 2px solid var(--success);
+  border-radius: var(--radius);
+  color: var(--success);
+  font-size: 12px;
+  text-align: center;
+}
+.login-status.is-error {
+  background: rgba(255, 59, 48, 0.1);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.login-back {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.login-back:hover { color: var(--accent); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: var(--bg);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  user-select: none;
+}
+.btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--shadow); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--shadow); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: 2px 2px 0 var(--shadow); }
+.btn-primary { background: var(--accent); color: var(--ink); border-color: var(--ink); }
+.btn-ghost { background: var(--bg2); }
+.btn-danger { background: var(--bg2); color: var(--danger); border-color: var(--danger); }
+.btn-danger:hover { background: var(--danger); color: #fff; }
+.btn-sm { padding: 6px 12px; font-size: 11px; box-shadow: 2px 2px 0 var(--shadow); }
+.btn-xs { padding: 4px 9px; font-size: 10px; box-shadow: 1.5px 1.5px 0 var(--shadow); border-width: 1.5px; }
+.btn-xs:hover { box-shadow: 2.5px 2.5px 0 var(--shadow); }
+.btn.full-width { width: 100%; }
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: var(--bw) solid var(--border);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
+}
+.app-header-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg2);
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transform: rotate(-1.5deg);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.brand:hover { transform: rotate(0) translate(-2px, -2px); box-shadow: 5px 5px 0 var(--shadow); }
+.brand-tag {
+  margin-left: 4px;
+  padding: 1px 6px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: 1px;
+  border-radius: 2px;
+}
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  padding: 8px 14px;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.tab:hover { color: var(--text); background: var(--bg2); }
+.tab.active {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+  transform: rotate(-1deg);
+}
+.session {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.session-email {
+  font-size: 11px;
+  color: var(--muted);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+.panel { animation: fadeIn 0.25s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.panel-head h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.panel-head h2 .count {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.panel-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.stat {
+  padding: 16px 18px;
+  background: var(--bg2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 4px 4px 0 var(--shadow);
+  transform: rotate(-0.5deg);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat:nth-child(even) { transform: rotate(0.7deg); }
+.stat:hover { transform: rotate(0) translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-top: 6px;
+  border-top: 1.5px dashed var(--bg3);
+}
+.stat.highlight { background: var(--accent); border-color: var(--ink); }
+.stat.highlight .stat-value { color: var(--ink); }
+.stat.highlight .stat-label { color: var(--ink); opacity: 0.7; border-color: rgba(10, 10, 10, 0.3); }
+.stat.danger .stat-value { color: var(--danger); }
+
+.migrate-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(200, 255, 0, 0.1), rgba(200, 255, 0, 0.02));
+  border: var(--bw) dashed var(--accent);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.migrate-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.migrate-card p { color: var(--text2); font-size: 12px; line-height: 1.6; }
+
+.activity { margin-top: 12px; }
+.activity h3 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.activity-item {
+  display: grid;
+  grid-template-columns: 90px 100px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1.5px solid var(--bg3);
+  border-radius: 2px;
+  font-size: 12px;
+  transition: border-color 0.15s;
+}
+.activity-item:hover { border-color: var(--border); }
+.activity-item .act-time { color: var(--muted); font-size: 11px; }
+.activity-item .act-actor { color: var(--text2); overflow: hidden; text-overflow: ellipsis; }
+.activity-item .act-action { font-weight: 600; color: var(--accent); }
+.activity-item .act-target { color: var(--muted); font-size: 11px; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.input, .select {
+  padding: 9px 13px;
+  background: var(--bg2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input { flex: 1; min-width: 180px; }
+.select { cursor: pointer; min-width: 140px; }
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+
+.table-wrap {
+  background: var(--bg2);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 5px 5px 0 var(--shadow);
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.table thead th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--bg3);
+  border-bottom: 2px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--bg3);
+  vertical-align: middle;
+}
+.table tbody tr:last-child td { border-bottom: none; }
+.table tbody tr { transition: background-color 0.1s; }
+.table tbody tr[data-message-id] { cursor: pointer; }
+.table tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
+.table .email { font-family: var(--font-mono); font-size: 12px; color: var(--text); }
+.table .muted { color: var(--muted); font-size: 12px; }
+.table .actions-col { width: 1%; white-space: nowrap; text-align: right; }
+.table .actions-cell { text-align: right; white-space: nowrap; }
+.table .actions-cell .btn { margin-left: 4px; }
+.table .loading, .table .empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.table .preview {
+  color: var(--text2);
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.table .from-cell { display: flex; flex-direction: column; gap: 2px; }
+.table .from-cell .from-name { font-weight: 600; font-size: 13px; }
+.table .from-cell .from-email { font-size: 11px; color: var(--muted); }
+.table .unread-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  white-space: nowrap;
+}
+.badge.confirmed, .badge.replied { color: var(--success); background: rgba(34, 197, 94, 0.1); }
+.badge.pending, .badge.unread { color: var(--warning); background: rgba(251, 191, 36, 0.1); }
+.badge.unsubscribed, .badge.spam { color: var(--danger); background: rgba(255, 59, 48, 0.1); }
+.badge.read, .badge.archived { color: var(--muted); background: var(--bg3); }
+
+.empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg2);
+  border: var(--bw) solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 12px 12px 0 var(--shadow);
+  padding: 28px 24px;
+  animation: modalIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  box-shadow: 2px 2px 0 var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+}
+.modal-close:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--shadow); background: var(--accent); color: var(--ink); }
+.modal-content h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  line-height: 1;
+}
+.modal-content label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--accent);
+  border: 1.5px solid var(--ink);
+  padding: 3px 9px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  width: fit-content;
+  margin: 14px 0 6px;
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+.modal-content input, .modal-content select, .modal-content textarea {
+  width: 100%;
+  padding: 10px 13px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  resize: vertical;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.modal-content input:focus, .modal-content select:focus, .modal-content textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 2px 2px 0 var(--shadow);
+}
+.modal-content button[type="submit"], .modal-content .btn-primary { margin-top: 16px; }
+.msg-meta {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 6px 14px;
+  padding: 14px;
+  background: var(--bg);
+  border: 1.5px solid var(--bg3);
+  border-radius: 2px;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+.msg-meta dt { color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; padding-top: 3px; }
+.msg-meta dd { color: var(--text); word-break: break-word; }
+.msg-body {
+  padding: 16px;
+  background: var(--bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 2px;
+  white-space: pre-wrap;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+.msg-reply {
+  padding: 16px;
+  background: rgba(34, 197, 94, 0.08);
+  border-left: 4px solid var(--success);
+  border-radius: 2px;
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+.msg-reply strong { color: var(--success); display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+.msg-reply p { color: var(--text2); white-space: pre-wrap; line-height: 1.6; }
+.msg-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid var(--bg3);
+}
+.reply-form { margin-top: 8px; }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  padding: 12px 22px;
+  background: var(--accent);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 5px 5px 0 var(--shadow);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s;
+  max-width: calc(100vw - 40px);
+  text-align: center;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.error { background: var(--danger); color: #fff; border-color: #fff; box-shadow: 5px 5px 0 #fff; }
+
+@media (max-width: 768px) {
+  .app-header-inner { padding: 0 14px; gap: 10px; height: 56px; }
+  .brand { font-size: 12px; padding: 5px 10px; }
+  .brand-tag { font-size: 9px; }
+  .session-email { display: none; }
+  .tab { padding: 7px 10px; font-size: 11px; }
+  .app-main { padding: 20px 14px 60px; }
+  .panel-head h2 { font-size: 24px; }
+  .stat-value { font-size: 22px; }
+  .activity-item { grid-template-columns: 60px 1fr; gap: 6px; }
+  .activity-item .act-actor, .activity-item .act-action { grid-column: 2; }
+  .activity-item .act-target { display: none; }
+  .table { font-size: 12px; }
+  .table thead th, .table tbody td { padding: 10px 10px; }
+  .table .preview { max-width: 140px; }
+  .table .actions-cell .btn { padding: 3px 6px; font-size: 9px; margin-left: 2px; }
+  .modal { padding: 20px 16px; }
+  .modal-content h3 { font-size: 20px; }
+  .msg-meta { grid-template-columns: 1fr; gap: 2px; }
+  .msg-meta dt { padding-top: 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="screen screen-login" id="loginScreen">
+  <div class="login-card">
+    <div class="login-brand">~/kaif <span>admin</span></div>
+    <h1>Sign in</h1>
+    <p>Enter your admin email. We'll send a magic link.</p>
+    <form id="loginForm">
+      <label for="loginEmail">email</label>
+      <input type="email" id="loginEmail" name="email" required autocomplete="email" placeholder="you@example.com" />
+      <button type="submit" class="btn btn-primary full-width" id="loginBtn">send magic link</button>
+    </form>
+    <div class="login-status" id="loginStatus"></div>
+    <a href="/" class="login-back">← back to site</a>
+  </div>
+</div>
+
+<div class="screen screen-app" id="appScreen" hidden>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="/" class="brand">~/kaif<span class="brand-tag">admin</span></a>
+      <nav class="tabs" id="tabs">
+        <button type="button" class="tab active" data-tab="dashboard">dashboard</button>
+        <button type="button" class="tab" data-tab="subscribers">subscribers</button>
+        <button type="button" class="tab" data-tab="messages">messages</button>
+      </nav>
+      <div class="session">
+        <span class="session-email" id="sessionEmail"></span>
+        <button type="button" class="btn btn-ghost btn-sm" id="logoutBtn">logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="panel" id="panelDashboard" data-panel="dashboard">
+      <div class="panel-head">
+        <h2>dashboard</h2>
+        <div class="panel-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="refreshDashboard">refresh</button>
+        </div>
+      </div>
+      <div class="stat-grid" id="statGrid"></div>
+      <div id="migrateCard"></div>
+      <div class="activity">
+        <h3>recent activity</h3>
+        <div class="activity-list" id="recentActivity"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panelSubscribers" data-panel="subscribers" hidden>
+      <div class="panel-head">
+        <h2>subscribers <span class="count" id="subsCount"></span></h2>
+        <div class="panel-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="addSubBtn">+ add</button>
+          <a href="/api/admin_subscribers?format=csv" class="btn btn-ghost btn-sm" id="exportCsvBtn" download>export csv</a>
+        </div>
+      </div>
+      <div class="filters">
+        <select class="select" id="subsFilter">
+          <option value="all">all</option>
+          <option value="confirmed">confirmed</option>
+          <option value="pending">pending</option>
+          <option value="unsubscribed">unsubscribed</option>
+        </select>
+        <input type="search" class="input" id="subsSearch" placeholder="search email…" />
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>email</th>
+              <th>status</th>
+              <th>subscribed</th>
+              <th>source</th>
+              <th class="actions-col">actions</th>
+            </tr>
+          </thead>
+          <tbody id="subsBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="subsEmpty" hidden>no subscribers yet</div>
+    </section>
+
+    <section class="panel" id="panelMessages" data-panel="messages" hidden>
+      <div class="panel-head">
+        <h2>messages <span class="count" id="msgsCount"></span></h2>
+        <div class="panel-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="refreshMessages">refresh</button>
+        </div>
+      </div>
+      <div class="filters">
+        <select class="select" id="msgsFilter">
+          <option value="all">all</option>
+          <option value="unread">unread</option>
+          <option value="read">read</option>
+          <option value="replied">replied</option>
+          <option value="archived">archived</option>
+          <option value="spam">spam</option>
+        </select>
+        <input type="search" class="input" id="msgsSearch" placeholder="search name, email, message…" />
+      </div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>from</th>
+              <th>preview</th>
+              <th>received</th>
+              <th class="actions-col">actions</th>
+            </tr>
+          </thead>
+          <tbody id="msgsBody"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="msgsEmpty" hidden>no messages yet</div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button type="button" class="modal-close" id="modalClose">✕</button>
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var state = {
+    email: '',
+    tab: 'dashboard',
+    subs: { items: [], status: 'all', search: '' },
+    msgs: { items: [], filter: 'all', search: '' },
+    loading: { subs: false, msgs: false }
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function fmtDate(ts) {
+    if (!ts) return '—';
+    var n = parseInt(ts, 10);
+    if (!n) return '—';
+    var d = new Date(n * 1000);
+    var diff = Date.now() - d.getTime();
+    var m = Math.floor(diff / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return m + 'm ago';
+    var h = Math.floor(m / 60);
+    if (h < 24) return h + 'h ago';
+    var day = Math.floor(h / 24);
+    if (day < 7) return day + 'd ago';
+    return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  function toast(msg, type) {
+    var el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'toast show' + (type === 'error' ? ' error' : '');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove('show'); }, 3200);
+  }
+
+  async function api(path, opts) {
+    opts = opts || {};
+    var config = {
+      method: opts.method || 'GET',
+      credentials: 'include',
+      headers: {}
+    };
+    if (opts.body !== undefined) {
+      config.headers['Content-Type'] = 'application/json';
+      config.body = typeof opts.body === 'string' ? opts.body : JSON.stringify(opts.body);
+    }
+    try {
+      var res = await fetch(path, config);
+      var data = null;
+      try { data = await res.json(); } catch (e) { data = {}; }
+      return { ok: res.ok, status: res.status, data: data || {} };
+    } catch (err) {
+      return { ok: false, status: 0, data: { error: 'network error' } };
+    }
+  }
+
+  function showModal(html) {
+    document.getElementById('modalContent').innerHTML = html;
+    document.getElementById('modalOverlay').hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').hidden = true;
+    document.getElementById('modalContent').innerHTML = '';
+    document.body.style.overflow = '';
+  }
+
+  window.closeModal = closeModal;
+
+  function showLogin() {
+    document.getElementById('loginScreen').hidden = false;
+    document.getElementById('appScreen').hidden = true;
+  }
+
+  function showApp() {
+    document.getElementById('loginScreen').hidden = true;
+    document.getElementById('appScreen').hidden = false;
+    document.getElementById('sessionEmail').textContent = state.email;
+  }
+
+  async function boot() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('error') === 'login') {
+      var st = document.getElementById('loginStatus');
+      st.textContent = 'login link is invalid or expired. request a new one.';
+      st.className = 'login-status is-error';
+      st.style.display = 'block';
+      try { window.history.replaceState({}, '', '/admin'); } catch (e) {}
+    }
+
+    var r = await api('/api/admin_me');
+    if (r.ok && r.data.success && r.data.email) {
+      state.email = r.data.email;
+      showApp();
+      switchTab('dashboard');
+    } else {
+      showLogin();
+    }
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    var btn = document.getElementById('loginBtn');
+    var status = document.getElementById('loginStatus');
+
+    if (!email) {
+      toast('email required', 'error');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'sending…';
+    status.style.display = 'none';
+
+    var r = await api('/api/admin_login', { method: 'POST', body: { email: email } });
+
+    btn.disabled = false;
+    btn.textContent = 'send magic link';
+
+    if (r.ok && r.data.success) {
+      status.textContent = r.data.message || 'check your email for the login link.';
+      status.className = 'login-status';
+      status.style.display = 'block';
+    } else {
+      status.textContent = (r.data && r.data.error) || 'failed to send link';
+      status.className = 'login-status is-error';
+      status.style.display = 'block';
+    }
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', async function () {
+    await api('/api/admin_logout', { method: 'POST' });
+    state.email = '';
+    showLogin();
+    document.getElementById('loginStatus').style.display = 'none';
+  });
+
+  document.getElementById('modalOverlay').addEventListener('click', function (e) {
+    if (e.target.id === 'modalOverlay') closeModal();
+  });
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  document.getElementById('tabs').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-tab]');
+    if (!btn) return;
+    switchTab(btn.dataset.tab);
+  });
+
+  function switchTab(name) {
+    state.tab = name;
+    var tabs = document.querySelectorAll('[data-tab]');
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.toggle('active', tabs[i].dataset.tab === name);
+    }
+    var panels = document.querySelectorAll('[data-panel]');
+    for (var j = 0; j < panels.length; j++) {
+      panels[j].hidden = panels[j].dataset.panel !== name;
+    }
+    if (name === 'dashboard') loadDashboard();
+    if (name === 'subscribers') loadSubscribers();
+    if (name === 'messages') loadMessages();
+  }
+
+  async function loadDashboard() {
+    var grid = document.getElementById('statGrid');
+    var recentEl = document.getElementById('recentActivity');
+    var migrateEl = document.getElementById('migrateCard');
+
+    grid.innerHTML = '<div class="stat"><div class="stat-value">—</div><div class="stat-label">loading…</div></div>';
+    recentEl.innerHTML = '';
+
+    var r = await api('/api/admin_dashboard');
+    if (!r.ok || !r.data.success) {
+      toast((r.data && r.data.error) || 'failed to load dashboard', 'error');
+      grid.innerHTML = '<div class="stat"><div class="stat-value">!</div><div class="stat-label">failed</div></div>';
+      return;
+    }
+
+    var s = r.data.stats || {};
+
+    grid.innerHTML =
+      '<div class="stat highlight"><div class="stat-value">' + (s.confirmed || 0) + '</div><div class="stat-label">confirmed</div></div>' +
+      '<div class="stat"><div class="stat-value">' + (s.pending || 0) + '</div><div class="stat-label">pending</div></div>' +
+      '<div class="stat"><div class="stat-value">' + (s.unsubscribed || 0) + '</div><div class="stat-label">unsubscribed</div></div>' +
+      '<div class="stat"><div class="stat-value">' + (s.messages_total || 0) + '</div><div class="stat-label">messages total</div></div>' +
+      '<div class="stat' + (s.messages_unread > 0 ? ' danger' : '') + '"><div class="stat-value">' + (s.messages_unread || 0) + '</div><div class="stat-label">unread</div></div>';
+
+    if (!r.data.migrated) {
+      migrateEl.innerHTML =
+        '<div class="migrate-card">' +
+        '<div><h3>migrate legacy data</h3><p>Run once to move old subscriber keys into the new schema. Safe to re-run — it only executes once.</p></div>' +
+        '<button type="button" class="btn btn-primary" id="migrateBtn">run migration</button>' +
+        '</div>';
+      document.getElementById('migrateBtn').addEventListener('click', runMigrate);
+    } else {
+      migrateEl.innerHTML = '';
+    }
+
+    var recent = r.data.recent || [];
+    if (!recent.length) {
+      recentEl.innerHTML = '<div class="empty">no activity yet</div>';
+    } else {
+      recentEl.innerHTML = recent.map(function (a) {
+        return '<div class="activity-item">' +
+          '<span class="act-time">' + fmtDate(a.ts) + '</span>' +
+          '<span class="act-actor">' + esc(a.actor || '—') + '</span>' +
+          '<span class="act-action">' + esc(a.action || '—') + '</span>' +
+          '<span class="act-target">' + esc(a.target || '') + '</span>' +
+          '</div>';
+      }).join('');
+    }
+  }
+
+  async function runMigrate() {
+    var btn = document.getElementById('migrateBtn');
+    if (!btn) return;
+    if (!window.confirm('Run one-time migration now?')) return;
+    btn.disabled = true;
+    btn.textContent = 'migrating…';
+    var r = await api('/api/admin_migrate', { method: 'POST' });
+    if (!r.ok || !r.data.success) {
+      toast((r.data && r.data.error) || 'migration failed', 'error');
+      btn.disabled = false;
+      btn.textContent = 'run migration';
+      return;
+    }
+    toast('migrated: ' + (r.data.confirmed || 0) + ' confirmed, ' + (r.data.pending || 0) + ' pending');
+    loadDashboard();
+  }
+
+  document.getElementById('refreshDashboard').addEventListener('click', loadDashboard);
+
+  async function fetchAllSubscribers(status) {
+    var all = [];
+    var page = 0;
+    for (var i = 0; i < 20; i++) {
+      var r = await api('/api/admin_subscribers?status=' + encodeURIComponent(status) + '&page=' + page + '&per_page=200');
+      if (!r.ok || !r.data.success) return { items: all, error: (r.data && r.data.error) || 'load failed' };
+      all = all.concat(r.data.data || []);
+      if (all.length >= (r.data.total || 0)) break;
+      page++;
+    }
+    return { items: all };
+  }
+
+  async function loadSubscribers() {
+    if (state.loading.subs) return;
+    state.loading.subs = true;
+    var filter = document.getElementById('subsFilter').value;
+    state.subs.status = filter;
+    document.getElementById('subsBody').innerHTML = '<tr><td colspan="5" class="loading">loading…</td></tr>';
+    document.getElementById('subsEmpty').hidden = true;
+
+    var res = await fetchAllSubscribers(filter);
+    state.loading.subs = false;
+    if (res.error) {
+      toast(res.error, 'error');
+      document.getElementById('subsBody').innerHTML = '<tr><td colspan="5" class="empty">failed to load</td></tr>';
+      return;
+    }
+    state.subs.items = res.items;
+    renderSubscribers();
+  }
+
+  function renderSubscribers() {
+    var search = document.getElementById('subsSearch').value.toLowerCase().trim();
+    var items = state.subs.items;
+    if (search) {
+      items = items.filter(function (s) {
+        return (s.email || '').toLowerCase().indexOf(search) !== -1;
+      });
+    }
+
+    document.getElementById('subsCount').textContent = '(' + items.length + ')';
+    var body = document.getElementById('subsBody');
+    var empty = document.getElementById('subsEmpty');
+
+    if (!items.length) {
+      body.innerHTML = '';
+      empty.hidden = false;
+      return;
+    }
+    empty.hidden = true;
+
+    body.innerHTML = items.map(function (s) {
+      var actions = '';
+      if (s.status === 'pending') {
+        actions += '<button type="button" class="btn btn-xs btn-primary" data-subs-action="confirm" data-email="' + esc(s.email) + '">confirm</button>';
+        actions += '<button type="button" class="btn btn-xs" data-subs-action="resend" data-email="' + esc(s.email) + '">resend</button>';
+      } else if (s.status === 'confirmed') {
+        actions += '<button type="button" class="btn btn-xs" data-subs-action="unsubscribe" data-email="' + esc(s.email) + '">unsub</button>';
+      } else if (s.status === 'unsubscribed') {
+        actions += '<button type="button" class="btn btn-xs" data-subs-action="pending" data-email="' + esc(s.email) + '">re-pend</button>';
+      }
+      actions += '<button type="button" class="btn btn-xs btn-danger" data-subs-action="delete" data-email="' + esc(s.email) + '">delete</button>';
+
+      return '<tr>' +
+        '<td><span class="email">' + esc(s.email) + '</span></td>' +
+        '<td><span class="badge ' + esc(s.status) + '">' + esc(s.status) + '</span></td>' +
+        '<td><span class="muted">' + fmtDate(s.subscribed_at) + '</span></td>' +
+        '<td><span class="muted">' + esc(s.source || '—') + '</span></td>' +
+        '<td class="actions-cell">' + actions + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  document.getElementById('subsFilter').addEventListener('change', loadSubscribers);
+  document.getElementById('subsSearch').addEventListener('input', renderSubscribers);
+
+  document.getElementById('subsBody').addEventListener('click', async function (e) {
+    var btn = e.target.closest('[data-subs-action]');
+    if (!btn) return;
+    var action = btn.dataset.subsAction;
+    var email = btn.dataset.email;
+
+    if (action === 'delete') {
+      if (!window.confirm('Delete subscriber "' + email + '"?')) return;
+      btn.disabled = true;
+      var r = await api('/api/admin_subscribers?email=' + encodeURIComponent(email), { method: 'DELETE' });
+      if (!r.ok || !r.data.success) {
+        toast((r.data && r.data.error) || 'delete failed', 'error');
+        btn.disabled = false;
+        return;
+      }
+      toast('deleted');
+      loadSubscribers();
+      return;
+    }
+
+    btn.disabled = true;
+    var r2 = await api('/api/admin_subscribers', { method: 'PATCH', body: { email: email, action: action } });
+    if (!r2.ok || !r2.data.success) {
+      toast((r2.data && r2.data.error) || 'action failed', 'error');
+      btn.disabled = false;
+      return;
+    }
+    var labels = { confirm: 'confirmed', resend: 'resent', unsubscribe: 'unsubscribed', pending: 're-pended' };
+    toast(labels[action] || 'done');
+    loadSubscribers();
+  });
+
+  document.getElementById('addSubBtn').addEventListener('click', function () {
+    showModal(
+      '<h3>add subscriber</h3>' +
+      '<form id="addSubForm">' +
+      '<label for="newSubEmail">email</label>' +
+      '<input type="email" id="newSubEmail" required placeholder="someone@example.com" />' +
+      '<label for="newSubStatus">status</label>' +
+      '<select id="newSubStatus">' +
+      '<option value="confirmed">confirmed (no email)</option>' +
+      '<option value="pending">pending (sends confirm email)</option>' +
+      '</select>' +
+      '<button type="submit" class="btn btn-primary">add subscriber</button>' +
+      '</form>'
+    );
+    document.getElementById('newSubEmail').focus();
+    document.getElementById('addSubForm').addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      var email = document.getElementById('newSubEmail').value.trim().toLowerCase();
+      var status = document.getElementById('newSubStatus').value;
+      if (!email) return toast('email required', 'error');
+      var btn = ev.target.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'adding…';
+      var r = await api('/api/admin_subscribers', { method: 'POST', body: { email: email, status: status } });
+      if (!r.ok || !r.data.success) {
+        toast((r.data && r.data.error) || 'failed', 'error');
+        btn.disabled = false;
+        btn.textContent = 'add subscriber';
+        return;
+      }
+      toast('subscriber added');
+      closeModal();
+      loadSubscribers();
+    });
+  });
+
+  async function fetchAllMessages(status) {
+    var all = [];
+    var page = 0;
+    for (var i = 0; i < 20; i++) {
+      var r = await api('/api/admin_messages?status=' + encodeURIComponent(status) + '&page=' + page + '&per_page=200');
+      if (!r.ok || !r.data.success) return { items: all, error: (r.data && r.data.error) || 'load failed' };
+      all = all.concat(r.data.data || []);
+      if (all.length >= (r.data.total || 0)) break;
+      page++;
+    }
+    return { items: all };
+  }
+
+  async function loadMessages() {
+    if (state.loading.msgs) return;
+    state.loading.msgs = true;
+    var filter = document.getElementById('msgsFilter').value;
+    state.msgs.filter = filter;
+    document.getElementById('msgsBody').innerHTML = '<tr><td colspan="5" class="loading">loading…</td></tr>';
+    document.getElementById('msgsEmpty').hidden = true;
+
+    var res = await fetchAllMessages(filter);
+    state.loading.msgs = false;
+    if (res.error) {
+      toast(res.error, 'error');
+      document.getElementById('msgsBody').innerHTML = '<tr><td colspan="5" class="empty">failed to load</td></tr>';
+      return;
+    }
+    state.msgs.items = res.items;
+    renderMessages();
+  }
+
+  function renderMessages() {
+    var search = document.getElementById('msgsSearch').value.toLowerCase().trim();
+    var items = state.msgs.items;
+    if (search) {
+      items = items.filter(function (m) {
+        return (
+          (m.name || '').toLowerCase().indexOf(search) !== -1 ||
+          (m.email || '').toLowerCase().indexOf(search) !== -1 ||
+          (m.message || '').toLowerCase().indexOf(search) !== -1
+        );
+      });
+    }
+
+    document.getElementById('msgsCount').textContent = '(' + items.length + ')';
+    var body = document.getElementById('msgsBody');
+    var empty = document.getElementById('msgsEmpty');
+
+    if (!items.length) {
+      body.innerHTML = '';
+      empty.hidden = false;
+      return;
+    }
+    empty.hidden = true;
+
+    body.innerHTML = items.map(function (m) {
+      var preview = (m.message || '').replace(/\s+/g, ' ').slice(0, 90);
+      var unread = m.status === 'unread';
+      return '<tr data-message-id="' + esc(m.id) + '">' +
+        '<td>' + (unread ? '<span class="unread-dot"></span>' : '') + '</td>' +
+        '<td><div class="from-cell"><span class="from-name">' + esc(m.name || '—') + '</span><span class="from-email">' + esc(m.email || '') + '</span></div></td>' +
+        '<td><span class="preview">' + esc(preview || '') + '</span></td>' +
+        '<td><span class="muted">' + fmtDate(m.created_at) + '</span></td>' +
+        '<td class="actions-cell"><button type="button" class="btn btn-xs btn-danger" data-msg-delete="' + esc(m.id) + '">delete</button></td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  document.getElementById('msgsFilter').addEventListener('change', loadMessages);
+  document.getElementById('msgsSearch').addEventListener('input', renderMessages);
+  document.getElementById('refreshMessages').addEventListener('click', loadMessages);
+
+  document.getElementById('msgsBody').addEventListener('click', async function (e) {
+    var delBtn = e.target.closest('[data-msg-delete]');
+    if (delBtn) {
+      e.stopPropagation();
+      var id = delBtn.dataset.msgDelete;
+      if (!window.confirm('Delete this message permanently?')) return;
+      delBtn.disabled = true;
+      var r = await api('/api/admin_messages?id=' + encodeURIComponent(id), { method: 'DELETE' });
+      if (!r.ok || !r.data.success) {
+        toast((r.data && r.data.error) || 'delete failed', 'error');
+        delBtn.disabled = false;
+        return;
+      }
+      toast('deleted');
+      loadMessages();
+      return;
+    }
+    var tr = e.target.closest('tr[data-message-id]');
+    if (tr) openMessage(tr.dataset.messageId);
+  });
+
+  async function openMessage(id) {
+    var r = await api('/api/admin_messages?id=' + encodeURIComponent(id));
+    if (!r.ok || !r.data.success) {
+      toast((r.data && r.data.error) || 'failed to load message', 'error');
+      return;
+    }
+    var m = r.data.data;
+    var html =
+      '<h3>message</h3>' +
+      '<dl class="msg-meta">' +
+      '<dt>from</dt><dd><strong>' + esc(m.name) + '</strong><br><span style="color:var(--muted);font-size:11px;">' + esc(m.email) + '</span></dd>' +
+      '<dt>received</dt><dd>' + fmtDate(m.created_at) + '</dd>' +
+      '<dt>status</dt><dd><span class="badge ' + esc(m.status) + '">' + esc(m.status) + '</span></dd>' +
+      '<dt>ip</dt><dd><code>' + esc(m.ip || '—') + '</code></dd>' +
+      '</dl>' +
+      '<div class="msg-body">' + esc(m.message || '') + '</div>';
+
+    if (m.reply) {
+      html += '<div class="msg-reply"><strong>your reply</strong><p>' + esc(m.reply) + '</p></div>';
+    }
+
+    html += '<div class="msg-actions">';
+    if (m.status !== 'read' && m.status !== 'replied') {
+      html += '<button type="button" class="btn btn-ghost btn-sm" data-msg-status="read" data-msg-id="' + esc(m.id) + '">mark read</button>';
+    }
+    if (m.status !== 'unread') {
+      html += '<button type="button" class="btn btn-ghost btn-sm" data-msg-status="unread" data-msg-id="' + esc(m.id) + '">mark unread</button>';
+    }
+    if (m.status !== 'archived') {
+      html += '<button type="button" class="btn btn-ghost btn-sm" data-msg-status="archived" data-msg-id="' + esc(m.id) + '">archive</button>';
+    }
+    if (m.status !== 'spam') {
+      html += '<button type="button" class="btn btn-ghost btn-sm" data-msg-status="spam" data-msg-id="' + esc(m.id) + '">spam</button>';
+    }
+    html += '<button type="button" class="btn btn-danger btn-sm" data-msg-delete-modal="' + esc(m.id) + '">delete</button>';
+    html += '</div>';
+
+    html += '<form class="reply-form" id="replyForm">' +
+      '<label for="replyText">reply to ' + esc(m.name) + '</label>' +
+      '<textarea id="replyText" rows="5" required placeholder="write your reply…">' + esc(m.reply || '') + '</textarea>' +
+      '<button type="submit" class="btn btn-primary">send reply</button>' +
+      '</form>';
+
+    showModal(html);
+
+    document.getElementById('replyForm').addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      var text = document.getElementById('replyText').value.trim();
+      if (!text) return toast('reply text required', 'error');
+      var btn = ev.target.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'sending…';
+      var rr = await api('/api/admin_messages', { method: 'POST', body: { id: id, reply: text } });
+      if (!rr.ok || !rr.data.success) {
+        toast((rr.data && rr.data.error) || 'reply failed', 'error');
+        btn.disabled = false;
+        btn.textContent = 'send reply';
+        return;
+      }
+      toast('reply sent');
+      closeModal();
+      loadMessages();
+    });
+  }
+
+  document.getElementById('modalContent').addEventListener('click', async function (e) {
+    var statusBtn = e.target.closest('[data-msg-status]');
+    if (statusBtn) {
+      var st = statusBtn.dataset.msgStatus;
+      var id = statusBtn.dataset.msgId;
+      statusBtn.disabled = true;
+      var r = await api('/api/admin_messages', { method: 'PATCH', body: { id: id, status: st } });
+      if (!r.ok || !r.data.success) {
+        toast((r.data && r.data.error) || 'failed', 'error');
+        statusBtn.disabled = false;
+        return;
+      }
+      toast('marked ' + st);
+      closeModal();
+      loadMessages();
+      return;
+    }
+
+    var delBtn = e.target.closest('[data-msg-delete-modal]');
+    if (delBtn) {
+      var did = delBtn.dataset.msgDeleteModal;
+      if (!window.confirm('Delete this message permanently?')) return;
+      delBtn.disabled = true;
+      var rr = await api('/api/admin_messages?id=' + encodeURIComponent(did), { method: 'DELETE' });
+      if (!rr.ok || !rr.data.success) {
+        toast((rr.data && rr.data.error) || 'delete failed', 'error');
+        delBtn.disabled = false;
+        return;
+      }
+      toast('deleted');
+      closeModal();
+      loadMessages();
+    }
+  });
+
+  boot();
+})();
+</script>
+</body>
+</html>

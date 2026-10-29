@@ -33,7 +33,7 @@ def redis_cmd(*args):
                 'Content-Type': 'application/json',
             },
             json=[str(a) for a in args],
-            timeout=5,
+            timeout=6,
         )
         if res.status_code != 200:
             return None
@@ -57,29 +57,12 @@ def cors_origin(handler):
     return ALLOWED_ORIGINS[0] if ALLOWED_ORIGINS else SITE_URL
 
 
-def rate_limit(ip):
-    if not UPSTASH_URL or not UPSTASH_TOKEN:
-        return True
-    key = f'rl:contact:{ip}'
-    count = redis_cmd('incr', key)
-    if count is None:
-        return True
-    try:
-        count = int(count)
-    except (TypeError, ValueError):
-        return False
-    if count == 1:
-        redis_cmd('expire', key, 3600)
-    return count <= 3
-
-
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', cors_origin(self))
         self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-        self.send_header('Access-Control-Max-Age', '86400')
         self.end_headers()
 
     def do_POST(self):
@@ -96,13 +79,10 @@ class handler(BaseHTTPRequestHandler):
 
             if not name or not email or not message:
                 return self.send_json_response(400, {'success': False, 'error': 'All fields are required'})
-
             if '@' not in email or '.' not in email.split('@')[-1]:
                 return self.send_json_response(400, {'success': False, 'error': 'Invalid email address'})
-
             if len(name) > 100 or len(email) > 200 or len(message) > 5000:
                 return self.send_json_response(400, {'success': False, 'error': 'Input too long'})
-
             if not token:
                 return self.send_json_response(400, {'success': False, 'error': 'Missing CAPTCHA token'})
 
@@ -114,40 +94,57 @@ class handler(BaseHTTPRequestHandler):
                 ).json()
             except Exception:
                 return self.send_json_response(500, {'success': False, 'error': 'Captcha verification failed'})
-
             if not verify.get('success'):
                 return self.send_json_response(400, {'success': False, 'error': 'CAPTCHA verification failed'})
 
-            if not rate_limit(ip):
-                return self.send_json_response(429, {'success': False, 'error': 'Too many attempts. Try again later.'})
+            if UPSTASH_URL and UPSTASH_TOKEN:
+                rl_key = f'rl:contact:{ip}'
+                count = redis_cmd('incr', rl_key)
+                try:
+                    count = int(count) if count is not None else 0
+                except (TypeError, ValueError):
+                    count = 0
+                if count == 1:
+                    redis_cmd('expire', rl_key, 3600)
+                if count > 3:
+                    return self.send_json_response(429, {'success': False, 'error': 'Too many attempts. Try again later.'})
 
             message_id = secrets.token_urlsafe(16)
             stored = False
 
             if UPSTASH_URL and UPSTASH_TOKEN:
-                result = redis_cmd(
-                    'hset',
-                    f'contact:msg:{message_id}',
-                    'name', name,
-                    'email', email,
-                    'message', message,
-                    'ip', ip,
-                    'status', 'unread',
-                    'created_at', str(int(time.time())),
-                )
+                payload = {
+                    'name': name,
+                    'email': email,
+                    'message': message,
+                    'ip': ip,
+                    'status': 'unread',
+                    'created_at': int(time.time()),
+                }
+                result = redis_cmd('hset', 'contact:messages', message_id, json.dumps(payload))
                 if result is not None:
-                    redis_cmd('lpush', 'contact:messages', message_id)
+                    redis_cmd('lpush', 'contact:order', message_id)
+                    redis_cmd('sadd', 'contact:unread', message_id)
                     stored = True
 
             email_sent = self.send_email(name, email, message)
 
             if stored:
-                new_status = 'notified' if email_sent else 'email_failed'
-                redis_cmd('hset', f'contact:msg:{message_id}', 'status', new_status)
+                new_status = 'read' if email_sent else 'unread'
+                try:
+                    raw = redis_cmd('hget', 'contact:messages', message_id)
+                    if raw:
+                        p = json.loads(raw)
+                        p['status'] = new_status
+                        p['email_sent'] = bool(email_sent)
+                        redis_cmd('hset', 'contact:messages', message_id, json.dumps(p))
+                        if new_status == 'read':
+                            redis_cmd('srem', 'contact:unread', message_id)
+                except Exception:
+                    pass
 
             if email_sent:
                 return self.send_json_response(200, {'success': True, 'message': 'Message sent successfully!'})
-
             if stored:
                 return self.send_json_response(200, {'success': True, 'message': 'Message received. Delivery may be delayed.'})
 
@@ -159,7 +156,6 @@ class handler(BaseHTTPRequestHandler):
 
     def send_email(self, name, email, message):
         if not SMTP_USER or not SMTP_PASS:
-            print('SMTP credentials not configured')
             return False
         try:
             msg = EmailMessage()
@@ -172,7 +168,6 @@ class handler(BaseHTTPRequestHandler):
             msg['From'] = SMTP_USER
             msg['To'] = TO_EMAIL
             msg['Reply-To'] = email
-
             with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
                 server.starttls()
                 server.login(SMTP_USER, SMTP_PASS)
