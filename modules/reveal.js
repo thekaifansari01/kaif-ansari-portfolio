@@ -1,9 +1,11 @@
 (function () {
     var items = document.querySelectorAll('.reveal');
-    if (!items.length) return;
 
     if (!('IntersectionObserver' in window)) {
         items.forEach(function (el) { el.classList.add('revealed'); });
+        window.__revealObserve = function (el) {
+            if (el && el.nodeType === 1) el.classList.add('revealed');
+        };
         return;
     }
 
@@ -17,4 +19,8 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
     items.forEach(function (el) { io.observe(el); });
+
+    window.__revealObserve = function (el) {
+        if (el && el.nodeType === 1) io.observe(el);
+    };
 })();

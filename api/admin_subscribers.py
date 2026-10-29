@@ -1,13 +1,12 @@
 import io
 import json
+import secrets
 import time
 from csv import writer as csv_writer
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
-from session_lib import (
-    get_session, json_response, handle_options, redis_cmd, audit, SITE_URL,
-)
+from session_lib import get_session, json_response, handle_options, redis_cmd, audit, SITE_URL
 from mailer_lib import smtp_send
 
 
@@ -26,12 +25,14 @@ def parse_subs(raw):
     return result
 
 
-def send_confirmation_email(email, token):
+def send_confirmation_email(email, token, unsub_token):
     link = f'{SITE_URL}/api/confirm?token={token}'
+    unsub_link = f'{SITE_URL}/api/unsubscribe?token={unsub_token}'
     text = (
         'Confirm your subscription\n\n'
         f'Confirm here:\n{link}\n\n'
-        'Link expires in 24 hours.\n'
+        'Link expires in 24 hours.\n\n'
+        f'Unsubscribe: {unsub_link}\n'
     )
     smtp_send(email, 'Confirm your subscription - kaif ansari', text)
 
@@ -88,8 +89,7 @@ class handler(BaseHTTPRequestHandler):
             return
 
         start = page * per_page
-        end = start + per_page
-        paginated = subs[start:end]
+        paginated = subs[start:start + per_page]
 
         return json_response(self, 200, {
             'success': True,
@@ -120,14 +120,15 @@ class handler(BaseHTTPRequestHandler):
                 return json_response(self, 409, {'success': False, 'error': 'subscriber already exists'})
 
             token = ''
+            unsub_token = secrets.token_urlsafe(32)
             now = int(time.time())
             if status == 'pending':
-                import secrets
                 token = secrets.token_urlsafe(32)
 
             payload = {
                 'status': status,
                 'token': token,
+                'unsub_token': unsub_token,
                 'subscribed_at': now,
                 'confirmed_at': now if status == 'confirmed' else 0,
                 'source': 'admin',
@@ -137,14 +138,17 @@ class handler(BaseHTTPRequestHandler):
             if ok is None:
                 return json_response(self, 500, {'success': False, 'error': 'storage error'})
 
+            redis_cmd('set', f'newsletter:unsub_token:{unsub_token}', email)
+
             if status == 'pending' and token:
                 redis_cmd('set', f'newsletter:token:{token}', email)
                 redis_cmd('expire', f'newsletter:token:{token}', 86400)
                 try:
-                    send_confirmation_email(email, token)
+                    send_confirmation_email(email, token, unsub_token)
                 except Exception:
                     redis_cmd('hdel', 'newsletter:subscribers', email)
                     redis_cmd('del', f'newsletter:token:{token}')
+                    redis_cmd('del', f'newsletter:unsub_token:{unsub_token}')
                     return json_response(self, 500, {'success': False, 'error': 'failed to send email'})
 
             audit(sess['email'], 'subscriber_add', email, {'status': status})
@@ -162,6 +166,27 @@ class handler(BaseHTTPRequestHandler):
             body = json.loads(self.rfile.read(length) or b'{}')
             email = (body.get('email') or '').strip().lower()
             action = (body.get('action') or '').strip()
+
+            if action == 'backfill_unsub':
+                count = 0
+                subs_raw = redis_cmd('hgetall', 'newsletter:subscribers') or []
+                if isinstance(subs_raw, list):
+                    for i in range(0, len(subs_raw), 2):
+                        try:
+                            em = subs_raw[i]
+                            data = json.loads(subs_raw[i + 1])
+                            if not data.get('unsub_token'):
+                                tok = secrets.token_urlsafe(32)
+                                data['unsub_token'] = tok
+                                redis_cmd('hset', 'newsletter:subscribers', em, json.dumps(data))
+                                redis_cmd('set', f'newsletter:unsub_token:{tok}', em)
+                                count += 1
+                            else:
+                                redis_cmd('set', f'newsletter:unsub_token:{data["unsub_token"]}', em)
+                        except (IndexError, TypeError, ValueError):
+                            continue
+                audit(sess['email'], 'backfill_unsub', '', {'count': count})
+                return json_response(self, 200, {'success': True, 'count': count})
 
             if not email or action not in ('confirm', 'unsubscribe', 'pending', 'resend'):
                 return json_response(self, 400, {'success': False, 'error': 'invalid request'})
@@ -193,7 +218,6 @@ class handler(BaseHTTPRequestHandler):
                 data['token'] = ''
 
             elif action == 'pending':
-                import secrets
                 old_token = data.get('token') or ''
                 if old_token:
                     redis_cmd('del', f'newsletter:token:{old_token}')
@@ -206,7 +230,6 @@ class handler(BaseHTTPRequestHandler):
             elif action == 'resend':
                 if data.get('status') == 'confirmed':
                     return json_response(self, 400, {'success': False, 'error': 'already confirmed'})
-                import secrets
                 old_token = data.get('token') or ''
                 if old_token:
                     redis_cmd('del', f'newsletter:token:{old_token}')
@@ -215,8 +238,9 @@ class handler(BaseHTTPRequestHandler):
                 data['status'] = 'pending'
                 redis_cmd('set', f'newsletter:token:{new_token}', email)
                 redis_cmd('expire', f'newsletter:token:{new_token}', 86400)
+                unsub_tok = data.get('unsub_token') or ''
                 try:
-                    send_confirmation_email(email, new_token)
+                    send_confirmation_email(email, new_token, unsub_tok)
                 except Exception:
                     return json_response(self, 500, {'success': False, 'error': 'failed to send email'})
 
@@ -247,6 +271,9 @@ class handler(BaseHTTPRequestHandler):
                     tok = data.get('token') or ''
                     if tok:
                         redis_cmd('del', f'newsletter:token:{tok}')
+                    unsub_tok = data.get('unsub_token') or ''
+                    if unsub_tok:
+                        redis_cmd('del', f'newsletter:unsub_token:{unsub_tok}')
                 except (TypeError, ValueError):
                     pass
 

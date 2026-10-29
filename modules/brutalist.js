@@ -252,9 +252,9 @@
         if (!burstRaf) burstRaf = requestAnimationFrame(renderBurst);
       };
 
-      var burstTargets = document.querySelectorAll('.btn-primary, .btn-ghost, .work-cta, .nav-resume, button[type="submit"], .social-link');
-      burstTargets.forEach(function (el) {
-        el.addEventListener('click', spawnBurst);
+      document.addEventListener('click', function (e) {
+        var target = e.target.closest ? e.target.closest('.btn-primary, .btn-ghost, .work-cta, .nav-resume, button[type="submit"], .social-link') : null;
+        if (target) spawnBurst(e);
       });
     }
   }

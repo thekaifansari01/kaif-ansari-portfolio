@@ -64,14 +64,16 @@ def verify_turnstile(token, ip):
         return False
 
 
-def send_confirmation(email, token):
+def send_confirmation(email, token, unsub_token):
     link = f'{SITE_URL}/api/confirm?token={token}'
+    unsub_link = f'{SITE_URL}/api/unsubscribe?token={unsub_token}'
     text = (
         'Confirm your subscription\n\n'
         "You're one click away from build logs, new agents, and things I break at 2am.\n\n"
         f'Confirm here:\n{link}\n\n'
         'Link expires in 24 hours.\n\n'
         "If you didn't request this, ignore this email.\n\n"
+        f'Unsubscribe: {unsub_link}\n\n'
         f'~/\nkaif\n{SITE_URL}\n'
     )
     html = f"""<!DOCTYPE html>
@@ -88,7 +90,8 @@ def send_confirmation(email, token):
 <a href="{link}" style="display:inline-block;background:#c8ff00;color:#0a0a0a;padding:14px 28px;text-decoration:none;font-family:'Courier New',Consolas,monospace;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border:2px solid #0a0a0a;">CONFIRM &rarr;</a>
 <div style="margin-top:36px;padding-top:22px;border-top:2px solid #333;">
 <p style="margin:0 0 10px;font-family:'Courier New',Consolas,monospace;font-size:11px;color:#6a6a6a;letter-spacing:1.5px;">LINK EXPIRES IN 24 HOURS</p>
-<p style="margin:0;font-family:'Courier New',Consolas,monospace;font-size:11px;color:#6a6a6a;letter-spacing:1.5px;">IF YOU DIDN'T REQUEST THIS, IGNORE THIS EMAIL</p>
+<p style="margin:0 0 10px;font-family:'Courier New',Consolas,monospace;font-size:11px;color:#6a6a6a;letter-spacing:1.5px;">IF YOU DIDN'T REQUEST THIS, IGNORE THIS EMAIL</p>
+<p style="margin:0;font-family:'Courier New',Consolas,monospace;font-size:11px;color:#6a6a6a;letter-spacing:1.5px;"><a href="{unsub_link}" style="color:#6a6a6a;text-decoration:underline;">UNSUBSCRIBE</a></p>
 </div>
 </td></tr>
 <tr><td style="padding-top:28px;text-align:center;">
@@ -151,10 +154,12 @@ class handler(BaseHTTPRequestHandler):
                     return self.json(200, {'success': True, 'message': 'confirmation sent'})
 
             confirm_token = secrets.token_urlsafe(32)
+            unsub_token = secrets.token_urlsafe(32)
             now = int(time.time())
             payload = {
                 'status': 'pending',
                 'token': confirm_token,
+                'unsub_token': unsub_token,
                 'subscribed_at': now,
                 'confirmed_at': 0,
                 'source': 'web',
@@ -170,11 +175,14 @@ class handler(BaseHTTPRequestHandler):
                 return self.json(500, {'success': False, 'error': 'storage error'})
             redis_cmd('expire', f'newsletter:token:{confirm_token}', 86400)
 
+            redis_cmd('set', f'newsletter:unsub_token:{unsub_token}', email)
+
             try:
-                send_confirmation(email, confirm_token)
+                send_confirmation(email, confirm_token, unsub_token)
             except Exception:
                 redis_cmd('hdel', 'newsletter:subscribers', email)
                 redis_cmd('del', f'newsletter:token:{confirm_token}')
+                redis_cmd('del', f'newsletter:unsub_token:{unsub_token}')
                 return self.json(500, {'success': False, 'error': 'failed to send email'})
 
             return self.json(200, {'success': True, 'message': 'confirmation sent'})

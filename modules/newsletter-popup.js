@@ -30,6 +30,20 @@
       var cleanURL = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
       window.history.replaceState({}, '', cleanURL);
     }
+    var unsub = params.get('unsubscribed');
+    if (unsub === '1' || unsub === '0') {
+      setTimeout(function () {
+        if (unsub === '1') {
+          showToast('you have been unsubscribed ✓', true);
+        } else {
+          showToast('unsubscribe link is invalid or expired', false);
+        }
+      }, 500);
+      params.delete('unsubscribed');
+      var qs2 = params.toString();
+      var cleanURL2 = window.location.pathname + (qs2 ? '?' + qs2 : '') + window.location.hash;
+      window.history.replaceState({}, '', cleanURL2);
+    }
   } catch (e) {}
 
   function canShow() {
