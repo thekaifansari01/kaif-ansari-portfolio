@@ -15,7 +15,9 @@ ALLOWED_ORIGINS = [o.strip() for o in os.environ.get('ALLOWED_ORIGINS', SITE_URL
 
 def redis_cmd(*args):
     if not UPSTASH_URL or not UPSTASH_TOKEN:
+        print(f'[REDIS] env_missing url_set={bool(UPSTASH_URL)} token_set={bool(UPSTASH_TOKEN)}')
         return None
+    cmd = args[0] if args else '?'
     try:
         res = requests.post(
             UPSTASH_URL.rstrip('/'),
@@ -27,9 +29,21 @@ def redis_cmd(*args):
             timeout=8,
         )
         if res.status_code != 200:
+            print(f'[REDIS] {cmd} HTTP_{res.status_code} body={res.text[:300]}')
             return None
-        return res.json().get('result')
-    except Exception:
+        data = res.json()
+        if 'result' not in data:
+            print(f'[REDIS] {cmd} no_result body={str(data)[:300]}')
+            return None
+        return data['result']
+    except requests.exceptions.Timeout:
+        print(f'[REDIS] {cmd} TIMEOUT_8s')
+        return None
+    except requests.exceptions.ConnectionError as e:
+        print(f'[REDIS] {cmd} CONN_ERROR {str(e)[:200]}')
+        return None
+    except Exception as e:
+        print(f'[REDIS] {cmd} EXCEPTION {type(e).__name__}: {str(e)[:200]}')
         return None
 
 

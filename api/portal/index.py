@@ -227,10 +227,13 @@ class handler(BaseHTTPRequestHandler):
                 'created_at': int(time.time()),
                 'email_sent': False,
             }
-            result = redis_cmd('hset', 'contact:messages', message_id, json.dumps(payload))
+            payload_json = json.dumps(payload)
+            print(f'[SEND] message_id={message_id} payload_bytes={len(payload_json)}')
+            result = redis_cmd('hset', 'contact:messages', message_id, payload_json)
             if result is None:
-                print(f'contact send: redis hset failed for message_id={message_id}')
+                print(f'[SEND] hset_failed message_id={message_id}')
                 return json_response(self, 500, {'success': False, 'error': 'storage error, please try again'})
+            print(f'[SEND] hset_ok message_id={message_id} result={result}')
 
             redis_cmd('lpush', 'contact:order', message_id)
             redis_cmd('sadd', 'contact:unread', message_id)
