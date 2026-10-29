@@ -2,11 +2,10 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
+import html as html_lib
 import json
 import secrets
-import smtplib
 import time
-from email.message import EmailMessage
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
@@ -19,10 +18,6 @@ from session_lib import (
 from mailer_lib import smtp_send
 
 SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY')
-SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
-SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
-SMTP_USER = os.environ.get('SMTP_USER')
-SMTP_PASS = os.environ.get('SMTP_PASS')
 TO_EMAIL = os.environ.get('TO_EMAIL', 'kaif.ansari.global@gmail.com')
 CACHE_KEY = 'projects:cache'
 CACHE_TTL = 60
@@ -43,23 +38,28 @@ def _verify_turnstile(token, ip):
 
 
 def _send_contact_email(name, email, message):
-    if not SMTP_USER or not SMTP_PASS:
-        return False
+    safe_name = html_lib.escape(name)
+    safe_email = html_lib.escape(email)
+    safe_message = html_lib.escape(message)
+    subject = f'New Contact Form from {name}'
+    text = (
+        f"Name: {name}\n"
+        f"Email: {email}\n\n"
+        f"Message:\n{message}\n"
+    )
+    html = f"""<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#0a0a0a;font-family:'Courier New',monospace;">
+<div style="max-width:560px;margin:40px auto;background:#121212;border:3px solid #f5efe3;padding:32px;box-shadow:8px 8px 0 #c8ff00;">
+<span style="display:inline-block;padding:5px 12px;background:#c8ff00;color:#0a0a0a;font-weight:700;font-size:11px;letter-spacing:1px;">[ contact ]</span>
+<h1 style="margin:18px 0 12px;color:#f5efe3;font-family:Impact,sans-serif;font-size:28px;letter-spacing:-0.5px;text-transform:uppercase;font-weight:400;">New Message</h1>
+<p style="color:#a8a8a8;font-size:13px;margin:0 0 4px;"><strong style="color:#c8ff00;">From:</strong> {safe_name}</p>
+<p style="color:#a8a8a8;font-size:13px;margin:0 0 20px;"><strong style="color:#c8ff00;">Email:</strong> {safe_email}</p>
+<div style="color:#e0e0e0;font-size:14px;line-height:1.75;white-space:pre-wrap;padding:16px;background:#0a0a0a;border-left:4px solid #c8ff00;margin:0 0 24px;">{safe_message}</div>
+<p style="color:#6a6a6a;font-size:11px;margin:0;padding-top:18px;border-top:2px solid #333;">reply to this email to respond directly</p>
+</div>
+</body></html>"""
     try:
-        msg = EmailMessage()
-        msg.set_content(
-            f"Name: {name}\n"
-            f"Email: {email}\n\n"
-            f"Message:\n{message}\n"
-        )
-        msg['Subject'] = f'New Contact Form from {name}'
-        msg['From'] = SMTP_USER
-        msg['To'] = TO_EMAIL
-        msg['Reply-To'] = email
-        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SMTP_USER, SMTP_PASS)
-            server.send_message(msg)
+        smtp_send(TO_EMAIL, subject, text, html, reply_to=email)
         return True
     except Exception:
         return False

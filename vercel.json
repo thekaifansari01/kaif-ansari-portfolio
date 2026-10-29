@@ -13,10 +13,10 @@
     { "source": "/api/admin_projects", "destination": "/api/admin?action=projects" },
     { "source": "/api/admin_projects_sync", "destination": "/api/admin?action=projects_sync" },
 
-    { "source": "/api/send", "destination": "/api/public?action=send" },
-    { "source": "/api/subscribe", "destination": "/api/public?action=subscribe" },
-    { "source": "/api/confirm", "destination": "/api/public?action=confirm" },
-    { "source": "/api/unsubscribe", "destination": "/api/public?action=unsubscribe" },
-    { "source": "/api/projects", "destination": "/api/public?action=projects" }
+    { "source": "/api/send", "destination": "/api/portal?action=send" },
+    { "source": "/api/subscribe", "destination": "/api/portal?action=subscribe" },
+    { "source": "/api/confirm", "destination": "/api/portal?action=confirm" },
+    { "source": "/api/unsubscribe", "destination": "/api/portal?action=unsubscribe" },
+    { "source": "/api/projects", "destination": "/api/portal?action=projects" }
   ]
 }
