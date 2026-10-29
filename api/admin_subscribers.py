@@ -5,10 +5,10 @@ from csv import writer as csv_writer
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
-from _session import (
+from session_lib import (
     get_session, json_response, handle_options, redis_cmd, audit, SITE_URL,
 )
-from _mailer import smtp_send
+from mailer_lib import smtp_send
 
 
 def parse_subs(raw):

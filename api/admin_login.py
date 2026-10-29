@@ -2,11 +2,11 @@ import json
 import secrets
 from http.server import BaseHTTPRequestHandler
 
-from _session import (
+from session_lib import (
     ADMIN_EMAIL, SITE_URL, redis_cmd, get_client_ip, json_response,
     handle_options, audit,
 )
-from _mailer import smtp_send
+from mailer_lib import smtp_send
 
 
 def send_magic_email(email, token):

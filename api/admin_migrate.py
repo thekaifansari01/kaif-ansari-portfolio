@@ -2,7 +2,7 @@ import json
 import time
 from http.server import BaseHTTPRequestHandler
 
-from _session import (
+from session_lib import (
     get_session, json_response, handle_options, redis_cmd, scan_all, audit,
 )
 

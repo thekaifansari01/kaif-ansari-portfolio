@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 
-from _session import (
+from session_lib import (
     clear_cookie, get_session, redis_cmd, audit, cors_origin, handle_options,
 )
 

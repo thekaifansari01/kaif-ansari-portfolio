@@ -4,7 +4,7 @@ import time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 
-from _session import (
+from session_lib import (
     SITE_URL, SESSION_TTL, redis_cmd, get_client_ip, audit, session_cookie,
 )
 

@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 
-from _session import get_session, json_response, handle_options
+from session_lib import get_session, json_response, handle_options
 
 
 class handler(BaseHTTPRequestHandler):

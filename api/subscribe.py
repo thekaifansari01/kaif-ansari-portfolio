@@ -6,7 +6,7 @@ import time
 import requests
 from http.server import BaseHTTPRequestHandler
 
-from _mailer import smtp_send
+from mailer_lib import smtp_send
 
 SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY')
 SITE_URL = os.environ.get('SITE_URL', 'https://kaifansari.me').rstrip('/')
