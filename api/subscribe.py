@@ -7,29 +7,53 @@ from http.server import BaseHTTPRequestHandler
 
 import requests
 
-SECRET_KEY = os.environ.get("TURNSTILE_SECRET_KEY")
-SMTP_HOST = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
-SMTP_USER = os.environ.get("SMTP_USER")
-SMTP_PASS = os.environ.get("SMTP_PASS")
-FROM_EMAIL = os.environ.get("NEWSLETTER_FROM", SMTP_USER)
-SITE_URL = os.environ.get("SITE_URL", "https://kaifansari.me").rstrip("/")
+SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY')
+SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.gmail.com')
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
+SMTP_USER = os.environ.get('SMTP_USER')
+SMTP_PASS = os.environ.get('SMTP_PASS')
+FROM_EMAIL = os.environ.get('NEWSLETTER_FROM', SMTP_USER)
+SITE_URL = os.environ.get('SITE_URL', 'https://kaifansari.me').rstrip('/')
 
-UPSTASH_URL = os.environ.get("UPSTASH_REDIS_REST_URL")
-UPSTASH_TOKEN = os.environ.get("UPSTASH_REDIS_REST_TOKEN")
+UPSTASH_URL = os.environ.get('UPSTASH_REDIS_REST_URL')
+UPSTASH_TOKEN = os.environ.get('UPSTASH_REDIS_REST_TOKEN')
+
+ALLOWED_ORIGINS = [o.strip() for o in os.environ.get('ALLOWED_ORIGINS', SITE_URL).split(',') if o.strip()]
 
 
 def redis_cmd(*args):
     if not UPSTASH_URL or not UPSTASH_TOKEN:
         return None
     try:
-        url = UPSTASH_URL.rstrip("/") + "/" + "/".join(str(a) for a in args)
-        res = requests.get(url, headers={"Authorization": f"Bearer {UPSTASH_TOKEN}"}, timeout=5)
+        res = requests.post(
+            UPSTASH_URL.rstrip('/'),
+            headers={
+                'Authorization': f'Bearer {UPSTASH_TOKEN}',
+                'Content-Type': 'application/json',
+            },
+            json=[str(a) for a in args],
+            timeout=5,
+        )
         if res.status_code != 200:
             return None
-        return res.json().get("result")
+        return res.json().get('result')
     except Exception:
         return None
+
+
+def get_client_ip(handler):
+    ip = handler.headers.get('x-real-ip')
+    if not ip:
+        xff = handler.headers.get('x-forwarded-for', '')
+        ip = xff.split(',')[0].strip() if xff else ''
+    return ip or 'unknown'
+
+
+def cors_origin(handler):
+    origin = handler.headers.get('Origin', '')
+    if origin in ALLOWED_ORIGINS:
+        return origin
+    return ALLOWED_ORIGINS[0] if ALLOWED_ORIGINS else SITE_URL
 
 
 def verify_turnstile(token, ip):
@@ -37,37 +61,43 @@ def verify_turnstile(token, ip):
         return False
     try:
         r = requests.post(
-            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-            data={"secret": SECRET_KEY, "response": token, "remoteip": ip},
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+            data={'secret': SECRET_KEY, 'response': token, 'remoteip': ip},
             timeout=5,
         )
-        return r.json().get("success", False)
+        return r.json().get('success', False)
     except Exception:
         return False
 
 
 def rate_limit(ip):
-    key = f"rl:nl:{ip}"
-    count = redis_cmd("incr", key)
+    key = f'rl:nl:{ip}'
+    count = redis_cmd('incr', key)
+    if count is None:
+        return True
+    try:
+        count = int(count)
+    except (TypeError, ValueError):
+        return False
     if count == 1:
-        redis_cmd("expire", key, 3600)
-    return int(count or 0) <= 5
+        redis_cmd('expire', key, 3600)
+    return count <= 5
 
 
 def send_confirmation(email, token):
     if not SMTP_USER or not SMTP_PASS:
-        raise RuntimeError("SMTP not configured")
+        raise RuntimeError('SMTP not configured')
     if not FROM_EMAIL:
-        raise RuntimeError("FROM_EMAIL not configured")
+        raise RuntimeError('FROM_EMAIL not configured')
 
-    link = f"{SITE_URL}/api/confirm?token={token}"
+    link = f'{SITE_URL}/api/confirm?token={token}'
 
     msg = EmailMessage()
-    msg["Subject"] = "Confirm your subscription - kaif ansari"
-    msg["From"] = FROM_EMAIL
-    msg["To"] = email
-    msg["Reply-To"] = FROM_EMAIL
-    msg["X-Mailer"] = "kaif-portfolio-newsletter"
+    msg['Subject'] = 'Confirm your subscription - kaif ansari'
+    msg['From'] = FROM_EMAIL
+    msg['To'] = email
+    msg['Reply-To'] = FROM_EMAIL
+    msg['X-Mailer'] = 'kaif-portfolio-newsletter'
 
     plain = f"""Confirm your subscription
 
@@ -147,7 +177,7 @@ kaif
 </html>"""
 
     msg.set_content(plain)
-    msg.add_alternative(html, subtype="html")
+    msg.add_alternative(html, subtype='html')
 
     with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
         server.starttls()
@@ -158,53 +188,60 @@ kaif
 class handler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):
         self.send_response(200)
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header('Access-Control-Allow-Origin', cors_origin(self))
+        self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.send_header('Access-Control-Max-Age', '86400')
         self.end_headers()
 
     def do_POST(self):
         try:
-            length = int(self.headers.get("Content-Length", 0))
+            length = int(self.headers.get('Content-Length', 0))
             data = json.loads(self.rfile.read(length))
-            email = (data.get("email") or "").strip().lower()
-            token = data.get("token") or ""
-            ip = self.headers.get("x-forwarded-for", "").split(",")[0].strip()
+            email = (data.get('email') or '').strip().lower()
+            token = data.get('token') or ''
+            ip = get_client_ip(self)
 
-            if "@" not in email or "." not in email.split("@")[-1]:
-                return self.json(400, {"success": False, "error": "invalid email"})
-
-            if not verify_turnstile(token, ip):
-                return self.json(400, {"success": False, "error": "captcha failed"})
-
-            if not rate_limit(ip or "unknown"):
-                return self.json(429, {"success": False, "error": "too many attempts"})
-
-            if redis_cmd("get", f"confirmed:{email}"):
-                return self.json(200, {"success": True, "message": "already subscribed"})
+            if '@' not in email or '.' not in email.split('@')[-1] or len(email) > 200:
+                return self.json(400, {'success': False, 'error': 'invalid email'})
 
             if not UPSTASH_URL or not UPSTASH_TOKEN:
-                return self.json(500, {"success": False, "error": "storage not configured"})
+                return self.json(500, {'success': False, 'error': 'storage not configured'})
+
+            if not verify_turnstile(token, ip):
+                return self.json(400, {'success': False, 'error': 'captcha failed'})
+
+            if not rate_limit(ip):
+                return self.json(429, {'success': False, 'error': 'too many attempts'})
+
+            exists = redis_cmd('exists', f'confirmed:{email}')
+            if exists is None:
+                return self.json(500, {'success': False, 'error': 'storage error'})
+            try:
+                if int(exists) > 0:
+                    return self.json(200, {'success': True, 'message': 'already subscribed'})
+            except (TypeError, ValueError):
+                return self.json(500, {'success': False, 'error': 'storage error'})
 
             confirm_token = secrets.token_urlsafe(32)
-            saved = redis_cmd("set", f"pending:{confirm_token}", email)
+            saved = redis_cmd('set', f'pending:{confirm_token}', email)
             if saved is None:
-                return self.json(500, {"success": False, "error": "storage error"})
-            redis_cmd("expire", f"pending:{confirm_token}", 86400)
+                return self.json(500, {'success': False, 'error': 'storage error'})
+            redis_cmd('expire', f'pending:{confirm_token}', 86400)
 
             try:
                 send_confirmation(email, confirm_token)
             except Exception:
-                redis_cmd("delete", f"pending:{confirm_token}")
-                return self.json(500, {"success": False, "error": "failed to send email"})
+                redis_cmd('del', f'pending:{confirm_token}')
+                return self.json(500, {'success': False, 'error': 'failed to send email'})
 
-            return self.json(200, {"success": True, "message": "confirmation sent"})
+            return self.json(200, {'success': True, 'message': 'confirmation sent'})
         except Exception as e:
-            return self.json(500, {"success": False, "error": str(e)})
+            return self.json(500, {'success': False, 'error': str(e)})
 
     def json(self, status, payload):
         self.send_response(status)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', cors_origin(self))
         self.end_headers()
         self.wfile.write(json.dumps(payload).encode())
