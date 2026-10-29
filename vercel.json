@@ -1,5 +1,22 @@
 {
   "rewrites": [
-    { "source": "/admin", "destination": "/admin/index.html" }
+    { "source": "/admin", "destination": "/admin/index.html" },
+
+    { "source": "/api/admin_login", "destination": "/api/admin?action=login" },
+    { "source": "/api/admin_verify", "destination": "/api/admin?action=verify" },
+    { "source": "/api/admin_logout", "destination": "/api/admin?action=logout" },
+    { "source": "/api/admin_me", "destination": "/api/admin?action=me" },
+    { "source": "/api/admin_dashboard", "destination": "/api/admin?action=dashboard" },
+    { "source": "/api/admin_migrate", "destination": "/api/admin?action=migrate" },
+    { "source": "/api/admin_subscribers", "destination": "/api/admin?action=subscribers" },
+    { "source": "/api/admin_messages", "destination": "/api/admin?action=messages" },
+    { "source": "/api/admin_projects", "destination": "/api/admin?action=projects" },
+    { "source": "/api/admin_projects_sync", "destination": "/api/admin?action=projects_sync" },
+
+    { "source": "/api/send", "destination": "/api/public?action=send" },
+    { "source": "/api/subscribe", "destination": "/api/public?action=subscribe" },
+    { "source": "/api/confirm", "destination": "/api/public?action=confirm" },
+    { "source": "/api/unsubscribe", "destination": "/api/public?action=unsubscribe" },
+    { "source": "/api/projects", "destination": "/api/public?action=projects" }
   ]
 }
