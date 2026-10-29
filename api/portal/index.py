@@ -12,13 +12,15 @@ from urllib.parse import urlparse, parse_qs
 import requests
 
 from session_lib import (
-    SITE_URL, redis_cmd, get_client_ip, cors_origin,
-    json_response, handle_options,
+    SITE_URL, UPSTASH_URL, UPSTASH_TOKEN, redis_cmd, get_client_ip,
+    cors_origin, json_response, handle_options,
 )
 from mailer_lib import smtp_send
 
 SECRET_KEY = os.environ.get('TURNSTILE_SECRET_KEY')
 TO_EMAIL = os.environ.get('TO_EMAIL', 'kaif.ansari.global@gmail.com')
+CONTACT_FROM = os.environ.get('CONTACT_FROM', 'Kaif Ansari <hello@kaifansari.me>')
+NEWSLETTER_FROM = os.environ.get('NEWSLETTER_FROM', 'Kaif Ansari <newsletter@kaifansari.me>')
 CACHE_KEY = 'projects:cache'
 CACHE_TTL = 60
 
@@ -59,9 +61,10 @@ def _send_contact_email(name, email, message):
 </div>
 </body></html>"""
     try:
-        smtp_send(TO_EMAIL, subject, text, html, reply_to=email)
+        smtp_send(TO_EMAIL, subject, text, html, reply_to=email, from_email=CONTACT_FROM)
         return True
-    except Exception:
+    except Exception as e:
+        print(f'contact email failed: {e}')
         return False
 
 
@@ -103,7 +106,7 @@ def _send_confirmation(email, token, unsub_token):
 </td></tr>
 </table>
 </body></html>"""
-    smtp_send(email, 'Confirm your subscription - kaif ansari', text, html)
+    smtp_send(email, 'Confirm your subscription - kaif ansari', text, html, from_email=NEWSLETTER_FROM)
 
 
 def _fetch_projects():
@@ -195,6 +198,10 @@ class handler(BaseHTTPRequestHandler):
             if not token:
                 return json_response(self, 400, {'success': False, 'error': 'Missing CAPTCHA token'})
 
+            if not UPSTASH_URL or not UPSTASH_TOKEN:
+                print('contact send failed: redis not configured')
+                return json_response(self, 500, {'success': False, 'error': 'storage not configured'})
+
             if not _verify_turnstile(token, ip):
                 return json_response(self, 400, {'success': False, 'error': 'CAPTCHA verification failed'})
 
@@ -210,7 +217,6 @@ class handler(BaseHTTPRequestHandler):
                 return json_response(self, 429, {'success': False, 'error': 'Too many attempts. Try again later.'})
 
             message_id = secrets.token_urlsafe(16)
-            stored = False
 
             payload = {
                 'name': name,
@@ -219,32 +225,35 @@ class handler(BaseHTTPRequestHandler):
                 'ip': ip,
                 'status': 'unread',
                 'created_at': int(time.time()),
+                'email_sent': False,
             }
             result = redis_cmd('hset', 'contact:messages', message_id, json.dumps(payload))
-            if result is not None:
-                redis_cmd('lpush', 'contact:order', message_id)
-                redis_cmd('sadd', 'contact:unread', message_id)
-                stored = True
+            if result is None:
+                print(f'contact send: redis hset failed for message_id={message_id}')
+                return json_response(self, 500, {'success': False, 'error': 'storage error, please try again'})
+
+            redis_cmd('lpush', 'contact:order', message_id)
+            redis_cmd('sadd', 'contact:unread', message_id)
 
             email_sent = _send_contact_email(name, email, message)
 
-            if stored:
+            if email_sent:
                 try:
                     raw = redis_cmd('hget', 'contact:messages', message_id)
                     if raw:
                         p = json.loads(raw)
-                        p['email_sent'] = bool(email_sent)
+                        p['email_sent'] = True
                         redis_cmd('hset', 'contact:messages', message_id, json.dumps(p))
                 except Exception:
                     pass
-
-            if email_sent:
                 return json_response(self, 200, {'success': True, 'message': 'Message sent successfully!'})
-            if stored:
-                return json_response(self, 200, {'success': True, 'message': 'Message received. Delivery may be delayed.'})
 
-            return json_response(self, 500, {'success': False, 'error': 'Failed to deliver message. Please try again.'})
-        except Exception:
+            return json_response(self, 200, {
+                'success': True,
+                'message': 'Message received. Delivery may be delayed.',
+            })
+        except Exception as e:
+            print(f'contact send error: {e}')
             return json_response(self, 500, {'success': False, 'error': 'server error'})
 
     def _subscribe(self):

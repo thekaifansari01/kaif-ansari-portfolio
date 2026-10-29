@@ -26,6 +26,7 @@ VALID_PROJECT_STATUS = ('live', 'shipped', 'wip')
 
 
 def _send_magic_email(email, token):
+    admin_from = os.environ.get('ADMIN_FROM', 'Kaif Ansari <admin@kaifansari.me>')
     link = f'{SITE_URL}/api/admin_verify?token={token}'
     text = (
         'Admin login\n\n'
@@ -43,7 +44,7 @@ def _send_magic_email(email, token):
 <p style="color:#6a6a6a;font-size:11px;margin:28px 0 0;padding-top:18px;border-top:2px solid #333;">IF YOU DIDN'T REQUEST THIS, IGNORE THIS EMAIL</p>
 </div>
 </body></html>"""
-    smtp_send(email, 'Admin login - kaif ansari', text, html)
+    smtp_send(email, 'Admin login - kaif ansari', text, html, from_email=admin_from)
 
 
 def _send_confirmation_email(email, token, unsub_token):
@@ -59,6 +60,7 @@ def _send_confirmation_email(email, token, unsub_token):
 
 
 def _reply_email(to_email, name, reply_text, admin_email):
+    contact_from = os.environ.get('CONTACT_FROM', 'Kaif Ansari <hello@kaifansari.me>')
     subject = 'Re: your message to kaif ansari'
     plain = f"Hi {name},\n\n{reply_text}\n\n—\nkaif\n{SITE_URL}\n"
     html = f"""<!DOCTYPE html>
@@ -70,7 +72,7 @@ def _reply_email(to_email, name, reply_text, admin_email):
 <p style="color:#6a6a6a;font-size:11px;margin:28px 0 0;padding-top:18px;border-top:2px solid #333;">— kaif · <a href="{SITE_URL}" style="color:#c8ff00;text-decoration:none;">kaifansari.me</a></p>
 </div>
 </body></html>"""
-    smtp_send(to_email, subject, plain, html, reply_to=admin_email)
+    smtp_send(to_email, subject, plain, html, reply_to=admin_email, from_email=contact_from)
 
 
 def _parse_subs(raw):
