@@ -1453,6 +1453,213 @@
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
+.news-composer {
+  position: relative;
+  background: var(--card-bg);
+  border: var(--nb-border-w) solid var(--nb-border);
+  border-radius: var(--nb-radius);
+  box-shadow: 5px 5px 0 var(--nb-shadow);
+  padding: 28px 24px;
+  margin-bottom: 32px;
+}
+.news-composer::before {
+  content: '// compose';
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  padding: 3px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: 2px solid var(--nb-border);
+  border-radius: 2px;
+  box-shadow: 2px 2px 0 var(--nb-shadow);
+  transform: rotate(-1deg);
+}
+.news-composer label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: 1.5px solid var(--nb-border);
+  padding: 3px 9px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  width: fit-content;
+  margin: 14px 0 6px;
+  box-shadow: 2px 2px 0 var(--nb-shadow);
+  transform: rotate(-1deg);
+}
+.news-composer > form > label:first-child { margin-top: 0; }
+.news-composer input[type="text"],
+.news-composer textarea,
+.news-composer select {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 2px solid var(--nb-border);
+  border-radius: var(--nb-radius);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  min-height: 46px;
+  resize: vertical;
+}
+.news-composer input[type="text"]:focus,
+.news-composer textarea:focus,
+.news-composer select:focus {
+  outline: none;
+  border-color: var(--accent-symbol);
+  background: var(--bg-primary);
+  box-shadow: 4px 4px 0 var(--nb-shadow);
+  transform: translate(-2px, -2px);
+}
+.news-composer textarea { min-height: 200px; line-height: 1.6; }
+.news-composer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 4px;
+}
+.news-field { display: flex; flex-direction: column; }
+.news-composer-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.news-composer-actions .btn { flex: 1 1 auto; }
+.news-progress {
+  margin-top: 20px;
+  padding: 14px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--nb-border);
+  border-radius: var(--nb-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.news-progress-bar {
+  width: 100%;
+  height: 14px;
+  background: var(--bg-primary);
+  border: 2px solid var(--nb-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.news-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.3s ease-out;
+}
+.news-progress-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.news-history h3 {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.news-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--bg-primary);
+  border: 2px solid var(--nb-border);
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 var(--nb-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+  align-items: center;
+}
+.news-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--nb-shadow);
+}
+.news-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.news-item-subject {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.news-item-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+.news-item-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.news-preview-meta {
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--nb-border);
+  border-radius: var(--nb-radius);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+.news-preview-meta strong {
+  color: var(--accent-symbol);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 6px;
+}
+.news-preview-frame {
+  width: 100%;
+  height: 400px;
+  border: 2px solid var(--nb-border);
+  border-radius: var(--nb-radius);
+  background: #ffffff;
+}
+@media (max-width: 968px) {
+  .news-list { display: none !important; }
+}
+@media (max-width: 600px) {
+  .news-composer-row { grid-template-columns: 1fr; }
+  .news-composer { padding: 20px 16px; }
+  .news-composer-actions { flex-direction: column; }
+  .news-composer-actions .btn { width: 100%; flex: none; }
+  .news-preview-frame { height: 320px; }
+}
+
+
 @media (hover: none) {
   .btn:hover:not(:disabled),
   .btn-xs:hover:not(:disabled),
@@ -1702,6 +1909,7 @@
         <button type="button" class="tab" data-tab="projects" role="tab">projects</button>
         <button type="button" class="tab" data-tab="subscribers" role="tab">subscribers</button>
         <button type="button" class="tab" data-tab="messages" role="tab">messages</button>
+        <button type="button" class="tab" data-tab="news" role="tab">news</button>
       </nav>
       <div class="session">
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -1730,6 +1938,10 @@
     <button type="button" class="nav-item" data-tab="messages">
       <span class="material-icons-round" aria-hidden="true">mail</span>
       <span class="nav-label">messages</span>
+    </button>
+    <button type="button" class="nav-item" data-tab="news">
+      <span class="material-icons-round" aria-hidden="true">campaign</span>
+      <span class="nav-label">news</span>
     </button>
   </nav>
 
@@ -1876,6 +2088,63 @@
       </div>
       <div class="mobile-cards" id="msgsCards"></div>
       <div class="empty" id="msgsEmpty" hidden>// inbox zero — no messages yet</div>
+    </section>
+
+    <section class="panel" id="panelNews" data-panel="news" role="tabpanel" hidden>
+      <div class="panel-head">
+        <div class="panel-title-wrap">
+          <span class="panel-eyebrow">news</span>
+          <h2>newsletter <span class="count" id="newsCount"></span></h2>
+        </div>
+        <div class="panel-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="refreshNews">refresh</button>
+        </div>
+      </div>
+
+      <div class="news-composer">
+        <form id="newsForm" autocomplete="off" novalidate>
+          <label for="newsSubject">subject *</label>
+          <input type="text" id="newsSubject" required maxlength="200" placeholder="new agents dropped this week" />
+
+          <label for="newsBody">body *</label>
+          <textarea id="newsBody" rows="10" required maxlength="50000" placeholder="write your newsletter here..."></textarea>
+
+          <div class="news-composer-row">
+            <div class="news-field">
+              <label for="newsAudience">audience</label>
+              <select id="newsAudience">
+                <option value="confirmed">confirmed only</option>
+                <option value="all">all (confirmed + pending)</option>
+              </select>
+            </div>
+            <div class="news-field">
+              <label for="newsFormat">format</label>
+              <select id="newsFormat">
+                <option value="text">plain text</option>
+                <option value="html">html (advanced)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="news-composer-actions">
+            <button type="button" class="btn btn-ghost" id="newsPreviewBtn">preview</button>
+            <button type="button" class="btn btn-ghost" id="newsTestBtn">test to self</button>
+            <button type="submit" class="btn btn-primary" id="newsSendBtn">send broadcast</button>
+          </div>
+
+          <div class="news-progress" id="newsProgress" hidden>
+            <div class="news-progress-bar"><div class="news-progress-fill" id="newsProgressFill"></div></div>
+            <span class="news-progress-text" id="newsProgressText"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="news-history">
+        <h3>// past campaigns</h3>
+        <div class="news-list" id="newsList"></div>
+        <div class="mobile-cards" id="newsCards"></div>
+        <div class="empty" id="newsEmpty" hidden>// no campaigns yet — write your first one above</div>
+      </div>
     </section>
   </main>
 </div>
@@ -2132,7 +2401,7 @@
     }
 
     var initialTab = (window.location.hash || '').replace('#', '');
-    var validTabs = ['dashboard', 'projects', 'subscribers', 'messages'];
+    var validTabs = ['dashboard', 'projects', 'subscribers', 'messages', 'news'];
     if (validTabs.indexOf(initialTab) === -1) initialTab = 'dashboard';
 
     var r = await api('/api/admin_me');
@@ -2215,7 +2484,7 @@
   });
 
   function switchTab(name) {
-    var validTabs = ['dashboard', 'projects', 'subscribers', 'messages'];
+    var validTabs = ['dashboard', 'projects', 'subscribers', 'messages', 'news'];
     if (validTabs.indexOf(name) === -1) name = 'dashboard';
     state.tab = name;
     try { window.history.replaceState({}, '', '/admin#' + name); } catch (e) {}
@@ -2238,6 +2507,7 @@
     if (name === 'projects') loadProjects();
     if (name === 'subscribers') loadSubscribers();
     if (name === 'messages') loadMessages();
+    if (name === 'news') loadNews();
   }
 
   async function loadDashboard() {
@@ -2976,6 +3246,231 @@
       loadMessages();
     }
   });
+
+    async function loadNews() {
+    var list = document.getElementById('newsList');
+    var cards = document.getElementById('newsCards');
+    var empty = document.getElementById('newsEmpty');
+    list.innerHTML = '<div class="empty">loading…</div>';
+    cards.innerHTML = '';
+    empty.hidden = true;
+
+    var r = await api('/api/admin_news');
+    if (!r.ok || !r.data.success) {
+      toast((r.data && r.data.error) || 'failed to load campaigns', 'error');
+      list.innerHTML = '<div class="empty">failed to load</div>';
+      return;
+    }
+
+    var items = Array.isArray(r.data.data) ? r.data.data : [];
+    document.getElementById('newsCount').textContent = '(' + items.length + ')';
+
+    if (!items.length) {
+      list.innerHTML = '';
+      cards.innerHTML = '';
+      empty.hidden = false;
+      return;
+    }
+
+    empty.hidden = true;
+
+    list.innerHTML = items.map(function (c) {
+      var statusClass = c.status === 'done' ? 'confirmed' : (c.status === 'sending' ? 'pending' : 'unsubscribed');
+      var dateStr = c.created_at ? new Date(c.created_at * 1000).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+      return '<div class="news-item">' +
+        '<div class="news-item-left">' +
+        '<span class="news-item-subject">' + esc(c.subject) + '</span>' +
+        '<div class="news-item-meta">' +
+        '<span>' + dateStr + '</span>' +
+        '<span>audience: ' + esc(c.audience) + '</span>' +
+        '<span>sent: ' + c.sent_count + '/' + c.total + '</span>' +
+        (c.failed_count > 0 ? '<span style="color:var(--error);">failed: ' + c.failed_count + '</span>' : '') +
+        '</div>' +
+        '</div>' +
+        '<div class="news-item-right">' +
+        '<span class="badge ' + statusClass + '">' + esc(c.status) + '</span>' +
+        '</div>' +
+        '</div>';
+    }).join('');
+
+    cards.innerHTML = items.map(function (c) {
+      var statusClass = c.status === 'done' ? 'confirmed' : (c.status === 'sending' ? 'pending' : 'unsubscribed');
+      var dateStr = c.created_at ? new Date(c.created_at * 1000).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+      return '<article class="m-card">' +
+        '<header class="m-card-head">' +
+        '<div class="window-dots"><span></span><span></span><span></span></div>' +
+        '<span class="m-card-path">' + dateStr + '</span>' +
+        '<span class="badge ' + statusClass + '">' + esc(c.status) + '</span>' +
+        '</header>' +
+        '<div class="m-card-body">' +
+        '<h4 class="m-card-title">' + esc(c.subject) + '</h4>' +
+        '<div class="m-card-meta-row"><span>audience</span><span>' + esc(c.audience) + '</span></div>' +
+        '<div class="m-card-meta-row"><span>sent</span><span>' + c.sent_count + ' / ' + c.total + '</span></div>' +
+        (c.failed_count > 0 ? '<div class="m-card-meta-row"><span>failed</span><span style="color:var(--error);">' + c.failed_count + '</span></div>' : '') +
+        '</div>' +
+        '</article>';
+    }).join('');
+  }
+
+  function previewNews() {
+    var subject = document.getElementById('newsSubject').value.trim();
+    var body = document.getElementById('newsBody').value.trim();
+    var isHtml = document.getElementById('newsFormat').value === 'html';
+
+    if (!subject || !body) {
+      toast('subject and body required', 'error');
+      return;
+    }
+
+    var htmlBody = isHtml ? body : esc(body).replace(/\n/g, '<br>');
+    var iframeId = 'newsPreviewFrame_' + Date.now();
+
+    showModal(
+      '<h3>preview</h3>' +
+      '<div class="news-preview-meta"><strong>subject</strong>' + esc(subject) + '</div>' +
+      '<iframe id="' + iframeId + '" class="news-preview-frame" sandbox=""></iframe>'
+    );
+
+    setTimeout(function () {
+      var iframe = document.getElementById(iframeId);
+      if (iframe) {
+        iframe.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:20px;line-height:1.6;color:#111;}img{max-width:100%;}</style></head><body>' + htmlBody + '</body></html>';
+      }
+    }, 20);
+  }
+
+  async function testSendNews() {
+    var subject = document.getElementById('newsSubject').value.trim();
+    var body = document.getElementById('newsBody').value.trim();
+    var isHtml = document.getElementById('newsFormat').value === 'html';
+    var btn = document.getElementById('newsTestBtn');
+
+    if (!subject || !body) {
+      toast('subject and body required', 'error');
+      return;
+    }
+    if (btn.disabled) return;
+
+    setBtnBusy(btn, true, 'sending test…');
+    var r = await api('/api/admin_news', {
+      method: 'POST',
+      body: { subject: subject, body: body, is_html: isHtml, test: true },
+      timeout: 25000
+    });
+    setBtnBusy(btn, false, null, 'test to self');
+
+    if (!r.ok || !r.data.success) {
+      toast((r.data && r.data.error) || 'test send failed', 'error');
+      return;
+    }
+    toast('test sent to your inbox');
+  }
+
+  async function sendNewsBroadcast() {
+    var subject = document.getElementById('newsSubject').value.trim();
+    var body = document.getElementById('newsBody').value.trim();
+    var audience = document.getElementById('newsAudience').value;
+    var isHtml = document.getElementById('newsFormat').value === 'html';
+    var btn = document.getElementById('newsSendBtn');
+    var progressEl = document.getElementById('newsProgress');
+    var fillEl = document.getElementById('newsProgressFill');
+    var textEl = document.getElementById('newsProgressText');
+
+    if (!subject || body.length < 5) {
+      toast('subject and body required', 'error');
+      return;
+    }
+    if (btn.disabled) return;
+
+    setBtnBusy(btn, true, 'checking…');
+    var dry = await api('/api/admin_news', {
+      method: 'POST',
+      body: { subject: subject, body: body, audience: audience, is_html: isHtml, dry_run: true }
+    });
+    setBtnBusy(btn, false, null, 'send broadcast');
+
+    if (!dry.ok || !dry.data.success) {
+      toast((dry.data && dry.data.error) || 'failed to check audience', 'error');
+      return;
+    }
+
+    var total = dry.data.total || 0;
+    if (total === 0) {
+      toast('no subscribers in this audience', 'error');
+      return;
+    }
+
+    if (!window.confirm('Send this newsletter to ' + total + ' subscribers? This cannot be undone.')) return;
+
+    setBtnBusy(btn, true, 'sending…');
+    progressEl.hidden = false;
+    fillEl.style.width = '0%';
+    textEl.textContent = 'starting…';
+
+    var offset = 0;
+    var campaignId = null;
+    var done = false;
+    var iter = 0;
+    var sentTotal = 0;
+    var failedTotal = 0;
+
+    while (!done && iter < 200) {
+      iter++;
+      var r = await api('/api/admin_news', {
+        method: 'POST',
+        body: {
+          subject: subject,
+          body: body,
+          audience: audience,
+          is_html: isHtml,
+          offset: offset,
+          batch_size: 20,
+          campaign_id: campaignId
+        },
+        timeout: 25000
+      });
+
+      if (!r.ok || !r.data.success) {
+        toast((r.data && r.data.error) || 'send failed', 'error');
+        setBtnBusy(btn, false, null, 'send broadcast');
+        progressEl.hidden = true;
+        loadNews();
+        return;
+      }
+
+      campaignId = r.data.campaign_id;
+      total = r.data.total || 0;
+      sentTotal = r.data.sent_total || 0;
+      failedTotal = r.data.failed_total || 0;
+      offset = r.data.next_offset || 0;
+      done = !!r.data.done;
+
+      var pct = total > 0 ? Math.round(((sentTotal + failedTotal) / total) * 100) : 0;
+      fillEl.style.width = pct + '%';
+      textEl.textContent = (sentTotal + failedTotal) + '/' + total + ' (' + pct + '%) · sent: ' + sentTotal + ' · failed: ' + failedTotal;
+    }
+
+    setBtnBusy(btn, false, null, 'send broadcast');
+
+    if (!done) {
+      toast('send timed out — check history', 'error');
+    } else {
+      toast('broadcast complete: ' + sentTotal + ' sent, ' + failedTotal + ' failed');
+      document.getElementById('newsForm').reset();
+      progressEl.hidden = true;
+    }
+
+    loadNews();
+  }
+
+  document.getElementById('newsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendNewsBroadcast();
+  });
+  document.getElementById('newsPreviewBtn').addEventListener('click', previewNews);
+  document.getElementById('newsTestBtn').addEventListener('click', testSendNews);
+  document.getElementById('refreshNews').addEventListener('click', loadNews);
+
 
   window.addEventListener('hashchange', function () {
     var h = (window.location.hash || '').replace('#', '');

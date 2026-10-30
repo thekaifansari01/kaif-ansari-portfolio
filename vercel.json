@@ -12,6 +12,7 @@
     { "source": "/api/admin_messages", "destination": "/api/admin?action=messages" },
     { "source": "/api/admin_projects", "destination": "/api/admin?action=projects" },
     { "source": "/api/admin_projects_sync", "destination": "/api/admin?action=projects_sync" },
+    { "source": "/api/admin_news", "destination": "/api/admin?action=news" },
 
     { "source": "/api/send", "destination": "/api/portal?action=send" },
     { "source": "/api/subscribe", "destination": "/api/portal?action=subscribe" },

@@ -204,6 +204,8 @@ class handler(BaseHTTPRequestHandler):
             return self._messages_get()
         if action == 'projects':
             return self._projects_get()
+        if action == 'news':
+            return self._news_get()
         return json_response(self, 404, {'success': False, 'error': 'not found'})
 
     def do_POST(self):
@@ -222,6 +224,8 @@ class handler(BaseHTTPRequestHandler):
             return self._projects_post()
         if action == 'projects_sync':
             return self._projects_sync()
+        if action == 'news':
+            return self._news_post()
         return json_response(self, 404, {'success': False, 'error': 'not found'})
 
     def do_PATCH(self):
@@ -1001,6 +1005,187 @@ class handler(BaseHTTPRequestHandler):
             return json_response(self, 200, {'success': True})
         except Exception:
             return json_response(self, 500, {'success': False, 'error': 'server error'})
+
+    def _news_get(self):
+        sess = get_session(self)
+        if not sess:
+            return json_response(self, 401, {'success': False, 'error': 'unauthorized'})
+
+        campaigns = []
+        raw = redis_cmd('hgetall', 'newsletter:campaigns') or []
+        if isinstance(raw, list):
+            for i in range(0, len(raw), 2):
+                try:
+                    data = json.loads(raw[i + 1])
+                    campaigns.append({
+                        'id': data.get('id', ''),
+                        'subject': data.get('subject', ''),
+                        'audience': data.get('audience', ''),
+                        'created_at': data.get('created_at', 0),
+                        'completed_at': data.get('completed_at', 0),
+                        'total': data.get('total', 0),
+                        'sent_count': data.get('sent_count', 0),
+                        'failed_count': data.get('failed_count', 0),
+                        'status': data.get('status', 'sending'),
+                        'is_html': data.get('is_html', False),
+                    })
+                except (IndexError, TypeError, ValueError):
+                    continue
+
+        campaigns.sort(key=lambda c: c.get('created_at', 0), reverse=True)
+
+        return json_response(self, 200, {'success': True, 'data': campaigns})
+
+    def _news_post(self):
+        sess = get_session(self)
+        if not sess:
+            return json_response(self, 401, {'success': False, 'error': 'unauthorized'})
+
+        try:
+            from news_helper import send_news_email, get_audience
+        except ImportError:
+            return json_response(self, 500, {'success': False, 'error': 'news helper not available'})
+
+        try:
+            body = self._body()
+            subject = (body.get('subject') or '').strip()
+            content = (body.get('body') or '').strip()
+            audience = (body.get('audience') or 'confirmed').strip()
+            is_test = bool(body.get('test', False))
+            is_dry_run = bool(body.get('dry_run', False))
+            is_html = bool(body.get('is_html', False))
+            offset = max(0, int(body.get('offset') or 0))
+            batch_size = min(50, max(1, int(body.get('batch_size') or 20)))
+            campaign_id = (body.get('campaign_id') or '').strip()
+
+            if not subject or len(subject) < 3 or len(subject) > 200:
+                return json_response(self, 400, {'success': False, 'error': 'subject required (3-200 chars)'})
+            if not content or len(content) < 5 or len(content) > 50000:
+                return json_response(self, 400, {'success': False, 'error': 'body required (5-50000 chars)'})
+            if audience not in ('confirmed', 'all'):
+                return json_response(self, 400, {'success': False, 'error': 'invalid audience'})
+
+            if is_test:
+                try:
+                    send_news_email(sess['email'], subject, content, is_html, None)
+                    audit(sess['email'], 'news_test', subject, {'ip': get_client_ip(self)})
+                    return json_response(self, 200, {'success': True, 'test': True})
+                except Exception:
+                    return json_response(self, 500, {'success': False, 'error': 'failed to send test'})
+
+            if is_dry_run:
+                audience_list = get_audience(audience)
+                return json_response(self, 200, {'success': True, 'total': len(audience_list)})
+
+            if not campaign_id:
+                rl_key = 'rl:news:' + sess['email']
+                count = redis_cmd('incr', rl_key)
+                try:
+                    count = int(count) if count is not None else 0
+                except (TypeError, ValueError):
+                    count = 0
+                if count == 1:
+                    redis_cmd('expire', rl_key, 3600)
+                if count > 5:
+                    return json_response(self, 429, {'success': False, 'error': 'too many sends, wait 1 hour'})
+
+                audience_list = get_audience(audience)
+                total = len(audience_list)
+                if total == 0:
+                    return json_response(self, 400, {'success': False, 'error': 'no subscribers in this audience'})
+
+                campaign_id = secrets.token_urlsafe(12)
+                campaign = {
+                    'id': campaign_id,
+                    'subject': subject,
+                    'body': content,
+                    'is_html': is_html,
+                    'audience': audience,
+                    'created_at': int(time.time()),
+                    'admin_email': sess['email'],
+                    'total': total,
+                    'sent_count': 0,
+                    'failed_count': 0,
+                    'status': 'sending',
+                    'emails': audience_list,
+                    'failed_emails': [],
+                }
+                redis_cmd('hset', 'newsletter:campaigns', campaign_id, json.dumps(campaign))
+            else:
+                raw = redis_cmd('hget', 'newsletter:campaigns', campaign_id)
+                if not raw:
+                    return json_response(self, 404, {'success': False, 'error': 'campaign not found'})
+                try:
+                    campaign = json.loads(raw)
+                except (TypeError, ValueError):
+                    return json_response(self, 500, {'success': False, 'error': 'corrupt campaign'})
+                if campaign.get('admin_email') != sess['email']:
+                    return json_response(self, 403, {'success': False, 'error': 'forbidden'})
+                if campaign.get('status') == 'done':
+                    return json_response(self, 400, {'success': False, 'error': 'campaign already complete'})
+
+            emails = campaign.get('emails') or []
+            batch = emails[offset:offset + batch_size]
+            sent_now = 0
+            failed_now = 0
+            failed_list = []
+
+            for entry in batch:
+                if isinstance(entry, dict):
+                    email = entry.get('email', '')
+                    unsub = entry.get('unsub', '')
+                else:
+                    email = str(entry)
+                    unsub = ''
+                if not email or '@' not in email:
+                    failed_now += 1
+                    continue
+                try:
+                    send_news_email(email, subject, content, is_html, unsub)
+                    sent_now += 1
+                except Exception as e:
+                    failed_now += 1
+                    failed_list.append({'email': email, 'error': str(e)[:100]})
+
+            campaign['sent_count'] = int(campaign.get('sent_count', 0)) + sent_now
+            campaign['failed_count'] = int(campaign.get('failed_count', 0)) + failed_now
+            if failed_list:
+                existing_failed = campaign.get('failed_emails', [])
+                if not isinstance(existing_failed, list):
+                    existing_failed = []
+                existing_failed.extend(failed_list)
+                campaign['failed_emails'] = existing_failed
+
+            next_offset = offset + len(batch)
+            done = next_offset >= len(emails)
+            if done:
+                campaign['status'] = 'done'
+                campaign['completed_at'] = int(time.time())
+
+            redis_cmd('hset', 'newsletter:campaigns', campaign_id, json.dumps(campaign))
+
+            if done:
+                audit(sess['email'], 'news_sent', subject, {
+                    'campaign_id': campaign_id,
+                    'sent': campaign['sent_count'],
+                    'failed': campaign['failed_count'],
+                    'total': campaign['total'],
+                })
+
+            return json_response(self, 200, {
+                'success': True,
+                'campaign_id': campaign_id,
+                'sent': sent_now,
+                'failed': failed_now,
+                'sent_total': campaign['sent_count'],
+                'failed_total': campaign['failed_count'],
+                'total': campaign['total'],
+                'next_offset': next_offset,
+                'done': done,
+            })
+        except Exception:
+            return json_response(self, 500, {'success': False, 'error': 'server error'})
+
 
     def _projects_sync(self):
         sess = get_session(self)
